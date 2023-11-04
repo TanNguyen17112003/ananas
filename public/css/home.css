@@ -1,0 +1,17 @@
+.search-top {
+    border: 1px solid #FFCA2B;
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
+}
+
+.fs-header-item {
+    font-size: 12px;
+}
+
+.header__search-top {
+    border: 1px solid #FFCA2B !important;
+}
+
+.header__nav {
+    height: 80px;
+}
