@@ -1,7 +1,6 @@
 # Web Programming Assignment - HCMUT - HK231
 
-## DESIGN THE INTERFACE AND BUILD BASIC FEATURES
-## FOR A COMPANY OR BUSINESS WEBSITE
+## DEVELOP A WEBSITE FOR COMPANY OR BUSINESS
 
 > ### Centralized Directory Service
 > **1. ...**
@@ -27,7 +26,7 @@
 ## Usage
 
 ```shell
-python3 fapster_server.py
+python3 zzz
 ```
 **_Note:_** ...
 
