@@ -1,12 +1,12 @@
 <?php
   session_start();
   ob_start();
-  $rootPath = '/AssignmentWeb/admin';
+  $rootPath = '/Lap_trinh_web/admin';
   if (!isset($_SESSION["email_ad"])) {
       header('location: ../login.php');
   }
 
-  require_once '../../db/DB.php';
+  require_once '../../database/DB.php';
 
   $sqlShowUser = "SELECT * FROM user";
   $users = $conn->query($sqlShowUser);
