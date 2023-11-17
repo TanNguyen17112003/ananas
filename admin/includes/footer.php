@@ -11,7 +11,7 @@
                     </li>
                     <li>
                         <i class="fa fa-phone fa-fw"></i>
-                        <a class="text-decoration-none text-light" href="tel:+8439443666">(+84) 94433666</a>
+                        <a class="text-decoration-none text-light" href="tel:+8439443666">(+84)394433666</a>
                     </li>
                     <li>
                         <i class="fa fa-envelope fa-fw"></i>
