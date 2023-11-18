@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light shadow-sm p-3 bg-body rounded" id="navbar-top">
+<nav class="navbar navbar-expand-lg bg-primary p-3 bg-body rounded" id="navbar-top">
   <div class="container">
     <a class="navbar-brand" href="<?php echo $rootPath; ?>">
       <img src="https://wujiateavn.com/files/systems/logo-l6m1s0u2.png" alt="Logo" width="70" height="30" class="d-inline-block align-text-top">

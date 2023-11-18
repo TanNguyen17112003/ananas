@@ -8,8 +8,8 @@
                 <a class="navbar-sm-brand text-decoration-none text-color-primary fs-header-item" href="tel:1800.6936">Đặt hàng: 1800.6936</a>
             </div>
             <div>
-                <a class="text-light text-color-primary" href="https://www.facebook.com/nguyenducbinh2003" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
-                <a class="text-light text-color-primary" href="https://github.com/binhnguyen3816" target="_blank"><i class="fa-brands fa-github fa-sm fa-fw me-2"></i></a>
+                <a class="text-primary text-color-primary" href="https://www.facebook.com/nguyenducbinh2003" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+                <a class="text-dark text-color-primary" href="https://github.com/binhnguyen3816" target="_blank"><i class="fa-brands fa-github fa-sm fa-fw me-2"></i></a>
             </div>
         </div>
     </div>

@@ -139,21 +139,21 @@ require_once './database/DB.php';
             <div class="row">
                 <div class="col-xl-4">
                     <div class="text-center">
-                        <a href="#"><img alt="topProduct" width="200" height="200" src="./public/img/products/bi-dao-suong-sao-qb2cpm44.png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
+                        <a href="#"><img alt="topProduct" width="200" height="200" src="./public/img/products/bi-dao-suong-sao-qb2cpm44 (2).png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
                         <p class="h4 text-dark">Bí đao sương sáo</p>
                         <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
                     </div>
                 </div>
                 <div class="col-xl-4">
                     <div class="text-center">
-                        <a href="#"><img alt="topProduct" width="200" src="./public/img/products/tra-sua-suong-sao-laessvwl.png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
+                        <a href="#"><img alt="topProduct" width="200" src="./public/img/products/tra-sua-suong-sao-laessvwl (2).png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
                         <p class="h4 text-dark">Trà sữa sương sáo</p>
                         <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
                     </div>
                 </div>
                 <div class="col-xl-4">
                     <div class="text-center">
-                        <a href="#"><img alt="topProduct" width="200" src="./public/img/products/suong-sao-latte-as9ofqbf.png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
+                        <a href="#"><img alt="topProduct" width="200" src="./public/img/products/suong-sao-latte-as9ofqbf (2).png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
                         <p class="h4 text-dark">Sương sáo latte</p>
                         <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
                     </div>

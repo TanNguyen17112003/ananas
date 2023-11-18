@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 28, 2023 at 01:48 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Host: localhost:3307
+-- Generation Time: Nov 18, 2023 at 04:22 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -16,8 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-CREATE DATABASE ltwdb;
-USE ltwdb;
+
 --
 -- Database: `ltwdb`
 --
@@ -88,10 +87,10 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `username`, `email`, `message`, `status`, `created_at`) VALUES
-(1, 'Huy', 'huylg2109@gmail.com', 'Hi, thank you for your recent inquiry. Let us know how we did by completing this short survey. It takes less than a minute to complete.', 0, '2023-11-16 14:21:58'),
-(2, 'Huy', 'huylg2109@gmail.com', 'Huy, it’s been a while; we miss you! Let us know if there’s anything we can do to improve your experience or if you have any questions for us. We value you and would love to hear from you.', 0, '2023-11-16 14:22:35'),
-(3, 'Huân', 'huan@gmail.com', 'Hi, this is to confirm that your recent support ticket has been resolved and closed. We thank you for your patience.', 0, '2022-12-08 14:29:18'),
-(4, 'Hậu', 'hau.nguyenbk8786@gmail.com', 'Use these to celebrate customer anniversaries, an upcoming holiday, or birthday. “Happy Birthday Hậu! As an extra-special thank you for being a loyal customer, here’s $50 on us. Use it toward any of your favorite products.', 0, '2023-11-16 14:49:39');
+(1, 'Binh', 'binh381672943@gmail.com', 'Hi, thank you for your recent inquiry. Let us know how we did by completing this short survey. It takes less than a minute to complete.', 0, '2023-11-16 14:21:58'),
+(2, 'Binh', 'binhnguyen3816@gmail.com', 'Binh, it’s been a while; we miss you! Let us know if there’s anything we can do to improve your experience or if you have any questions for us. We value you and would love to hear from you.', 0, '2023-11-16 14:22:35'),
+(3, 'Binh', 'nguyenducbinh381672943@gmail.com', 'Hi, this is to confirm that your recent support ticket has been resolved and closed. We thank you for your patience.', 0, '2022-12-08 14:29:18'),
+(4, 'Binh', 'binh.nguyenhelloworld@hcmut.edu.vn', 'Use these to celebrate customer anniversaries, an upcoming holiday, or birthday. “Happy Birthday Bình! As an extra-special thank you for being a loyal customer, here’s $50 on us. Use it toward any of your favorite products.', 0, '2023-11-16 14:49:39');
 
 -- --------------------------------------------------------
 
@@ -111,6 +110,13 @@ CREATE TABLE `order` (
   `name_receiver` varchar(50) NOT NULL DEFAULT 'Đang xử lý'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`order_id`, `user_id`, `payment_method`, `payment`, `address_receiver`, `phone_receiver`, `updated_at`, `status`, `name_receiver`) VALUES
+(15, 31, 'Tiền mặt khi nhận hàng', 25000, 'ktx khu A', '0394433666', '2023-11-16 13:55:24', 'Đang xử lý', 'Đang xử lý');
+
 -- --------------------------------------------------------
 
 --
@@ -123,6 +129,13 @@ CREATE TABLE `order_item` (
   `quantity_item` bigint(20) NOT NULL DEFAULT 1,
   `price` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_item`
+--
+
+INSERT INTO `order_item` (`order_id`, `product_id`, `quantity_item`, `price`) VALUES
+(15, 16, 1, 97000);
 
 -- --------------------------------------------------------
 
@@ -143,16 +156,16 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `title`, `content`, `updated_at`, `image`) VALUES
-(1, 'HI-TEA HEALTHY: DA ĐẸP DÁNG XINH - RINH DEAL 0Đ', 'Mùa lễ hội đến gần, cần da đẹp dáng xinh phát mê, thì hổng được bỏ qua Hi-Tea Healthy bạn nha. Nhà còn có deal 0Đ dành tặng bạn nữa nè 💃💃\r\n💃\r\n\r\n\r\n🔸 Nhập mã: HITEADAY\r\n\r\n🔸 Thứ 3 hàng tuần: 13, 20, 27/12\r\n\r\n🔸 Áp dụng ly Hi-Tea thứ 2 giá 0đ, khi mua một ly Hi-Tea bất kỳ cho đơn Giao hàng\r\n\r\n👉 Mãi “biu tì”, chốt ngay Hi-Tea!\r\n\r\n', '2022-12-07 10:51:25', 'https://feed.thecoffeehouse.com//content/images/2022/12/NOTI--22-.jpg'),
-(2, 'ĐẠI TIỆC LINH ĐÌNH - RINH DEAL MUA 1 TẶNG 1', 'Black Friday vừa qua, deal Nhà siêu to MUA 1 TẶNG 1 ở lại. Cùng bạn mở tiệc thiệt hoành tráng, mừng ngày “anh lương” ghé thăm 😜.\r\n\r\n\r\n🔸 Nhập mã: DAITIEC\r\n\r\n🔸 Thời gian: 02/12 - 07/12\r\n\r\n🔸 Áp dụng cho Hi-Tea/CloudTea/CloudFee/The Coffee House Sữa Đá cho đơn Giao hàng\r\n\r\n👉 Nhà hùn vốn rồi đó, còn khum mau mau chốt đơn!', '2022-12-07 11:11:19', 'https://feed.thecoffeehouse.com//content/images/2022/12/noti--19-.jpg'),
-(3, 'BÁNH NƯỚC ĐỦ ĐẦY - CHỚP NGAY COMBO 3 MÓN CHỈ 99K', 'Cuối tuần rồi, chạy về nhà thôi. Nơi có ba có mẹ và trăm chuyện tỉ tê trên đời 👨‍👩‍👧‍👦\r\n\r\nNhà góp chút “ấm áp” để nhà mình thêm vui bạn nhé!\r\n\r\n\r\n🔸 Nhập mã: FAMILYDAY\r\n\r\n🔸 Thứ 7, CN hàng tuần: 10-11,17-18, 24-25/12\r\n\r\nMón 1: 01 Cà phê VN/CloudFee\r\nMón 2: 01 Hi-Tea/Trà trái cây/Trà sữa/CloudTea\r\nMón 3: 01 Chocolate hoặc bánh Mousse/Chà bông phô mai/Croissant trứng muối\r\n🔸 Áp dụng size M cho đơn Giao hàng\r\n\r\n👉 Chớp deal đi chờ chi!', '2022-12-07 11:13:45', 'https://feed.thecoffeehouse.com//content/images/2022/12/NOTI--16-.jpg'),
-(4, 'GHÉ NHÀ MANG ĐI - RƯỚC DEAL MÊ LY', 'Biết bạn dạo này bận lắm, nhưng món nước yêu thích thì hổng thể thiếu 😢\r\n\r\nThương thương! Từ ngày 01/12 - 31/12, Nhà mời ngay 10% cho đơn Mang đi, để bạn không chỉ được thưởng thức món ngon mà còn tiện lợi nữa nè ^^\r\n\r\n\r\n🔸 Nhập mã: GHENHANHE\r\n\r\n🔸 Thời gian: 01/12 - 31/12\r\n\r\n🔸 Áp dụng cho đơn Mang đi từ 2 món bất kỳ\r\n\r\nGhé Nhà Mang đi nào bạn ơi!', '2022-12-07 11:13:50', 'https://feed.thecoffeehouse.com//content/images/2022/12/NOTI--18-.jpg'),
-(5, 'NƯỚC NGON TUYỆT VỜI - NHÀ MỜI CHỈ TỪ 19K', 'Cầu được ước thấy! Món ghiền của bạn mỗi ngày, nay Nhà ưu đãi chỉ từ 19K ^^  Từ 01/12 - 31/12, bạn tranh thủ rước deal lia lịa nha: Cà phê 19K/ The Coffee House Sữa Đá 29K/Trà trái cây, CloudFee 39K\r\n\r\n🔸 Nhập mã: TUYETVOI\r\n\r\n🔸 Áp dụng size M khi mua cùng bánh bất kỳ, cho đơn Giao hàng.\r\n\r\n🔸  Không áp dụng cho nước đóng chai Fresh và topping\r\n\r\n🔸 Không áp dụng cho các chương trình khuyến mãi song song\r\n\r\n*Không áp dụng cho Bánh mì que\r\n\r\n👉 Xế Nhà giao ngay, chốt đơn liền tay!', '2022-12-07 11:14:45', 'https://feed.thecoffeehouse.com//content/images/2022/12/NOTI--17-.jpg'),
-(6, 'SÁNG NO NÊ, BÁNH MÌ GẬY THIỆT MÊ CHỈ 9K', 'Nhà phát hiện dạo này có người hay bỏ bữa sáng lắm 😭\r\n\r\nNên từ ngày 01/12 - 31/12, Nhà ủ mưu lắp đầy chiếc bụng đói bằng Bánh mì Gậy ngon ngon, nhanh gọn chỉ với 9K thôi nè ^^\r\n\r\n\r\n🔸Nhập mã: ANSANG9K\r\n\r\n🔸Thời gian: 07:00 - 14:00\r\n\r\n🔸Áp dụng khi mua kèm 1 nước (size M, L) bất kỳ cho đơn Giao hàng\r\n\r\n🔸Không áp dụng cho nước đóng chai Fresh và topping\r\n\r\n🔸Không áp dụng cho các chương trình khuyến mãi song song\r\n\r\n👉 Có thực mới vực được deadline, chốt đơn ngay bạn nhé!', '2022-12-07 11:17:39', 'https://feed.thecoffeehouse.com//content/images/2022/12/noti--21-.jpg'),
-(7, 'BÊN NHAU NHIỀU - NHÀ CHIỀU DEAL ĐẬM', 'Chỉ cần được bên bạn mỗi ngày, Nhà hổng ngại chiều deal đậm 😘\r\n\r\nTừ ngày 01/12 - 31/12, Nhà giảm lớn đến 70K, thoả thích thưởng thức bánh nước thơm ngon bạn nha ^^\r\n\r\n\r\n🔸 Giảm 35K đơn từ 169K\r\n\r\nNhập mã: BENNHAU35\r\n\r\n🔸 Giảm 70K đơn từ 289K\r\n\r\nNhập mã: BENNHAU70\r\n\r\n🔸 Áp dụng cho bánh, nước cho đơn Giao hàng.\r\n\r\n🔸 Không áp dụng cho nước đóng chai Fresh và topping\r\n\r\n🔸 Không áp dụng cho các chương trình khuyến mãi song song\r\n\r\n👉  Đặt đi, chờ chi!', '2022-12-07 11:18:23', 'https://feed.thecoffeehouse.com//content/images/2022/12/noti--20-.jpg'),
-(8, 'MANG ĐI CÙNG NHÀ - GIẢM NGAY 15%', 'Biết bạn dù bận bịu nhưng nước ngon thì không thể thiếu 😜\r\n\r\n\r\nNên từ ngày 01/11 - 30/11, Nhà mời ngay deal 15% nè cho đơn Mang đi nè.\r\n\r\n🔸 Nhập mã: GHENHA\r\n\r\n🔸 Áp dụng đơn hàng từ 2 món\r\n\r\nMở app, mang đi rốp rẻng liền nha!', '2022-12-07 11:19:04', 'https://feed.thecoffeehouse.com//content/images/2022/11/NOTI--6-.jpg'),
-(9, 'VITAMIN TỈNH TÁO - NHÀ KHAO DEAL CHỈ TỪ 25K', 'Xử gọn deadline, thứ 2 không còn ngập task. Vì có vitamin tỉnh táo, Nhà mời rồi đây 😍\r\n\r\n\r\nTừ ngày 01/11 - 30/11, bạn nhớ chớp ngay deal The Coffee House Sữa Đá, Coldbrew Phúc Bồn Tử chỉ 25K và Cà phê CloudFee chỉ 35K\r\n\r\n🔸 Nhập mã: CAPHEDAY\r\n\r\n🔸 Thứ 2 hàng tuần từ 07:00 - 13:00\r\n\r\n🔸 Áp dụng size M cho đơn Giao hàng\r\n\r\n👉 Mở app liền tay, chốt đơn lia lịa ngay!', '2022-12-07 11:20:00', 'https://feed.thecoffeehouse.com//content/images/2022/11/NOTI--1-.jpg'),
-(10, 'ĐẠI TIỆC TRÀ - 3 LY CHỈ 99K', 'Thứ 6 rồi, mở tiệc linh đình thôi team mình ơi😍\r\n\r\nTừ ngày 01/11 - 30/11, Nhà mời ngay combo 3 ly trà chỉ 99K, để chúng mình thoải mái chill nước ngon đã đời, mà chẳng lo về giá ^^\r\n\r\n\r\n🔸 Nhập mã: PARTEADAY\r\n\r\n🔸 Thời gian: Thứ 6 hàng tuần (từ 01/11 - 30/11)\r\n\r\n🔸 Áp dụng Trà trái cây, Hi-Tea, Trà sữa, CloudTea (size M) cho đơn Giao hàng\r\n\r\nĐặt ngay đi chờ chi!', '2022-12-07 11:21:18', 'https://feed.thecoffeehouse.com//content/images/2022/11/noti--9-.jpg');
+(1, 'Nụ cười tràn đầy hy vọng', 'phá cỗ nhộn nhịp tùng dinh tùng phách. Đây cũng là dịp để gia đình sum vầy, trao nhau những món quà ý nghĩa. Tuy nhiên, không phải ai cũng có may mắn để trải qua một mùa trung thu thật trọn vẹn.\r\n\r\nNhìn vào hoàn cảnh khó khăn của các bé mồ côi, trẻ em bỏ rơi hay các em nhỏ sinh sống tại mái ấm Chùa Kỳ Quang và mái ấm Ánh Sáng, Hồng Trà Ngô Gia đã tổ chức một buổi ghé thăm phát quà trung thu để mang niềm vui đến cho các em vào ngày lễ đặc biệt này.', '2023-11-18 02:54:52', 'https://wujiateavn.com/files/upload2/files/Untitled-5.jpg'),
+(2, 'CÔNG BỐ KẾT QUẢ KHÁCH HÀNG TRÚNG THƯỞNG | VÒNG QUAY MAY MẮN', 'Chúng ta đã cùng nhau tìm ra các khách hàng may mắn nhận được giải thưởng trong chương trình “Vòng Quay May Mắn”. Như vậy là các phần quà cũng đã tìm được chủ sở hữu của mình rồi., Hồng Trà Ngô Gia xin chúc mừng tất cả các bạn trúng thưởng, các bạn chưa may mắn trong lần này cũng đừng buồn nhen, hãy cùng Hồng Trà Ngô Gia đón chờ những chương trình tiếp theo nhé! \r\n\r\nDanh sách khách hàng may mắn nhận được giải thưởng sau:\r\n\r\n03 giải Nhất: Iphone 14 Promax 256G\r\n03 giải Nhì: Xe điện PEGA\r\n05 giải Ba: Loa Bluetooth JBL\r\n08 giải Tư: Nước hoa Chanel\r\n100 giải Năm: Hộp quà tặng Ngô Gia\r\nGiải Khuyến khích: dành tặng cho tất cả khách hàng', '2023-11-18 02:57:24', 'https://wujiateavn.com/files/upload2/files/gi%E1%BA%A3i%20nh%E1%BA%A5t%201.jpg'),
+(3, 'THỬ HƯƠNG VỊ MỚI - RINH IPHONE 14 PROMAX VỀ NHÀ', 'Nhằm tri ân Fan của Hồng Trà Ngô Gia trong suốt những năm qua đã và luôn đồng hành, yêu quý Hồng Trà Ngô Gia. Hồng Trà Ngô Gia dành tặng cơn bão “thay mới dế yêu” với phần thưởng Iphone 14 Promax, Xe Máy Điện PEGA,... và nhiều phần quà hấp dẫn khác đang đợi Fan rinh về nhà.\r\nCơn bão thay mới “dế yêu” đang được diễn ra từ ngày 15/7/2023 đến hết 15/8/2023. Ngoài quà tặng là những chiếc Iphone 14 Promax 256GB, Hồng Trà Ngô Gia còn chuẩn bị nhiều phần quà hấp dẫn khác như: Xe Máy Điện PEGA, Loa Bluetooth JBL, Nước hoa Chanel,... khi khách hàng mua 1 trong 5 thức uống mới nằm trong chương trình ưu đãi, khách hàng sẽ nhận được 1 vòng bọc ly kèm phiếu cào trên mỗi ly thức uống. Và khi khách hàng sưu tầm đủ 9 kiểu vòng bọc ly khác nhau, khách hàng sẽ có cơ hội tham gia thay mới “dế yêu” và nhiều phần quà hấp dẫn khác.\r\nKhông dừng lại ở những quà tặng xịn sò trên, Hồng Trà Ngô Gia còn tặng kèm bộ lắp ráp Lego trên mỗi ly thức uống, nằm trong chương chương ưu đãi. Trên mỗi vòng bọc ly sẽ có kèm theo phiếu cào, khách hàng chỉ cần xé phiếu cào để đổi thưởng Lego trực tiếp tại quán. Một tin chấn động hơn, kích thước Lego có thể lên đến cực đại. Vậy nên Fan ơi, đừng bỏ qua cơ hội “thử hương vị mới - rinh quà tặng về nhà” nhé!\r\nCÁCH THỨC THAM GIA\r\n\r\nBước 1: Order 1 trong 5 ly thức uống mới để nhận vòng bọc ly kèm thẻ cào, gồm:\r\n\r\n- Trà Sữa Ba Anh Em\r\n\r\n- Aiyu Hồng Trà Kem Tươi Hoàng Kim\r\n\r\n- Sữa Dâu Tây Trân Châu Trắng\r\n\r\n- Bát Bảo Ngô Gia\r\n\r\n- Chè Sương Sáo Nước Cốt Dừa\r\n\r\nTrên mỗi ly thức uống trên, khách hàng sẽ nhận được 01 vòng bọc ly kèm thẻ cào. \r\nBước 2: Fan nhớ xé phần thẻ cào và cào đổi Lego trực tiếp tại cửa hàng. Giữ lại Vòng bọc ly.\r\nLưu ý: Thẻ cào 100% trúng Lego, Fan nhớ đổi trực tiếp tại cửa hàng nhé!\r\n\r\nBước 3: Fan sưu tầm đủ 9 kiểu vòng bọc ly khác nhau, sau đó đến cửa hàng điền thông tin phiếu “bốc thăm trúng thưởng”. Fan nhớ gửi “phiếu bốc thăm trúng thưởng” kèm 9 kiểu vòng bọc ly về cho Ngô Gia nhé!\r\nCƠ CẤU GIẢI THƯƠNG\r\n\r\nGiải nhất: 03 Iphone 14 pro max\r\n\r\nGiải nhì: 03 Xe điện PEGA\r\n\r\nGiải ba: 05 Loa Bluetooth JBL\r\n\r\nGiải tư: 08 chai Nước hoa Chanel\r\n\r\nGiải năm: 100 Hộp quà tặng Ngô Gia\r\n\r\nGiải khuyến khích: 2200 phiếu giảm giá 5.000đ\r\n\r\nKết quả được công bố trực tiếp trên sóng Livestream của Ngô Gia.', '2023-11-18 02:59:27', 'https://wujiateavn.com/files/upload2/files/1200X1200.jpg'),
+(4, 'HỒNG TRÀ NGÔ GIA ĐẠT DANH HIỆU GIẢI THƯỞNG HƯƠNG VỊ XUẤT SẮC ITQI', 'Hồng Trà Ngô Gia là một thương hiệu trà nổi tiếng tại Việt Nam và có xuất xứ từ Đài Loan, được thành lập từ năm 1995. Với hơn 25 năm kinh nghiệm trong việc sản xuất và phân phối trà, Hồng Trà Ngô Gia đã trở thành một trong những thương hiệu trà hàng đầu tại Đài Loan. Trà của Hồng Trà Ngô Gia được sản xuất từ những lá trà tươi ngon, được thu hái từ các vùng trồng trà nổi tiếng. Nhờ sử dụng các nguyên liệu chất lượng cao và quy trình sản xuất hiện đại, trà của Hồng Trà Ngô Gia luôn đảm bảo độ tươi mới và hương vị nồng nàn đặc trưng của vị trà truyền thống của Đài Loan. \r\nHồng trà Ngô Gia là một trong những loại trà nổi tiếng của Đài Loan, được sản xuất tinh túy từ những lá trà tươi ngon nhất. Với quy trình chế biến đặc biệt cùng công nghệ tiên tiến, Hồng Trà Ngô Gia đã đạt được danh hiệu giải thưởng hương vị xuất sắc iTQi do Viện Thẩm định Hương vị Quốc Tế (International Taste & Quality Institute) tại Brussels, Bỉ.\r\n\r\n \r\n\r\nĐược biết đến là một trong những giải thưởng có uy tín nhất thế giới trong lĩnh vực đánh giá sản phẩm ăn uống, giải thưởng iTQi chỉ được trao cho các sản phẩm có chất lượng đỉnh cao và đạt chuẩn hương vị tuyệt vời. Với danh hiệu này, Hồng Trà Ngô Gia đã khẳng định vị trí của mình trong thị trường trà quốc tế và được rất nhiều người tiêu dùng tin tưởng sử dụng hàng ngày.\r\n\r\nHồng trà Ngô Gia có màu sắc đỏ nâu huyền thoại, hương thơm đậm đà ngọt ngào, vị đắng thanh mát, giúp làm dịu cảm giác mệt mỏi và tạo ra một trạng thái thư giãn cho người sử dụng. Cùng với độ tinh khiết cao và hương vị đặc biệt, Hồng Trà Ngô Gia đang trở thành lựa chọn yêu thích của rất nhiều người trên thế giới.', '2023-11-18 03:00:20', 'https://wujiateavn.com/files/upload2/images/z4280613958518_0ed7dc93b8774d9ae5d6cbaf41b459b6.jpg'),
+(5, 'HỒNG TRÀ KEM TƯƠI | SỰ KẾT HỢP HOÀN HẢO GIỮA TRÀ VÀ KEM TƯƠI', 'HỒNG TRÀ KEM TƯƠI | SỰ KẾT HỢP HOÀN HẢO GIỮA TRÀ VÀ KEM TƯƠI\r\nHồng Trà Kem Tươi đây là một thức uống mới đầy hấp dẫn, được pha trộn tinh tế từ trà đen và kem tươi ngon tuyệt.\r\n\r\n\r\nTừ lâu, trà là một thức uống được yêu thích bởi nhiều người vì sự thanh mát, thư giãn và tác dụng tốt cho sức khỏe. Và gần đây, xu hướng uống trà kết hợp với kem tươi đang ngày càng trở nên phổ biến tại giới trẻ ở Việt Nam. Và hôm nay, chúng tôi xin giới thiệu đến bạn một loại thức uống mới - Hồng Trà Kem Tươi - một sự kết hợp hoàn hảo giữa trà đen và kem tươi.\r\n\r\nHồng Trà Kem Tươi là một trong những thức uống được yêu thích của Hồng Trà Ngô Gia tại Đài Loan và hôm nay đã chính thức được mở bán tại Việt Nam. Được chế biến từ lá trà tươi và kem tươi ngon miệng, sản phẩm này mang đến cho người dùng một trải nghiệm mới lạ và đầy hấp dẫn.\r\n\r\nVới hương vị nhẹ nhàng của trà đen và vị béo ngậy của kem tươi, Hồng Trà Kem Tươi sẽ khiến bạn thích thú ngay từ lần đầu tiên thưởng thức. Không những thế, sản phẩm còn được bổ sung thêm các thành phần tự nhiên tốt cho sức khỏe như đường và sữa tươi, giúp tăng cường hương vị và dinh dưỡng.\r\n\r\nHồng Trà Kem Tươi có hương vị đậm đà, mạnh mẽ từ trà đen, cùng vị ngọt mát, béo ngậy từ kem tươi. Thưởng thức Hồng Trà Kem Tươi, bạn sẽ cảm nhận được sự kết hợp hoàn hảo giữa hương vị truyền thống của trà đen chuẩn Đài Loan và vị béo ngậy của kem tươi. Bạn có thể thưởng thức sản phẩm này vào bất kỳ thời điểm nào trong ngày, từ buổi sáng để bắt đầu một ngày mới đầy năng lượng đến buổi tối để thư giãn sau một ngày làm việc mệt mỏi.\r\n\r\nNgoài ra, Hồng Trà Kem Tươi còn là một lựa chọn tuyệt vời cho các buổi họp mặt gia đình, bạn bè hoặc các sự kiện đặc biệt. Sản phẩm này sẽ khiến buổi họp mặt của bạn thêm phần thú vị. Với chất lượng tốt và giá cả phải chăng, Hồng Trà Kem Tươi đang trở thành một thức uống được yêu thích và được nhiều người lựa chọn. Chúng tôi hy vọng rằng sản phẩm này sẽ mang đến cho bạn những trải nghiệm thú vị và tuyệt vời nhất.', '2023-11-18 03:08:45', 'https://wujiateavn.com/files/upload2/images/Image_20230519095555.jpg'),
+(6, 'SỮA DÂU TÂY | SẢN PHẨM MỚI CỦA HỒNG TRÀ NGÔ GIA NHƯ THẾ NÀO', 'Sữa dâu tây! Đây là một thức uống mới và đầy cảm hứng, được làm từ sữa tươi nguyên chất kết hợp với dâu tây đỏ ngọt ngào, tươi ngon. Bạn sẽ được trải nghiệm hương vị tuyệt vời của sự ngọt ngào và thơm ngon từ cả sữa và dâu tây.\r\n\r\nSữa dâu tây không chỉ thơm ngon mà còn giàu dinh dưỡng, chứa nhiều chất béo và protein cần thiết cho cơ thể. Thức uống này có thể đóng vai trò là thức uống bổ sung dinh dưỡng, giúp tăng cường sức khỏe và tăng cường động lượng cho cơ thể.\r\n\r\nSữa dâu tây là sự lựa chọn tuyệt vời cho tất cả các đối tượng từ trẻ em đến người lớn tuổi. Ngoài ra, Sữa Dâu Tây không làm từ trà nên sẽ không ảnh hướng đến giấc ngủ của bạn. Vì vậy nếu bạn đang tìm kiếm một loại thức uống mới lạ, thơm ngon và giàu dinh dưỡng, hãy đến với chúng tôi để trải nghiệm hương vị tuyệt vời của sữa dâu tây.', '2023-11-18 03:09:17', 'https://wujiateavn.com/files/upload2/files/Image_20230407150503.jpg'),
+(7, 'MỪNG NGÀY 8 THÁNG 3 – HỒNG TRÀ NGÔ GIA GỬI TẶNG MÓN QUÀ TUYỆT VỜI CHO PHÁI ĐẸP', 'Nhân dịp kỷ niệm Ngày Quốc tế Phụ nữ 8 tháng 3, Hồng Trà Ngô Gia xin gửi đến quý khách hàng một chương trình đặc biệt và ý nghĩa. Trong ngày 8/3, khi quý khách nữ đến bất kỳ chi nhánh nào của Hồng Trà Ngô Gia và đặt một món đồ uống bất kỳ trong menu, sẽ được tặng kèm một cái Pudding Socola ngon tuyệt để thưởng thức.\r\n\r\nLà một trong những món Topping vừa được cho ra mắt gần đây tại Hồng Trà Ngô Gia, pudding socola đem lại hương vị ngọt ngào, hấp dẫn và rất thích hợp để làm quà tặng cho người phụ nữ thân yêu nhân dịp 8/3.\r\n\r\nHồng Trà Ngô Gia hy vọng rằng chương trình này sẽ giúp quý khách hàng thưởng thức những món ngon cùng không khí rộn ràng, ấm áp trong ngày 8/3.\r\n\r\nHãy đến Hồng Trà Ngô Gia để tận hưởng chương trình ưu đãi này và gửi lời chúc tốt đẹp đến người phụ nữ yêu thương của mình nhé!\r\n\r\nĐiều kiện áp dụng chương trình:\r\n\r\nÁp dụng khi mua hàng trực tiếp tại cửa hàng\r\nÁp dụng khi khách hàng nữ mua một đồ uống bất kỳ kèm Like và Comment bài viết trên Fanpage với nội dung “Vẫn là Hồng Trà Ngô Gia uống ngon nhất”\r\nThời gian diễn ra duy nhất trong ngày 08/03/2023', '2023-11-18 03:09:45', 'https://wujiateavn.com/files/upload2/files/h%C3%ACnh%207-3.jpg'),
+(8, 'GRAND OPENING LINH ĐÔNG THỦ ĐỨC', 'Bắt đầu từ ngày 26/11 Hồng Trà Ngô Gia mời bạn đến tân gia chi nhánh mới tại 98B Linh Đông, Phường Linh Đông, Thủ Đức nà\r\n\r\nSiêu Ưu Đãi\r\n\r\nMUA 1 TẶNG 1 đến hết ngày 28/11/2022\r\nhương trình chỉ áp dụng tại cửa hàng đang khai trương\r\n\r\nMua 1 tặng 1 áp dụng trên toàn menu\r\n\r\nKhông áp dụng giao hàng và các chương trình khuyến mãi đang hoạt động khác.', '2023-11-18 03:10:23', 'https://wujiateavn.com/files/upload2/images/%E5%B8%A4%E6%A2%93%E6%9E%99-1.jpg'),
+(9, 'TẬN HƯỞNG HƯƠNG VỊ MỚI CÙNG TRÀ SỮA SOCOLA VÀ TRÀ CHANH LÁ DỨA', 'Theo bạn thì hai món này kết hợp với Topping nào sẽ là tuyệt nhất? Cùng nhau chia sẻ kinh nghiệm ăn uống để mọi cùng tham khảo và thưởng thức thử nà!\r\n\r\nĐừng có quên nắm tay kéo vai đứa bạn thân đi cùng đó nha! Tag ngay hội bạn cùng đam mê vào hóng đi nà các bạn ơiiii', '2023-11-18 03:11:01', 'https://wujiateavn.com/files/upload2/images/ok-min.gif'),
+(10, 'BẠN THỨC KHUYA SĂN SALE SỘP PEE CÒN TUI SĂN SALE HỒNG TRÀ NGÔ GIA', 'Chương trình chỉ áp dụng tại cửa hàng đang khai trương\r\n\r\nMua 1 tặng 1 áp dụng trên toàn menu\r\n\r\nKhông áp dụng giao hàng và các chương trình khuyến mãi đang hoạt động khác.\r\n\r\n-------\r\n\r\nTỚI QUẨY VỚI CHÚNG MÌNH NHOO CÁC BẠN OI\r\n\r\nĐịa chỉ :  763 Nguyễn Ảnh Thủ,P Trung Mỹ Tây, Q12\r\nHãy @tag thêm vài người bạn thân iu dấu của mình để nhận thêm nhiều ưu đãi nhaaa\r\n\r\n------\r\n\r\nWebsite: https://wujiateavn.com/\r\n\r\n#HongTraNgoGia\r\n\r\n#trasuadailoan\r\n\r\n#GrandOpening\r\n\r\n#NguyễnẢnhThủ\r\n\r\n#PhườngTrungMỹTây\r\n\r\n#Quận12\r\n', '2023-11-18 03:12:42', 'https://wujiateavn.com/files/upload/files/test.jpg');
 
 -- --------------------------------------------------------
 
@@ -189,20 +202,21 @@ INSERT INTO `product` (`product_id`, `name`, `category_id`, `description`, `imag
 (10, 'Trân châu đường đen latte', 2, 'Trân châu đường đen latte', 'sua-tuoi-tran-chau-duong-den-5stas08q.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
 (11, 'Trà xanh latte', 2, 'Trà xanh latte', 'tra-xanh-latte-lbm6ltnr.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
 (12, 'Hồng trà latte vải thiều', 2, 'Hồng trà latte vải thiều', 'hong-tra-latte-vai-thieu-w3lcixhg.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(13, 'Bí đao latte', 2, 'Bí đao latte', 'bi-dao-latte-dmzbutlw.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(14, 'Hồng trà latte Đài Loan', 2, 'Hồng trà latte Đài Loan', 'hong-tra-latte-dai-loan-kvmyjjtc.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(15, 'Trà xanh chanh', 3, 'Trà xanh chanh', 'tra-xanh-chanh-tolzbxkm.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(16, 'Hồng trà chanh vải thiều', 3, 'Hồng trà chanh vải thiều', 'hong-tra-chanh-vai-thieu-zlk6nqui.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(17, 'Trà chanh bí đao', 3, 'Trà chanh bí đao', 'tra-bi-dao-chanh-iioyjqd0.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(18, 'Trà sữa sương sáo', 4, 'Trà sữa sương sáo', 'tra-sua-suong-sao-laessvwl.png', 10,239000, 19000, '2023-01-08 15:29:11'),
-(19, 'Trà xanh sữa', 4, 'Trà xanh sữa', 'tra-xanh-sua-efbubhnb.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(20, 'Trà sữa vải thiều', 4, 'Trà sữa vải thiều', 'tra-sua-vai-thieu-mcpbo5wd.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(21, 'Trà sữa bí đao', 4, 'Trà sữa bí đao', 'tra-sua-bi-dao-qxo9y6dn.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(22, 'Trà sữa Đài Loan', 4, 'Trà sữa Đài Loan', 'tra-sua-dai-loan-qlgi7h4z.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(23, 'Trà xanh yakult', 5, 'Trà xanh yakult', 'tra-xanh-yakult-ciiwdu3q.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(24, 'Hồng trà yakult', 5, 'Hồng trà yakult', 'hong-tra-yakult-vai-thieu-p2eqjjyy.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(25, 'Bí đao yakult Ngô Gia', 5, 'Bí đao yakult Ngô Gia', 'bi-dao-yakult-ngo-gia-des0qgwx.jpg', 10,239000, 19000, '2023-01-08 15:29:11'),
-(26, 'Hồng trà yakult Đài Loan', 5, 'Hồng trà yakult Đài Loan', 'hong-tra-yakult-dai-loan-71tovysw.jpg', 10,239000, 19000, '2023-01-08 15:29:11');
+(13, 'Bí đao latte', 2, 'Bí đao latte', 'bi-dao-latte-dmzbutlw.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(14, 'Hồng trà latte Đài Loan', 2, 'Hồng trà latte Đài Loan', 'hong-tra-latte-dai-loan-kvmyjjtc.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(15, 'Trà xanh chanh', 3, 'Trà xanh chanh', 'tra-xanh-chanh-tolzbxkm.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(16, 'Hồng trà chanh vải thiều', 3, 'Hồng trà chanh vải thiều', 'hong-tra-chanh-vai-thieu-zlk6nqui.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(17, 'Trà chanh bí đao', 3, 'Trà chanh bí đao', 'tra-bi-dao-chanh-iioyjqd0.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(18, 'Trà sữa sương sáo', 4, 'Trà sữa sương sáo', 'tra-sua-suong-sao-laessvwl.png', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(19, 'Trà xanh sữa', 4, 'Trà xanh sữa', 'tra-xanh-sua-efbubhnb.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(20, 'Trà sữa vải thiều', 4, 'Trà sữa vải thiều', 'tra-sua-vai-thieu-mcpbo5wd.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(21, 'Trà sữa bí đao', 4, 'Trà sữa bí đao', 'tra-sua-bi-dao-qxo9y6dn.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(22, 'Trà sữa Đài Loan', 4, 'Trà sữa Đài Loan', 'tra-sua-dai-loan-qlgi7h4z.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(23, 'Trà xanh yakult', 5, 'Trà xanh yakult', 'tra-xanh-yakult-ciiwdu3q.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(24, 'Hồng trà yakult', 5, 'Hồng trà yakult', 'hong-tra-yakult-vai-thieu-p2eqjjyy.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(25, 'Bí đao yakult Ngô Gia', 5, 'Bí đao yakult Ngô Gia', 'bi-dao-yakult-ngo-gia-des0qgwx.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
+(26, 'Hồng trà yakult Đài Loan', 5, 'Hồng trà yakult Đài Loan', 'hong-tra-yakult-dai-loan-71tovysw.jpg', 10, 239000, 19000, '2023-01-08 15:29:11');
+
 -- --------------------------------------------------------
 
 --
@@ -242,8 +256,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `email`, `password`, `name`, `avatar`, `phone`, `address`, `updated_at`, `verify_code`, `active`) VALUES
-(31, 'hau.nguyenbk8786@gmail.com', '53a627fac6f4700e04f4d9508fab393a', 'Nguyễn Đức Hậu', NULL, '0382848786', 'Kí túc xá Khu B, Đông Hòa, Dĩ An, Bình Dương', '2023-01-27 03:01:57', 111127377, 1),
-(34, 'hau.nguyenbk19@hcmut.edu.vn', '43fb750eedc948a953f1985ed3bbdd55', 'GunKK', NULL, '0382848786', 'Kí túc xá Khu B, Đông Hòa, Dĩ An, Bình Dương', '2023-01-27 03:05:41', 181030442, 1);
+(31, 'c2agiftedhv@gmail.com', '123', 'Nguyễn Đức Bình', NULL, '0382848786', 'Kí túc xá Khu A, Đông Hòa, Dĩ An, Bình Dương', '2023-11-17 03:01:57', 111127377, 1),
+(34, 'binh381672943@gmail.com', '456', 'Nguyễn Đức Bình', NULL, '0382848786', 'Kí túc xá Khu A, Đông Hòa, Dĩ An, Bình Dương', '2023-11-17 03:01:57', 181030442, 1);
 
 --
 -- Indexes for dumped tables
@@ -334,7 +348,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `post`
@@ -346,7 +360,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `review`
