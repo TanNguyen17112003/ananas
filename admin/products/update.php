@@ -132,7 +132,7 @@ if (isset($_POST['update'])) {
                         <input class="form-control" name="imagesOld" value="<?=$product['images']?>" type="hidden">
                     </div>
                 </div>
-                <input type="submit" class="btn btn-success w-100 mt-2" value="Cập nhật" name="update">
+                <input type="submit" class="btn btn-primary w-100 mt-2" value="Cập nhật" name="update">
             </form>
         </div>
         <div class="col-2"></div>

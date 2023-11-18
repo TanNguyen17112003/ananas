@@ -70,7 +70,7 @@ require_once '../../database/DB.php';
                     ?>
                     <div class="col-12 mb-3">
 						<table class="table">
-							<thead class="table-warning">
+							<thead class="table-primary">
 								<tr>
 									<th scope="col">#id</th>
 									<th scope="col">Tên sản phẩm</th>
@@ -91,7 +91,7 @@ require_once '../../database/DB.php';
 									<td><?=$row['price_sale']?></td>
 									<td><?=$row['quantity']?></td>
 									<td>
-										<a href="./update.php?id=<?=$row['product_id']?>" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
+										<a href="./update.php?id=<?=$row['product_id']?>" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
 										<a href="./delete.php?id=<?=$row['product_id']?>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
 									</td>
 								</tr>

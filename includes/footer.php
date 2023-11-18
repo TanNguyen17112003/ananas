@@ -21,7 +21,7 @@
             </div>
 
             <div class="col-md-4 pt-5">
-                <h3 class="h2 text-dark border-bottom pb-3 border-light">Hỗ trợ khách hàng</h3>
+                <h3 class="h2 border-bottom pb-3 border-light" style="color:#ED171F">Hỗ trợ khách hàng</h3>
                 <ul class="list-unstyled text-light footer-link-list">
                     <li><a class="text-decoration-none text-light primary-item" href="#">Hướng dẫn mua hàng</a></li>
                     <li><a class="text-decoration-none text-light primary-item" href="#">Hướng dẫn thanh toán</a></li>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="col-md-4 pt-5">
-                <h3 class="h2 text-dark border-bottom pb-3 border-light">Chính sách và bảo hành</h3>
+                <h3 class="h2 border-bottom pb-3 border-light" style="color:#ED171F">Chính sách và bảo hành</h3>
                 <ul class="list-unstyled text-light footer-link-list">
                     <li><a class="text-decoration-none text-light primary-item" href="#">Chính sách, quy định chung</a></li>
                     <li><a class="text-decoration-none text-light primary-item" href="#">Chính sách trả hàng</a></li>
