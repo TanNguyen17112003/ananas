@@ -42,7 +42,7 @@ require_once './database/DB.php';
         <div class="col-xl-2 col-md-4 col-sm-6">
             <div class="list-group mb-5">
                 <span class="list-group-item bg-primary text-dark" aria-current="true">
-                    <b class="user-select-none">Danh mục</b>
+                    <b class="user-select-none text-light">Danh mục</b>
                 </span>
                 <?php
                     $sqlShowCategory = "SELECT * FROM category";

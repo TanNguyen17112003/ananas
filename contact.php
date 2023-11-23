@@ -17,7 +17,7 @@ require_once './database/DB.php';
             $sql = "INSERT INTO contact (username, email, message) VALUES ('$name', '$email', '$message')";
             
             if ($conn->query($sql) === TRUE) {
-                echo "Send message successfully";
+                // echo "Send message successfully";
                 $status = "Cảm ơn bạn đã liên hệ với chúng tôi. <br> Chúng tôi sẽ phản hồi cho bạn trong thời gian sớm nhất.";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
@@ -47,7 +47,7 @@ require_once './database/DB.php';
     <div class="col-md-6 m-auto text-center">
         <h1 class="h1" style="color:#002A54">Liên hệ với chúng tôi</h1>
         <p style="color:#ED171F">
-            Bạn có thắc mắc về dịch vụ của chúng ta? Hãy gửi tin nhắn cho chúng tôi tại đây.
+            Bạn có thắc mắc về dịch vụ của chúng tôi? Hãy gửi tin nhắn cho chúng tôi tại đây.
         </p>
     </div>
 </div>

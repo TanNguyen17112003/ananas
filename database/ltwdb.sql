@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Nov 18, 2023 at 04:22 AM
+-- Generation Time: Nov 23, 2023 at 04:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -90,7 +90,10 @@ INSERT INTO `contact` (`id`, `username`, `email`, `message`, `status`, `created_
 (1, 'Binh', 'binh381672943@gmail.com', 'Hi, thank you for your recent inquiry. Let us know how we did by completing this short survey. It takes less than a minute to complete.', 0, '2023-11-16 14:21:58'),
 (2, 'Binh', 'binhnguyen3816@gmail.com', 'Binh, it’s been a while; we miss you! Let us know if there’s anything we can do to improve your experience or if you have any questions for us. We value you and would love to hear from you.', 0, '2023-11-16 14:22:35'),
 (3, 'Binh', 'nguyenducbinh381672943@gmail.com', 'Hi, this is to confirm that your recent support ticket has been resolved and closed. We thank you for your patience.', 0, '2022-12-08 14:29:18'),
-(4, 'Binh', 'binh.nguyenhelloworld@hcmut.edu.vn', 'Use these to celebrate customer anniversaries, an upcoming holiday, or birthday. “Happy Birthday Bình! As an extra-special thank you for being a loyal customer, here’s $50 on us. Use it toward any of your favorite products.', 0, '2023-11-16 14:49:39');
+(4, 'Binh', 'binh.nguyenhelloworld@hcmut.edu.vn', 'Use these to celebrate customer anniversaries, an upcoming holiday, or birthday. “Happy Birthday Bình! As an extra-special thank you for being a loyal customer, here’s $50 on us. Use it toward any of your favorite products.', 0, '2023-11-16 14:49:39'),
+(5, 'Nguyễn Đức Bình', 'binh381672943@gmail.com', 'đây là tin nhắn từ phần liên hệ', 0, '2023-11-23 12:54:52'),
+(6, 'Nguyễn Đức Bình', 'binh381672943@gmail.com', 'this is a contact message', 0, '2023-11-23 14:36:10'),
+(7, 'Nguyễn Đức Bình', 'binh381672943@gmail.com', 'this is a contact message', 0, '2023-11-23 14:36:34');
 
 -- --------------------------------------------------------
 
@@ -115,7 +118,9 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`order_id`, `user_id`, `payment_method`, `payment`, `address_receiver`, `phone_receiver`, `updated_at`, `status`, `name_receiver`) VALUES
-(15, 31, 'Tiền mặt khi nhận hàng', 25000, 'ktx khu A', '0394433666', '2023-11-16 13:55:24', 'Đang xử lý', 'Đang xử lý');
+(16, 38, 'Tiền mặt khi nhận hàng', 357000, 'vafs', '0394433666', '2023-11-18 09:52:00', 'Đang xử lý', 'Nguyễn Đức Bình'),
+(17, 38, 'Tiền mặt khi nhận hàng', 38000, 'ktz khu A', '0394433666', '2023-11-23 12:22:52', 'Đang xử lý', 'Nguyễn Đức Bình'),
+(18, 38, 'Tiền mặt khi nhận hàng', 38000, 'ktz khu A', '0394433666', '2023-11-23 15:25:22', 'Đang xử lý', 'Nguyễn Đức Bình');
 
 -- --------------------------------------------------------
 
@@ -135,7 +140,14 @@ CREATE TABLE `order_item` (
 --
 
 INSERT INTO `order_item` (`order_id`, `product_id`, `quantity_item`, `price`) VALUES
-(15, 16, 1, 97000);
+(16, 1, 13, 16000),
+(16, 2, 2, 19000),
+(16, 3, 4, 19000),
+(16, 6, 1, 35000),
+(16, 9, 0, 16000),
+(17, 2, 1, 19000),
+(17, 3, 1, 19000),
+(18, 2, 2, 19000);
 
 -- --------------------------------------------------------
 
@@ -190,32 +202,32 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `category_id`, `description`, `images`, `quantity`, `price`, `price_sale`, `timestamp`) VALUES
-(1, 'Hồng trà Đài Loan', 1, 'Hồng trà đài loan', 'hong-tra-dai-loan-zvyjy3xt.jpg', 10, 39000, 16000, '2023-01-08 15:29:11'),
-(2, 'Trà bí đao Ngô Gia', 1, 'Trà bí đao Ngô Gia', 'tra-bi-dao-ngo-gia-q38efry9.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(3, 'Hồng trà vải thiều', 1, 'Hồng trà vải thiều', 'hong-tra-vai-thieu-2isu3y9o.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(4, 'Trà xanh hoa nhài', 1, 'Trà xanh hoa nhài', 'tra-xanh-hoa-nhai-f2vkxmvu.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(5, 'Trà xanh bí đao', 1, 'Trà xanh bí đao', 'tra-xanh-bi-dao-t9gm7g3c.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(6, 'Hồng trà bí đao', 1, 'Hồng trà bí đao', 'hong-tra-bi-dao-sccrscoa.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(7, 'Trà sương sáo', 1, 'Trà sương sáo', 'tra-suong-sao-4sm5ysso.png', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(8, 'Bí đao sương sáo', 1, 'Bí đao sương sáo', 'bi-dao-suong-sao-qb2cpm44.png', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(9, 'Sương sáo latte', 2, 'Sương sáo latte', 'suong-sao-latte-as9ofqbf.png', 20, 39000, 16000, '2023-01-08 15:29:11'),
-(10, 'Trân châu đường đen latte', 2, 'Trân châu đường đen latte', 'sua-tuoi-tran-chau-duong-den-5stas08q.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(11, 'Trà xanh latte', 2, 'Trà xanh latte', 'tra-xanh-latte-lbm6ltnr.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(12, 'Hồng trà latte vải thiều', 2, 'Hồng trà latte vải thiều', 'hong-tra-latte-vai-thieu-w3lcixhg.jpg', 10, 39000, 19000, '2023-01-08 15:29:11'),
-(13, 'Bí đao latte', 2, 'Bí đao latte', 'bi-dao-latte-dmzbutlw.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(14, 'Hồng trà latte Đài Loan', 2, 'Hồng trà latte Đài Loan', 'hong-tra-latte-dai-loan-kvmyjjtc.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(15, 'Trà xanh chanh', 3, 'Trà xanh chanh', 'tra-xanh-chanh-tolzbxkm.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(16, 'Hồng trà chanh vải thiều', 3, 'Hồng trà chanh vải thiều', 'hong-tra-chanh-vai-thieu-zlk6nqui.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(17, 'Trà chanh bí đao', 3, 'Trà chanh bí đao', 'tra-bi-dao-chanh-iioyjqd0.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(18, 'Trà sữa sương sáo', 4, 'Trà sữa sương sáo', 'tra-sua-suong-sao-laessvwl.png', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(19, 'Trà xanh sữa', 4, 'Trà xanh sữa', 'tra-xanh-sua-efbubhnb.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(20, 'Trà sữa vải thiều', 4, 'Trà sữa vải thiều', 'tra-sua-vai-thieu-mcpbo5wd.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(21, 'Trà sữa bí đao', 4, 'Trà sữa bí đao', 'tra-sua-bi-dao-qxo9y6dn.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(22, 'Trà sữa Đài Loan', 4, 'Trà sữa Đài Loan', 'tra-sua-dai-loan-qlgi7h4z.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(23, 'Trà xanh yakult', 5, 'Trà xanh yakult', 'tra-xanh-yakult-ciiwdu3q.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(24, 'Hồng trà yakult', 5, 'Hồng trà yakult', 'hong-tra-yakult-vai-thieu-p2eqjjyy.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(25, 'Bí đao yakult Ngô Gia', 5, 'Bí đao yakult Ngô Gia', 'bi-dao-yakult-ngo-gia-des0qgwx.jpg', 10, 239000, 19000, '2023-01-08 15:29:11'),
-(26, 'Hồng trà yakult Đài Loan', 5, 'Hồng trà yakult Đài Loan', 'hong-tra-yakult-dai-loan-71tovysw.jpg', 10, 239000, 19000, '2023-01-08 15:29:11');
+(1, 'Hồng trà Đài Loan', 1, 'Hồng trà đài loan', 'hong-tra-dai-loan-zvyjy3xt (2).jpg', 10, 39000, 16000, '2023-11-18 04:42:50'),
+(2, 'Trà bí đao Ngô Gia', 1, 'Trà bí đao Ngô Gia', 'tra-bi-dao-ngo-gia-q38efry9 (2).jpg', 10, 39000, 19000, '2023-11-18 04:43:16'),
+(3, 'Hồng trà vải thiều', 1, 'Hồng trà vải thiều', 'hong-tra-vai-thieu-2isu3y9o (2).jpg', 10, 39000, 19000, '2023-11-18 04:45:26'),
+(4, 'Trà xanh hoa nhài', 1, 'Trà xanh hoa nhài', 'tra-xanh-hoa-nhai-f2vkxmvu (2).jpg', 10, 39000, 19000, '2023-11-18 04:43:47'),
+(5, 'Trà xanh bí đao', 1, 'Trà xanh bí đao', 'tra-xanh-bi-dao-t9gm7g3c (2).jpg', 10, 39000, 19000, '2023-11-18 04:44:03'),
+(6, 'Hồng trà bí đao', 1, 'Hồng trà bí đao', 'hong-tra-bi-dao-sccrscoa (2).jpg', 10, 39000, 19000, '2023-11-18 04:44:12'),
+(7, 'Trà sương sáo', 1, 'Trà sương sáo', 'tra-suong-sao-4sm5ysso (2).png', 10, 39000, 19000, '2023-11-18 04:44:28'),
+(8, 'Bí đao sương sáo', 1, 'Bí đao sương sáo', 'bi-dao-suong-sao-qb2cpm44 (2).png', 10, 39000, 19000, '2023-11-18 04:47:48'),
+(9, 'Sương sáo latte', 2, 'Sương sáo latte', 'suong-sao-latte-as9ofqbf (2).png', 20, 39000, 16000, '2023-11-18 04:47:36'),
+(10, 'Trân châu đường đen latte', 2, 'Trân châu đường đen latte', 'sua-tuoi-tran-chau-duong-den-5stas08q (2).jpg', 10, 39000, 19000, '2023-11-18 04:47:06'),
+(11, 'Trà xanh latte', 2, 'Trà xanh latte', 'tra-xanh-latte-lbm6ltnr (2).jpg', 10, 39000, 19000, '2023-11-18 04:46:38'),
+(12, 'Hồng trà latte vải thiều', 2, 'Hồng trà latte vải thiều', 'hong-tra-latte-vai-thieu-w3lcixhg (2).jpg', 10, 39000, 19000, '2023-11-18 04:46:16'),
+(13, 'Bí đao latte', 2, 'Bí đao latte', 'bi-dao-latte-dmzbutlw (2).jpg', 10, 239000, 19000, '2023-11-18 04:48:20'),
+(14, 'Hồng trà latte Đài Loan', 2, 'Hồng trà latte Đài Loan', 'hong-tra-latte-dai-loan-kvmyjjtc (2).jpg', 10, 239000, 19000, '2023-11-18 04:49:59'),
+(15, 'Trà xanh chanh', 3, 'Trà xanh chanh', 'tra-xanh-chanh-tolzbxkm (2).jpg', 10, 239000, 19000, '2023-11-18 04:50:50'),
+(16, 'Hồng trà chanh vải thiều', 3, 'Hồng trà chanh vải thiều', 'hong-tra-chanh-vai-thieu-zlk6nqui (2).jpg', 10, 239000, 19000, '2023-11-18 04:51:05'),
+(17, 'Trà chanh bí đao', 3, 'Trà chanh bí đao', 'tra-xanh-bi-dao-t9gm7g3c (2).jpg', 10, 239000, 19000, '2023-11-18 04:49:41'),
+(18, 'Trà sữa sương sáo', 4, 'Trà sữa sương sáo', 'tra-sua-suong-sao-laessvwl (2).png', 10, 239000, 19000, '2023-11-18 06:13:40'),
+(19, 'Trà xanh sữa', 4, 'Trà xanh sữa', 'tra-xanh-sua-efbubhnb (2).jpg', 10, 239000, 19000, '2023-11-18 04:51:32'),
+(20, 'Trà sữa vải thiều', 4, 'Trà sữa vải thiều', 'tra-sua-vai-thieu-mcpbo5wd (2).jpg', 10, 239000, 19000, '2023-11-18 04:51:53'),
+(21, 'Trà sữa bí đao', 4, 'Trà sữa bí đao', 'tra-sua-bi-dao-qxo9y6dn (2).jpg', 10, 239000, 19000, '2023-11-18 04:52:08'),
+(22, 'Trà sữa Đài Loan', 4, 'Trà sữa Đài Loan', 'tra-sua-dai-loan-qlgi7h4z (2).jpg', 10, 239000, 19000, '2023-11-18 04:52:22'),
+(23, 'Trà xanh yakult', 5, 'Trà xanh yakult', 'tra-xanh-yakult-ciiwdu3q (2).jpg', 10, 239000, 19000, '2023-11-18 04:52:39'),
+(24, 'Hồng trà yakult', 5, 'Hồng trà yakult', 'hong-tra-yakult-dai-loan-71tovysw (2).jpg', 10, 239000, 19000, '2023-11-18 04:53:01'),
+(25, 'Bí đao yakult Ngô Gia', 5, 'Bí đao yakult Ngô Gia', 'bi-dao-yakult-ngo-gia-des0qgwx (2).jpg', 10, 239000, 19000, '2023-11-18 04:53:31'),
+(26, 'Hồng trà yakult Đài Loan', 5, 'Hồng trà yakult Đài Loan', 'hong-tra-yakult-vai-thieu-p2eqjjyy (2).jpg', 10, 239000, 19000, '2023-11-18 04:53:16');
 
 -- --------------------------------------------------------
 
@@ -231,6 +243,14 @@ CREATE TABLE `review` (
   `content` text DEFAULT '0',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`review_id`, `product_id`, `user_id`, `title`, `content`, `updated_at`) VALUES
+(3, 1, 38, 'title6', 'àdsasdfsdf', '2023-11-23 15:06:56'),
+(4, 1, 43, 'ádlfsadfsd', 'ádfasdfasdfds', '2023-11-23 15:15:03');
 
 -- --------------------------------------------------------
 
@@ -256,8 +276,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `email`, `password`, `name`, `avatar`, `phone`, `address`, `updated_at`, `verify_code`, `active`) VALUES
-(31, 'c2agiftedhv@gmail.com', '123', 'Nguyễn Đức Bình', NULL, '0382848786', 'Kí túc xá Khu A, Đông Hòa, Dĩ An, Bình Dương', '2023-11-17 03:01:57', 111127377, 1),
-(34, 'binh381672943@gmail.com', '456', 'Nguyễn Đức Bình', NULL, '0382848786', 'Kí túc xá Khu A, Đông Hòa, Dĩ An, Bình Dương', '2023-11-17 03:01:57', 181030442, 1);
+(38, 'binhnguyen3816@gmail.com', 'bla', 'Nguyễn Đức Bình', NULL, '0394433666', 'https://www.facebook.com/nguyenducbinh2003', '2023-11-18 08:44:57', 246924778, 1),
+(43, 'nguyenducbinh26092003@gmail.com', 'Bla2003@', 'Nguyễn Đức Bình', NULL, '0394433666', 'https://www.facebook.com/nguyenducbinh2003', '2023-11-18 09:01:07', 676336091, 1),
+(44, 'binh381672943@gmail.com', 'Binh2003@', 'binh3816', NULL, '0394433666', 'https://www.facebook.com/nguyenducbinh2003', '2023-11-23 15:20:05', 338474221, NULL),
+(45, 'bbinh381672943@gmail.com', 'Binh2003@', 'binh3816', NULL, '0394433666', 'https://www.facebook.com/nguyenducbinh2003', '2023-11-23 15:21:19', 275643456, NULL);
 
 --
 -- Indexes for dumped tables
@@ -342,13 +364,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `post`
@@ -366,13 +388,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Constraints for dumped tables

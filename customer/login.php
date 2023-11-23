@@ -22,7 +22,7 @@ require_once '../database/DB.php';
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
-<body>
+<body >
 <?php 
     require '../includes/header.php';
     // require '../includes/navbar.php';
@@ -42,7 +42,7 @@ if (isset($_POST['login_user'])) {
     $errorEmail = $errorPassword = "";
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $hash_password = md5($password);
+    $hash_password = $password;
     if ($email == "" || $password == "") {
       $is_validated = false;
       $tb = "Vui lòng nhập các ô còn thiếu";
@@ -93,7 +93,7 @@ if (isset($_POST['login_user'])) {
             echo '<div class="mb-2 text-center"><div class="alert alert-success">'.$_SESSION['success'].'</div></div>';
           }
         ?>
-          <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"> 
+          <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style="color:#002A54"> 
             Đăng nhập 
           </p>
           <form class="mx-1 mx-md-4" action="<?php echo $_SERVER['PHP_SELF']?>" accept-charset="UTF-8" method="post">
@@ -111,10 +111,10 @@ if (isset($_POST['login_user'])) {
             </div>
             <p>
               Bạn chưa có tài khoản?
-              <a href="/AssignmentWeb/sign_up.php">Đăng kí ngay.</a>
+              <a href="/Lap_trinh_web/sign_up.php">Đăng kí ngay.</a>
             </p>
             <p class="mt-2 mb-2">
-              Quên mật khẩu <a href="/AssignmentWeb/auth/forgot_password.php">click here</a>
+              Quên mật khẩu <a href="#">click here</a>
             </p>
                 <?php 
                     if(!empty($tb)) {

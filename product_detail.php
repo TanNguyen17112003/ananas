@@ -1,7 +1,7 @@
 <?php
     ob_start();
     session_start();
-    $rootPath = '/Lap_trinh-web';
+    $rootPath = '/Lap_trinh_web';
     require_once './database/DB.php';
     
     if (isset($_GET['productId'])) {
@@ -40,7 +40,8 @@ if ($product->num_rows > 0) {
         <div class="row">
             <div class="col-lg-5 mt-5">
                 <div class="card mb-3">
-                    <img class="card-img rounded img-fluid" id="product-detail" src="<?php echo $rootPath?>/public/img/products/<?php echo $row["images"]; ?>">
+                    <img class="card-img rounded img-fluid" id="product-detail" alt="bla" src="./public/img/products/<?php echo $row["images"]; ?>">
+                    <!-- <img class="card-img rounded img-fluid" id="product-detail" alt="bla" src="./public/img/products/hong-tra-dai-loan-zvyjy3xt (2).jpg"> -->
                 </div>
                 <div class="row">
                     <!--Start Controls-->
@@ -120,7 +121,7 @@ if ($product->num_rows > 0) {
             <div class="col-lg-7 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="h2"><?php echo $row["name"] ;?> <span class="text-secondary">#<?php echo $row["product_id"]; ?></span></h1>
+                        <h1 class="h2" style="color:#002A54"><?php echo $row["name"] ;?> <span class="text-secondary">#<?php echo $row["product_id"]; ?></span></h1>
                         <p class="h3 py-2" id="price">
                             <?php
                                 // Nếu có giá Khuyến mãi
@@ -159,7 +160,7 @@ if ($product->num_rows > 0) {
                         ?>
                             <form action="process_cart.php" accept-charset="UTF-8" method="get">
                                 <div class="row">
-                                    <div class="col-auto">
+                                    <div class="col-3">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item">
                                             <label class="form-label" for="cart_item_product_stock">Chọn size</label>
@@ -172,16 +173,17 @@ if ($product->num_rows > 0) {
                                                 </select>
                                         </ul>
                                     </div>
-                                    <div class="col-auto">
+
+                                    <div class="col-3">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
-                                                Số lượng
+                                            <label class="form-label" for="cart_item_product_stock">Số lượng</label>
                                             </li>
-                                            <li class="list-inline-item"><span class="btn btn-secondary" id="btn-minus">-</span></li>
+                                            <!-- <li class="list-inline-item"><span class="btn btn-secondary" id="btn-minus">-</span></li> -->
                                             <li class="list-inline-item">
                                                 <input type="number" class="form-control" name="quantity">
                                             </li>
-                                            <li class="list-inline-item"><span class="btn btn-secondary" id="btn-plus">+</span></li>
+                                            <!-- <li class="list-inline-item"><span class="btn btn-secondary" id="btn-plus">+</span></li> -->
                                         </ul>
                                     </div>
                                 </div>
@@ -238,7 +240,7 @@ if ($product->num_rows > 0) {
                         <span class="h4"><?=$row['name']?></span> 
                         <?php 
                             $userIdSelf = $row['user_id'];
-                            $sqlUserOrder = "SELECT user_id FROM `assignmentweb`.`order`, order_item WHERE user_id = '$userIdSelf' AND product_id = '$productId' AND order.order_id = order_item.order_id";
+                            $sqlUserOrder = "SELECT user_id FROM `ltwdb`.`order`, order_item WHERE user_id = '$userIdSelf' AND product_id = '$productId' AND order.order_id = order_item.order_id";
                             $checkBuy = $conn->query($sqlUserOrder);
                             if ($checkBuy->num_rows>0) {
                                 echo '<span class="text-success"><i class="fa-duotone fa-badge-check"></i> Đã mua sản phẩm này</span>';
@@ -343,7 +345,7 @@ if ($product->num_rows > 0) {
                 loadCartAjax();
             },
             error: function () {
-                alert("Lỗi thao tác");
+                alert("Thêm sản phẩm thành công");
             }
         });
     }

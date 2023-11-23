@@ -33,7 +33,9 @@
       </form>
       <ul class="nav navbar-nav pull-right">
         <li class="nav-item me-2">
-          <a href="<?php echo $rootPath ?>/cart.php" class="btn btn-light" id="headerCart"></a>
+          <a href="<?php echo $rootPath ?>/cart.php" class="btn btn-light" id="headerCart">
+            <i class="fa-sharp fa-solid fa-bag-shopping me-1"></i>
+          </a>
         </li>
         <?php
         if (!isset($_SESSION['email_user'])) {
