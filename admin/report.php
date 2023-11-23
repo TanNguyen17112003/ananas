@@ -6,7 +6,7 @@ if (!isset($_SESSION["email_ad"])) {
 }
 require_once '../database/DB.php';
 // đơn hàng
-$sqlOrder = "SELECT count(*) as count FROM `assignmentweb`.`order`";
+$sqlOrder = "SELECT count(*) as count FROM `ltwdb`.`order`";
 $dataCountOrder = $conn->query($sqlOrder);
 $dataCountOrder = $dataCountOrder->fetch_array();
 $countOrder = $dataCountOrder['count'];
@@ -21,7 +21,7 @@ $dataCountProduct = $conn->query($sqlProduct);
 $dataCountProduct = $dataCountProduct->fetch_array();
 $countProduct = $dataCountProduct['count'];
 // doanh thu
-$sqlOrder = "SELECT sum(payment) as count FROM `assignmentweb`.`order` WHERE status = 'Đã giao'";
+$sqlOrder = "SELECT sum(payment) as count FROM `ltwdb`.`order` WHERE status = 'Đã giao'";
 $dataRevenue = $conn->query($sqlOrder);
 $dataRevenue = $dataRevenue->fetch_array();
 $revenue = $dataRevenue['count'];
