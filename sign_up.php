@@ -53,10 +53,10 @@ require_once './database/DB.php';
           $errorRePassword = "Nhập mật khẩu lần 2 không khớp.";
         }
         if ($is_validated) {
-          // $hashPassword = md5($password);
+          $hashPassword = password_hash($password, PASSWORD_DEFAULT);
           $verifyCode = substr(number_format(time() * rand(), 0, '', ''), 0, 9);
           $sql = "INSERT INTO user (name, email, phone, address, password, verify_code) 
-                  VALUES ('$name', '$email', '$phone', '$address', '$password', '$verifyCode')";
+                  VALUES ('$name', '$email', '$phone', '$address', '$hashPassword', '$verifyCode')";
           if ($conn->query($sql) === TRUE) {
               // send mail 
               $receiver = [

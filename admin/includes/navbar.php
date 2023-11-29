@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light shadow-sm p-3 mb-5 bg-body rounded">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<?echo $rootPath; ?>">
+    <a class="navbar-brand" href="<?php echo $rootPath ?>">
         <img src="https://wujiateavn.com/files/systems/logo-l6m1s0u2.png" alt="Logo" width="70" height="30" class="d-inline-block align-text-top">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

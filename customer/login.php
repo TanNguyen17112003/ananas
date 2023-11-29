@@ -2,15 +2,12 @@
 session_start();
 ob_start();
 $rootPath = '/Lap_trinh_web/';
-if (isset($_SESSION['email_user']) && !empty($_SESSION['email_user'])) {
-  if (isset($_SESSION['cart']) && !empty($_SESSION['cart']))
-    header('location: check_out.php');
-  else
-    header('location: my_account.php');
-}
-
 require_once '../database/DB.php';
+
+$sql = "SELECT email, password FROM user";
+$ketqua = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,26 +20,23 @@ require_once '../database/DB.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
 <body >
+
 <?php 
     require '../includes/header.php';
-    // require '../includes/navbar.php';
 ?>
 
 <?php
 require("../validate.php");
-// $tb = '';
-$email ='';
-$password ='';
-$tb ='';
+$email = '';
+$password = '';
+$tb = '';
 
 if (isset($_POST['login_user'])) {
-    
-
     $is_validated = true;
     $errorEmail = $errorPassword = "";
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $hash_password = $password;
+
     if ($email == "" || $password == "") {
       $is_validated = false;
       $tb = "Vui lòng nhập các ô còn thiếu";
@@ -51,44 +45,40 @@ if (isset($_POST['login_user'])) {
       $is_validated = false;
       $errorEmail = "Email không tồn tại";
     }
-
-    $sql = "SELECT password FROM user WHERE email = '$email' AND active = 1";
-    $ketqua = $conn->query($sql);
-    if ($ketqua->num_rows == 0){
-      $tb = 'Sai email hoặc mật khẩu'; 
-    } else {
-      $password = $ketqua->fetch_array()['password'];
-      if($password == $hash_password) {
-          $_SESSION["email_user"] = $email;
-          if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) 
+    
+    while ($row = $ketqua->fetch_assoc()) {
+      if ($row["email"] == $email && password_verify($password, $row["password"])) {
+        $_SESSION["email_user"] = $email;
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) 
             header('location: check_out.php');
           else
             header('location: my_account.php');
+      } else {
+        $is_validated = false;
+        $tb = 'Sai email hoặc mật khẩu';
       }
-      else $tb = 'Sai email hoặc mật khẩu'; 
     }
+
     if ($email == "" || $password == "") {
       $is_validated = false;
       $tb = "Vui lòng nhập các ô còn thiếu";
     }
     if ($is_validated) {
-    $_SESSION["email_user"] = $email;
-    if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) 
-      header('location: check_out.php');
-    else
-      header('location: my_account.php');
+      $_SESSION["email_user"] = $email;
+      if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) 
+        header('location: check_out.php');
+      else
+        header('location: my_account.php');
     }
 }
 ?>
+
 <div class="row d-flex justify-content-center align-items-center h-100">
   <div class="col-lg-12 col-xl-11">
     <div class="card-body p-md-5">
       <div class="row justify-content-center">
         <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
         <?php
-          // if (isset($_COOKIE['success'])) {
-          //   echo '<div class="mb-2 text-center"><div class="alert alert-success">'.$_COOKIE['success'].'</div></div>';
-          // }
           if (isset($_SESSION['success'])) {
             echo '<div class="mb-2 text-center"><div class="alert alert-success">'.$_SESSION['success'].'</div></div>';
           }

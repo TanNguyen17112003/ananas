@@ -7,6 +7,7 @@ require_once '../database/DB.php';
 $sql = "SELECT email, password FROM admin";
 $ketqua = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +24,6 @@ $ketqua = $conn->query($sql);
 <body>
   <?php
   require './includes/header.php';
-  // require $rootPath.'/includes/navbar.php';
   ?>
 
   <?php
@@ -33,11 +33,9 @@ $ketqua = $conn->query($sql);
   if (isset($_POST['login_ad'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    // $hash_password = md5($password);
 
     while ($row = $ketqua->fetch_assoc()) {
-      if ($row["email"] == $email && $row["password"] == $password) {
-        // if ("binhnguyen3816@gmail.com" == $email && "binhnguyen3816" == $password) {
+      if ($row["email"] == $email && password_verify($password, $row["password"])) {
         $_SESSION["email_ad"] = $email;
         header('location: index.php');
         break;
