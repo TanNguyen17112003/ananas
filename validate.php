@@ -21,7 +21,7 @@ function validatePassword($password) {
     $lowercase = preg_match('@[a-z]@', $password);
     $number    = preg_match('@[0-9]@', $password);
     $specialChars = preg_match('@[^\w]@', $password);
-    if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+    if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
         $error = "Mật khẩu phải gồm ít nhất 8 kí kự và phải chứa ít nhất 1 chữ số, 1 chữ viết hoa, 1 chữ viết thường, 1 kí tự đặc biệt.";
     } 
     return $error;
@@ -35,8 +35,7 @@ function validateURL($url) {
     return $error;
 }
 
-function checkPassword($password1, $password2)
-{
+function checkPassword($password1, $password2) {
     $error = "";
     if ($password1 != $password2) {
         $error = "Mật khẩu không khớp.";

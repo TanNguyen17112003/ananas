@@ -2,9 +2,11 @@
 session_start();
 ob_start();
 $rootPath = '/Lap_trinh_web/admin';
+
 if (!isset($_SESSION["email_ad"])) {
     header('location: ../login.php');
 }
+
 require_once '../../database/DB.php';
 
 if (isset($_GET['id'])) {
@@ -15,9 +17,10 @@ if (isset($_GET['id'])) {
     $conn->close();
     header('location: ../../404.php');
 }
+
 if (isset($_POST['update'])) {
     $status = mysqli_real_escape_string($conn,$_POST['status']);
-    $sqlUpdate = "UPDATE `Lap_trinh_web`.`order` SET status = '$status' WHERE order_id = '$orderId'";
+    $sqlUpdate = "UPDATE `ltwdb`.`order` SET status = '$status' WHERE order_id = '$orderId'";
     $conn->query($sqlUpdate);
     setcookie('thongBao', 'Cập nhật thành công', time()+5);
     $conn->close();

@@ -4,6 +4,7 @@ ob_start();
 $rootPath = '/Lap_trinh_web';
 require_once './database/DB.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +18,7 @@ require_once './database/DB.php';
     <link rel="stylesheet" href="./public/css/base.css">
     <!-- <link rel="stylesheet" href="./public/css/home.css"> -->
 </head>
+
 <body>
 <?php
     require './includes/header.php';
@@ -25,9 +27,9 @@ require_once './database/DB.php';
 
 <div class="container pt-5 pb-5">
     <div class="row">
-        <!-- <div class="col-xl-9 col-md-8 col-sm-6"> -->
         <div class="col-lg-9 col-md-10 m-auto">
             <div class="accordion" id="accordionExample">
+                <!-- A. Điều kiện nhượng quyền -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -44,10 +46,31 @@ require_once './database/DB.php';
                         </div>
                     </div>
                 </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            B. Hướng dẫn mua hàng
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <p class="h6">1. Thêm sản phẩm vào giỏ hàng</p>
+                            <p>
+                                Chọn mục Menu góc trái bên trên để hiển thị các danh mục Sau đó click vào mục sản phẩm hoặc click vào nút <button class="btn btn-warning"><i class="fa-light fa-cart-shopping"></i></button> để thêm sản phẩm vào giỏ.
+                            </p>
+                            <p class="h6">2. Thanh toán đơn hàng</p>
+                            <p>
+                                Khách hàng cần <a href="#">đăng nhập</a> để đặt hàng (<a href="<?php echo $rootPath?>/sign_up.php">đăng kí</a> nếu bạn chưa có tài khoản). Sau đó bạn nhập các thông tin cần thiết theo mẫu để nhân viên xác nhận đơn hàng. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            B. Quy định thanh toán
+                            C. Quy định thanh toán
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -65,50 +88,25 @@ require_once './database/DB.php';
                                     <tr>
                                         <td scope="row">OCB</td>
                                         <td>0004100040716008</td>
-                                        <td>Nguyễn Đức Bình</td>
+                                        <td>Hồng trà Ngô Gia</td>
                                     </tr>
-                                    <tr>
-                                        <td scope="row">BIDV</td>
-                                        <td>6201250658</td>
-                                        <td>Nguyễn Đức Bình</td>
                                     </tr>
                                     <tr>
                                         <td scope="row">Momo</td>
-                                        <td>03944333666</td>
-                                        <td>Nguyễn Đức Bình</td>
+                                        <td>0123456789</td>
+                                        <td>Hồng trà Ngô Gia</td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            C. Hướng dẫn mua hàng
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <p class="h6">1.Thêm sản phẩm vào giỏ hàng</p>
-                            <p>
-                                Chọn mục Menu góc trái bên trên để hiển thị các danh mục Sau đó click vào mục sản phẩm hoặc click vào nút <button class="btn btn-warning"><i class="fa-light fa-cart-shopping"></i></button> để thêm sản phẩm vào giỏ.
-                            </p>
-                            <p class="h6">2.Thanh toán đơn hàng</p>
-                            <p>
-                                Khách hàng cần <a href="#">đăng nhập</a> để đặt hàng (<a href="<?php echo $rootPath?>/sign_up.php">đăng kí</a> nếu bạn chưa có tài khoản). Sau đó bạn nhập các thông tin cần thiết theo mẫu để nhân viên xác nhận đơn hàng. 
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-        <!-- <div class="col-xl-3 col-md-4 d-none d-md-block d-xl-block d-xxl-none"> 
             <img src="<?php echo $rootPath?>/public/img/logo.jpg" class="img-fluid mb-2 rounded" alt="">
             <img src="<?php echo $rootPath?>/public/img/logo.jpg" class="img-fluid mb-2 rounded" alt="">
             <img src="<?php echo $rootPath?>/public/img/logo.jpg" class="img-fluid mb-2 rounded" alt="">
-        </div> -->
+        </div>
     </div>
 </div>
 
@@ -116,13 +114,13 @@ require_once './database/DB.php';
 $conn->close();
     require './includes/footer.php';
 ?>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script src="./public/javascripts/loadCartHeader.js"></script>
 
 <script>
-
   $(document).ready(function() {
       loadCartAjax();
 

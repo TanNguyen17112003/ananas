@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Database: `ltwdb`
 --
 
+CREATE DATABASE ltwdb
+USE DATABASE ltwdb
+
 -- --------------------------------------------------------
 
 --
