@@ -1,10 +1,4 @@
-<a name="readme-top"></a>
-<div align="center">
-<a href="https://github.com/Conganhluan/Lap_trinh_web/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/elangosundar/Lap_trinh_web"></a>
-</div>
-
-<!-- PROJECT LOGO -->
-<br />
+<!-- HCMUT LOGO -->
 <div align="center">
   <a href="https://github.com/Conganhluan/Lap_trinh_web">
     <img src="images/logo_hcmut.png" alt="Logo" width="80" height="80">
@@ -76,9 +70,15 @@ Use the `BLANK_README.md` to get started.
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![HTML][HTMl.com]][HTML-url]
+* **Frontend:**
+  * [![HTML][images/html5.svg]][HTML-url]
+  * [![CSS][images/css3.svg]][CSS-url]
+  * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+  * [![JavaScript][images/js.svg]][JavaScript-url]
 
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* **Backend:**
+  * [![PHP][images/php.svg]][PHP-url]
+  * [![MySQL][images/database-solid.svg]][MySQL-url]
 
 <p align="right">[<a href="#readme-top">Back to Top</a>]</p>
 
@@ -167,3 +167,17 @@ Write somethings!
 ## :man_astronaut: Show your support
 
 Give a ⭐️ if this project helped you!
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[product-screenshot]: images/screenshot.png
+
+[HTML-url]: https://www.w3schools.com/html/default.asp
+[CSS-url]: https://www.w3schools.com/css/default.asp
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JavaScript-url]: https://www.w3schools.com/js/default.asp
+[PHP-url]: https://www.php.net/
+[MySQL-url]: https://www.mysql.com/
+
