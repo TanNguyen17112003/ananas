@@ -1,5 +1,4 @@
 <?php
-
 	class DbConnect {
 		private $server = 'localhost:3307';
 		private $dbname = 'ltwdb';

@@ -3,10 +3,10 @@
     --text-color: #999;
     --white-color: #fff;
 }
-
+/* 
 .navbar {
     box-shadow: 0 0 10px var(--text-color) !important;
-}
+} */
 
 .primary-item {
     transition: linear 0.2s;
@@ -74,4 +74,13 @@ small.error {
     border-radius: 2px;
     z-index: 10;
 	box-shadow: 0 1PX 1px rgb(0 0 0 );
+}
+
+.equal-width {
+    width: 100%;
+}
+
+.equal-width select,
+.equal-width input {
+    width: 100%;
 }

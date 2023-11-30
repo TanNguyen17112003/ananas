@@ -12,18 +12,19 @@
     $sqlFindProduct = "SELECT * FROM product, category WHERE product_id = '$productId' AND product.category_id = category.category_id";
     $product = $conn->query($sqlFindProduct);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
+    <title>Sản phẩm</title>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/css/base.css">
-    <link rel="stylesheet" href="./public/css/home.css">
+    <!-- <link rel="stylesheet" href="./public/css/home.css"> -->
 </head>
 <body>
 <?php
@@ -158,45 +159,44 @@ if ($product->num_rows > 0) {
                         <?php
                             }
                         ?>
-                            <form action="process_cart.php" accept-charset="UTF-8" method="get">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">
-                                            <label class="form-label" for="cart_item_product_stock">Chọn size</label>
-                                            </li>
-                                                <select class="form-select" name="" id="cart_item_product_stock">
-                                                    <option value="" label=" "></option>
-                                                    <option value="">Size S</option>
-                                                    <option value="">Size M</option>
-                                                    <option value="">Size L</option>
-                                                </select>
-                                        </ul>
-                                    </div>
+                        <form action="process_cart.php" accept-charset="UTF-8" method="get">
+                            <div class="row">
+                                <div class="col-5">
+                                <ul class="list-inline pb-3 equal-width">
+                                    <li class="list-inline-item">
+                                        <label class="form-label" for="cart_item_product_stock">Chọn size</label>
+                                    </li>
+                                    <li class="list-inline-item col-6">
+                                        <select class="form-select" name="selectedSize" id="cart_item_product_stock">
+                                            <option value="" label=" "></option>
+                                            <option value="Size S" selected>Size S</option>
+                                            <option value="Size M">Size M</option>
+                                            <option value="Size L">Size L</option>
+                                        </select>
+                                    </li>
+                                </ul>
+                                </div>
 
-                                    <div class="col-3">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
+                                <div class="col-7">
+                                    <ul class="list-inline pb-3 equal-width">
+                                        <li class="list-inline-item text-right col-2.5">
                                             <label class="form-label" for="cart_item_product_stock">Số lượng</label>
-                                            </li>
-                                            <!-- <li class="list-inline-item"><span class="btn btn-secondary" id="btn-minus">-</span></li> -->
-                                            <li class="list-inline-item">
-                                                <input type="number" class="form-control" name="quantity">
-                                            </li>
-                                            <!-- <li class="list-inline-item"><span class="btn btn-secondary" id="btn-plus">+</span></li> -->
-                                        </ul>
-                                    </div>
+                                        </li>
+                                        <li class="list-inline-item col-3">
+                                            <input type="number" class="form-control" name="quantity" id="quantityInput" value=1 min=1 max="<?=$row['quantity']?>">
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="row pb-3 d-flex justify-content-end">
-                                    <div class="col-xl-4 col-md-6 col-sm-12">
-                                        <input type="hidden" name="action" value="add"> 
-                                        <input type="hidden" name="id" value="<?php echo $row['product_id']?>">
-                                        <!-- <button type="submit" class="w-100 btn btn-warning btn-lg  <?php if ($row["quantity"] == 0) echo 'disabled'?>"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ</button> -->
-                                        <button onclick="addCartItem(<?=$row['product_id']?>)" class="w-100 btn btn-warning btn-lg  <?php if ($row["quantity"] == 0) echo 'disabled'?>"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ</button>
-                                    </div>
+                            </div>
+                            <div class="row pb-3 d-flex justify-content-end">
+                                <div class="col-xl-4 col-md-6 col-sm-12">
+                                    <input type="hidden" name="action" value="add"> 
+                                    <input type="hidden" name="id" value="<?php echo $row['product_id']?>">
+                                    <button onclick="addCartItem(<?=$row['product_id']?>)" class="w-100 btn btn-warning btn-lg  <?php if ($row["quantity"] <= 0) echo 'disabled'?>"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ</button>
                                 </div>
-                            </form>                        
-                        </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -330,7 +330,6 @@ if ($product->num_rows > 0) {
 <script src="./public/javascripts/loadCartHeader.js"></script>
 
 <script>
-    // tăng số lượng
     function addCartItem(pId) {
         var id = pId;
         console.log(id);
@@ -345,20 +344,22 @@ if ($product->num_rows > 0) {
                 loadCartAjax();
             },
             error: function () {
-                alert("Thêm sản phẩm thành công");
+                alert("Lỗi thao tác");
             }
         });
     }
 
     $(document).ready(function() {
         loadCartAjax();
-        $(window).scroll(function(){
-                if($(this).scrollTop()>114){
-                $("#navbar-top").addClass('fix-nav')
-                }else{
+        $(window).scroll(
+            function() {
+                if ($(this).scrollTop() > 114) {
+                    $("#navbar-top").addClass('fix-nav')
+                } else{
                     $("#navbar-top").removeClass('fix-nav')
-                }}
-            )
+                }
+            }
+        )
     });
 </script>
 <script src="./public/javascripts/liveSearch.js"></script>
