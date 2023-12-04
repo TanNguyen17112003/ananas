@@ -2,14 +2,12 @@
     code {
         color:white;
     }
-
     .footer_share {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh; /* Adjust this value based on your layout */
     }
-
     .list-inline {
         list-style: none;
         padding: 0;
@@ -29,7 +27,7 @@
             display: grid;
             grid-template-columns: auto;
             justify-content: center;
-        }
+    }
     @media (min-width: 768px) and (max-width: 1280px){
         .footer-row{
             display: grid;
