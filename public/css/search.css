@@ -3,3 +3,15 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
+.paging nav ul{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+@media (max-width: 912px) {
+    .paging nav ul{
+        display: flex;
+        flex-flow: wrap;
+        justify-content: start;
+    }
+}

@@ -42,19 +42,18 @@ require_once './database/DB.php';
             <div class="carousel-item active" data-bs-interval="2000">
                 <div class="container">
                     <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center">
+                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center image-container">
                             <a href="#"><img class="img-fluid rounded" src="./public/img/carousels/carousel1.jpeg" alt="hinh.jpg" style="height: 300px;" /></a>
                         </div>
-
-                        <div class="col-lg-6 mb-0 d-flex align-items-center" style="height: 300px;">
+                        <div class="col-lg-6 mb-0 d-flex align-items-center content-wrapper" style="height: 300px;">
                             <div class="text-align-left align-self-center">
                                 <h1 class="h1" style="color:#002A54"><strong>HỒNG TRÀ NGÔ GIA</strong></h1>
-                                <div class="h2" style="color:#ED171F">Đi đầu trong việc kế thừa hương vị trà truyền thống</div>
+                                <h3 class="h2" style="color:#ED171F">Đi đầu trong việc kế thừa hương vị trà truyền thống</h3>
                                 <p>Vào năm 2019, nhằm truyền bá hương vị thơm ngon của trà Đài Loan, 
                                     Hồng Trà Ngô Gia Đài Loan đã có mặt tại khu vực miền Nam Việt Nam. 
                                     Vì là loại trà thơm ngon, tự nhiên và tốt cho sức khỏe nên Hồng Trà Ngô Gia 
                                     rất được ưa chuộng và nhanh chóng nổi tiếng. Đến nay đã có gần 60 cửa hàng trên cả nước,
-                                     trở thành đơn vị đi đầu trong việc kế thừa hương vị trà truyền thống.</p>
+                                    trở thành đơn vị đi đầu trong việc kế thừa hương vị trà truyền thống.</p>
                             </div>
                         </div>
                     </div>
@@ -63,10 +62,10 @@ require_once './database/DB.php';
             <div class="carousel-item" data-bs-interval="3000">
                 <div class="container">
                     <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center">
+                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center image-container">
                             <a href="#"><img class="img-fluid rounded" src="./public/img/carousels/carousel2.jpeg" style="height: 300px;" /></a>
                         </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center" style="height: 300px" ;>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center content-wrapper" style="height: 300px" ;>
                             <div class="text-align-left">
                                 <h1 class="h1" style="color:#002A54">Sự bền bỉ của thương hiệu</h1>
                                 <h3 class="h2" style="color:#ED171F">Sản phẩm nhượng quyền ăn chắc mặc bền</h3>
@@ -82,10 +81,10 @@ require_once './database/DB.php';
             <div class="carousel-item" data-bs-interval="3000">
                 <div class="container">
                     <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center">
+                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center image-container">
                             <a href="#"><img class="img-fluid rounded" src="./public/img/carousels/carousel3.jpeg" style="height: 300px;" /></a>
                         </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center" style="height: 300px;">
+                        <div class="col-lg-6 mb-0 d-flex align-items-center content-wrapper" style="height: 300px;">
                             <div class="text-align-left">
                                 <h1 class="h1" style="color:#002A54">Triết lí kinh doanh</h1>
                                 <h3 class="h2" style="color:#ED171F">Ra đường gặp hồng trà, lên mạng gặp Ngô Gia</h3>

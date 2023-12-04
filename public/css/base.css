@@ -84,3 +84,20 @@ small.error {
 .equal-width input {
     width: 100%;
 }
+@media (max-width: 450px){
+    .content-wrapper p{
+        font-size: 12px;
+    }
+    .content-wrapper h3{
+        font-size: 18px;
+    }
+    .content-wrapper h1{
+        font-size: 22px;
+    }
+    .carousel-item img{
+        object-fit: scale-down;
+    }
+    .image-container{
+        height: 150px;
+    }
+}

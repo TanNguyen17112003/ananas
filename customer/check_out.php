@@ -118,8 +118,8 @@ if (empty($_SESSION['cart']) && isset($success)) {
                 <p>Chi tiết đơn hàng đã được gửi qua mail cho quý khách</p>
             </div>
         </div>
-        <div class="row">
-            <div class="mx-auto w-25">
+        <div class="row confirm">
+            <div class="mx-auto">
                 <a href="<?php echo $rootPath?>/product.php" class="btn btn-primary">Tiếp tục mua hàng</a>
             </div>
         </div>
@@ -135,8 +135,8 @@ if (empty($_SESSION['cart'])) {
                 <span class="h4"> <i class="fa-light fa-face-smile"></i> Bạn chưa có đơn hàng nào!!!</span>
             </div>
         </div>
-        <div class="row">
-            <div class="mx-auto w-25">
+        <div class="row confirm">
+            <div class="mx-auto">
                 <a href="<?php echo $rootPath?>/product.php" class="btn btn-primary">Trở về trang sản phẩm</a>
             </div>
         </div>
@@ -232,5 +232,18 @@ if (empty($_SESSION['cart'])) {
 ?>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<style>
+    .confirm{
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+    }
+    @media (max-width: 1024px) {
+        .confirm div{
+            width: fit-content;
+            padding: 20px;
+        }
+    }
+</style>
 </body>
 </html>
