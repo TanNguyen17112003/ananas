@@ -29,5 +29,5 @@ $('#live-search').keyup(function() {
 $('#live-search').blur(function() {
     setTimeout(function() {
         $('#live-search__result').css('display', 'none');
-    }, 100); 
+    }, 500); 
 })

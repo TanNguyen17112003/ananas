@@ -1,5 +1,5 @@
 <?php
-$hostName = 'localhost:3306';
+$hostName = 'localhost:3307';
 $userName = 'root';
 $password = '';
 $database = 'ltwdb';

@@ -46,9 +46,13 @@ if (isset($_POST['update'])) {
     require '../includes/navbar.php';
 ?>
     <div class="container mt-5 mb-5 shadow-sm p-3 mb-5 bg-body rounded">
-        <div class="row">
-            <div class="h3 text-primary text-center">Cập nhật hóa đơn <a href="./index.php" class="btn btn-secondary">Back</a></div>
+        <div class="button-container">
+            <a href="./index.php" class="btn btn-secondary">Back</a>
         </div>
+        <div class="row">
+            <div class="h3 text-primary text-center">Cập nhật hóa đơn</div>
+        </div>
+        <br>
         <div class="row">
             <div class="col-xl-6 col-md-6 col-sm-12">
                 <?php

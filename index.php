@@ -29,7 +29,10 @@ require_once './database/DB.php';
         require './includes/navbar.php';
         $bestSellerQueryString = "SELECT product.product_id, `order`.`order_id`, product.name, SUM(order_item.quantity_item) AS number_sold, product.images
         FROM order_item, product, `order`
-        WHERE order_item.product_id = product.product_id AND order_item.order_id = `order`.`order_id` AND MONTH(`order`.`updated_at`) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH) AND YEAR(`order`.`updated_at`) = YEAR(CURRENT_DATE() - INTERVAL 1 MONTH)
+        WHERE order_item.product_id = product.product_id 
+            AND order_item.order_id = `order`.`order_id` 
+            AND MONTH(`order`.`updated_at`) = MONTH(CURRENT_DATE())
+            AND YEAR(`order`.`updated_at`) = YEAR(CURRENT_DATE())
         GROUP BY product.product_id
         ORDER BY number_sold DESC
         LIMIT 3";

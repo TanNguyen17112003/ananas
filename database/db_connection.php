@@ -1,6 +1,6 @@
 <?php
 	class DbConnect {
-		private $server = 'localhost:3306';
+		private $server = 'localhost:3307';
 		private $dbname = 'ltwdb';
 		private $user = 'root';
 		private $pass = '';
