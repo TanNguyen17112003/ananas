@@ -26,7 +26,7 @@
         if ($is_validated) {
             $sql = "UPDATE `user` SET name='$name', address = '$address', phone = '$phone' WHERE email='$email';";
             if ($conn->query($sql) === TRUE) {
-                echo "User successfully updated";
+                //echo "User successfully updated";
                 $status = "Đã cập nhật thành công.";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;

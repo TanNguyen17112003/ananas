@@ -149,10 +149,10 @@ require_once './database/DB.php';
                 <?php 
                     if($products->num_rows > 0) {
                 ?>
-                <div class="row">
+                <div class="row paging">
                     <!-- Phân trang -->
                     <nav class="mt-3">
-                        <ul class="pagination pagination-lg d-flex justify-content-center">
+                        <ul class="pagination pagination-lg d-flex">
                         <?php 
                             if ($currentPage > 1 && $totalPage >1) {
                         ?>

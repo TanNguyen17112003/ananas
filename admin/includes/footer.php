@@ -17,18 +17,37 @@
         display: flex;
         gap: 10px; /* Adjust the gap between icons as needed */
     }
+    .brand-name>div{
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+    }
+    .brand-name>div>ul{
+        margin: auto;
+    }
+    .footer-row aside{
+            display: grid;
+            grid-template-columns: auto;
+            justify-content: center;
+    }
+    @media (min-width: 768px) and (max-width: 1280px){
+        .footer-row{
+            display: grid;
+            grid-template-columns: auto;
+            justify-items: center;
+        }
+    }
 </style>
 
 <footer class="bg-dark" id="tempaltemo_footer" style="background-image: url(https://wujiateavn.com/images/bg_footer.png);">
     <div class="container" >
-        <div class="row">
-            <div class="col-md-3 pt-5">
+        <div class="row footer-row">
+            <div class="col-md-3 pt-5 brand-name">
+                <div>
                 <img style="width: 70%;" class="mb-3 mx-auto" src="https://wujiateavn.com/files/systems/logo-l6m1s0u2.png" alt="logo.png">
+                </div>
                 <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
-                        <li></li>
-                        <li></li>
-                        <li></li>
                         <!-- Facebook -->
                         <li class="list-inline-item text-center">
                             <a class="text-color-primary text-light text-decoration-none rounded-circle text-center" target="_blank" href="https://www.facebook.com/HongTraNgoGia.vn">

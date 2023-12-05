@@ -27,6 +27,14 @@ require_once './database/DB.php';
     <?php
         require './includes/header.php';
         require './includes/navbar.php';
+        $bestSellerQueryString = "SELECT product.product_id, `order`.`order_id`, product.name, SUM(order_item.quantity_item) AS number_sold, product.images
+        FROM order_item, product, `order`
+        WHERE order_item.product_id = product.product_id AND order_item.order_id = `order`.`order_id` AND MONTH(`order`.`updated_at`) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH) AND YEAR(`order`.`updated_at`) = YEAR(CURRENT_DATE() - INTERVAL 1 MONTH)
+        GROUP BY product.product_id
+        ORDER BY number_sold DESC
+        LIMIT 3";
+
+        $result = mysqli_query($conn,$bestSellerQueryString);
     ?>
 
     <div id="template-mo-zay-hero-carousel" class="carousel carousel-dark slide mb-5" data-bs-ride="carousel">
@@ -39,19 +47,18 @@ require_once './database/DB.php';
             <div class="carousel-item active" data-bs-interval="2000">
                 <div class="container">
                     <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center">
+                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center image-container">
                             <a href="#"><img class="img-fluid rounded" src="./public/img/carousels/carousel1.jpeg" alt="hinh.jpg" style="height: 300px;" /></a>
                         </div>
-
-                        <div class="col-lg-6 mb-0 d-flex align-items-center" style="height: 300px;">
+                        <div class="col-lg-6 mb-0 d-flex align-items-center content-wrapper" style="height: 300px;">
                             <div class="text-align-left align-self-center">
                                 <h1 class="h1" style="color:#002A54"><strong>HỒNG TRÀ NGÔ GIA</strong></h1>
-                                <div class="h2" style="color:#ED171F">Đi đầu trong việc kế thừa hương vị trà truyền thống</div>
+                                <h3 class="h2" style="color:#ED171F">Đi đầu trong việc kế thừa hương vị trà truyền thống</h3>
                                 <p>Vào năm 2019, nhằm truyền bá hương vị thơm ngon của trà Đài Loan, 
                                     Hồng Trà Ngô Gia Đài Loan đã có mặt tại khu vực miền Nam Việt Nam. 
                                     Vì là loại trà thơm ngon, tự nhiên và tốt cho sức khỏe nên Hồng Trà Ngô Gia 
                                     rất được ưa chuộng và nhanh chóng nổi tiếng. Đến nay đã có gần 60 cửa hàng trên cả nước,
-                                     trở thành đơn vị đi đầu trong việc kế thừa hương vị trà truyền thống.</p>
+                                    trở thành đơn vị đi đầu trong việc kế thừa hương vị trà truyền thống.</p>
                             </div>
                         </div>
                     </div>
@@ -60,10 +67,10 @@ require_once './database/DB.php';
             <div class="carousel-item" data-bs-interval="3000">
                 <div class="container">
                     <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center">
+                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center image-container">
                             <a href="#"><img class="img-fluid rounded" src="./public/img/carousels/carousel2.jpeg" style="height: 300px;" /></a>
                         </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center" style="height: 300px" ;>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center content-wrapper" style="height: 300px" ;>
                             <div class="text-align-left">
                                 <h1 class="h1" style="color:#002A54">Sự bền bỉ của thương hiệu</h1>
                                 <h3 class="h2" style="color:#ED171F">Sản phẩm nhượng quyền ăn chắc mặc bền</h3>
@@ -79,10 +86,10 @@ require_once './database/DB.php';
             <div class="carousel-item" data-bs-interval="3000">
                 <div class="container">
                     <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center">
+                        <div class="mx-auto col-md-8 col-lg-6 d-flex align-items-center image-container">
                             <a href="#"><img class="img-fluid rounded" src="./public/img/carousels/carousel3.jpeg" style="height: 300px;" /></a>
                         </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center" style="height: 300px;">
+                        <div class="col-lg-6 mb-0 d-flex align-items-center content-wrapper" style="height: 300px;">
                             <div class="text-align-left">
                                 <h1 class="h1" style="color:#002A54">Triết lí kinh doanh</h1>
                                 <h3 class="h2" style="color:#ED171F">Ra đường gặp hồng trà, lên mạng gặp Ngô Gia</h3>
@@ -136,6 +143,7 @@ require_once './database/DB.php';
         </div>
 
         <!-- best seller -->
+<<<<<<< HEAD
         <div class="container mb-5">
             <div class="row text-center">
                 <div class="h3 mb-2" style="color:#ED171F">BEST SELLER OF THE MONTH</div>
@@ -161,9 +169,39 @@ require_once './database/DB.php';
                         <p class="h4 text-dark" style="text-align: center;">Sương sáo latte</p>
                         <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
                     </div>
+=======
+        <?php function DisplayBestSeller(){ ?>
+            <?php 
+                global $result;
+                if (mysqli_num_rows($result) == 0){
+                    return;
+                }
+            ?>
+            <div class="container mb-5">
+                <div class="row text-center">
+                    <div class="h3 mb-2" style="color:#ED171F">BEST SELLER OF THE MONTH</div>
+                </div>
+                <div class="row">
+                    <?php while($productData = mysqli_fetch_assoc($result)){ ?>
+                        <div class="col-xl-4">
+                            <div class="text-center">
+                                <a href="product_detail.php?productId=<?php echo $productData['product_id']; ?>">
+                                    <img alt="topProduct" width="200" height="200" 
+                                    src="public/img/products/<?php echo $productData['images']; ?>"
+                                    class="rounded-circle mb-3 mt-3 border border-2" />
+                                </a>
+                                <p class="h4 text-dark"><?php echo $productData['name']; ?></p>
+                                <a class="btn btn-primary btn-lg" href="product_detail.php?productId=<?php echo $productData['product_id']; ?>">Buy Now</a>
+                            </div>
+                        </div>
+                    <?php } ?>
+>>>>>>> 8570d18fc709e74d81b4648387ff06c11f71defd
                 </div>
             </div>
-        </div>
+        <?php } ?>
+        <?php 
+            DisplayBestSeller();
+        ?>
     </div>
 
     <?php
