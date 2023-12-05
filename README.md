@@ -14,7 +14,7 @@
     <a href="https://www.overleaf.com/read/bdqnrpqtnddn#f58392"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="link_demo">View Demo</a>
+    <a href="#getting-started-🚀">View Demo</a>
     ·
     <a href="https://github.com/Conganhluan/Lap_trinh_web/issues">Report Bug</a>
     ·
@@ -27,16 +27,16 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project 🔎
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Main Page Screen Shot][product-screenshot]](/Demo_image/index.png)
 
 In this semester (HK231), my team has been assigned an Assignment requiring the designing of the interface and implementation of basic features for a company or business website. All members in the group reached a consensus and decided to choose the Hong Tra Ngo Gia website as a template.
 
 Here's why:
-* ...
-* ...
-* ...
+* We are asians and we love bubble tea, of course LOL.
+* We also find their news often updated, which have given us lots of data and save us time from creating ones,
+* And the simplicity of their website LOL.
 
-Of course, ...
+Of course, we have faced many difficulties during cloning the website, the flexibility really screwed us up and sometimes made us cry every single night. We, however, have managed to work harder and together and then, the problems were solved and this website was born. It is a great pleasant for us to present this project to you, hope you enjoy it and find it useful for your project too LOL.
 
 <p align="right">[<a href="#readme-top">Back to Top 🔝</a>]</p>
 
@@ -69,9 +69,17 @@ The following are the Programming Languages and Frameworks that my team uses dur
 
 _Quickly look through the website_
 
-insert some images
+![Main page](/Demo_image/index.png)
 
+![Product page](/Demo_image/product.png)
 
+![Search page](/Demo_image/search.png)
+
+![News page](/Demo_image/news.png)
+
+![Contact page](/Demo_image/contact.png)
+
+![Policy page](/Demo_image/policy.png)
 
 <!-- USAGE EXAMPLES -->
 ## Installation and Usage 📈
@@ -111,7 +119,7 @@ _To run the demo version of this application, you need to follow these steps:_
 
 * Nguyễn Đức Bình - [@your_github](https://github.com/binhnguyen3816) - email@example.com
 * Lê Quang Hiển - [@your_github](https://github.com/hienlq16103) - email@example.com
-* Nguyễn Công Anh Luân - [@your_github](https://github.com/Conganhluan) - email@example.com
+* Nguyễn Công Anh Luân - [@Conganhluan](https://github.com/Conganhluan) - conganhluan@gmail.com
 * Nguyễn Duy Tùng - [@tndgoat](https://github.com/tndgoat) - tungnd.goat@gmail.com
 
 Project Link: [https://github.com/Conganhluan/Lap_trinh_web](https://github.com/Conganhluan/Lap_trinh_web)
@@ -125,8 +133,8 @@ After completing this Assignment, the team has achieved significant advantages f
 - [x] Attractive interface, well-organized layout, creating an enjoyable and user-friendly experience.
 - [x] Well-managed and organized code.
 - [x] Members have significantly reinforced their knowledge of HTML, CSS, PHP, and other relevant technologies.
-- [x] ...
-- [x] ...
+- [x] Great time and tasks management
+- [x] Keyword technique during researching for information
 
 Finally, all team members express gratitude to Mr. Nguyen Huu Hieu for imparting foundational knowledge and providing opportunities for the team to test their abilities with this project.
 
