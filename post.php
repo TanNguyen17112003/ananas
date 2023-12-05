@@ -6,11 +6,17 @@ require_once './database/DB.php';
 require './includes/header.php';
 require './includes/navbar.php';
 
-$id = $_GET['postId'];
-$sqlShowPost = "SELECT * FROM post WHERE post_id=$id";
-    
-$post= $conn->query($sqlShowPost);
-$row = $post->fetch_assoc();
+if (isset($_GET['postId'])) {
+    $id = $_GET['postId'];
+    $sqlShowPost = "SELECT * FROM post WHERE post_id=$id";
+    $post= $conn->query($sqlShowPost);
+    $row = $post->fetch_assoc();
+}
+else {
+    header("Location: $rootPath/posts.php");
+    die();
+}
+
 ?>
 
 <!DOCTYPE html>
