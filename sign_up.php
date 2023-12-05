@@ -89,6 +89,7 @@ include_once './helper/sendMail.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
+    <link rel="stylesheet" href="<?= $rootPath ?>/public/css/showPassword.css">
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -161,9 +162,12 @@ include_once './helper/sendMail.php';
               </div>
             </div>
             <div class="d-flex flex-row align-items-center mb-4">
-              <div class="input-group flex-nowrap">
+              <div class="input-group flex-nowrap password-container">
                 <span class="input-group-text"><i class="fa-light fa-key"></i></span>
                 <input id="password" type="password" name="password" class="form-control" placeholder="Password" value='<?php echo $password?>'>
+                <span>
+                  <i class="far fa-eye" id="toggle-password"></i>
+                </span>
                 <small>Error message</small>
               </div>
             </div>
@@ -173,9 +177,12 @@ include_once './helper/sendMail.php';
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center mb-4">
-              <div class="input-group flex-nowrap">
+              <div class="input-group flex-nowrap password-container">
                 <span class="input-group-text"><i class="fa-light fa-key"></i></span>
                 <input id="password2" type="password" name="re_password" class="form-control" placeholder="Re-Password" value='<?php echo $re_password?>'>
+                <span>
+                  <i class="far fa-eye" id="toggle-password2"></i>
+                </span>
                 <small>Error message</small>
               </div>
             </div>
@@ -202,6 +209,7 @@ include_once './helper/sendMail.php';
 ?>
 <!-- JavaScript Bundle with Popper -->
 <!-- <script src="./public/javascripts/validate.js"></script> -->
+<script src="<?= $rootPath ?>/public/javascripts/showPassword.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script src="./public/javascripts/loadCartHeader.js"></script>

@@ -81,7 +81,7 @@ if (isset($_POST['update'])) {
             </div>
             <div class="col-xl-6 col-md-6 col-sm-12">
                 <?php
-                    $sqlDetail = "SELECT product.name, quantity_item, product.price   
+                    $sqlDetail = "SELECT product.name, quantity_item, product.price, product.price_sale   
                     FROM order_item, product 
                     WHERE order_id = '$orderId' 
                     AND order_item.product_id = product.product_id";
@@ -91,20 +91,25 @@ if (isset($_POST['update'])) {
                     <li class="list-group-item">
                         <h6>Đơn hàng gồm <?=$detail->num_rows?> sản phẩm</h6>
                     </li>
-                    <?php 
-                        $totalBill = 0;
-                        while($row = $detail->fetch_assoc()) {
-                    ?>
-                    <li class="list-group-item">
-                        <p class="d-flex justify-content-between">
-                            <span><?=$row['quantity_item']?>x <?=$row['name']?></span>
-                            <span><?=number_format($row['price']*$row['quantity_item'])?> <sup>đ</sup> </span>
-                        </p>
-                    </li>
-                    <?php
-                        $totalBill += $row['price']*$row['quantity_item'];
-                        }
-                    ?>
+                    <?php $totalBill = 0; ?>
+                    <?php while($row = $detail->fetch_assoc()) { ?>
+                        <li class="list-group-item">
+                            <p class="d-flex justify-content-between">
+                                <span><?=$row['quantity_item']?>x <?=$row['name']?></span>
+                                <?php if (is_null($row['price_sale'])) { ?>
+                                    <span><?=number_format($row['price']*$row['quantity_item'])?> <sup>đ</sup> </span>
+                                    <?php
+                                        $totalBill += $row['price']*$row['quantity_item'];
+                                    ?>
+                                <?php } else { ?>
+                                    <span><?=number_format($row['price_sale']*$row['quantity_item'])?> <sup>đ</sup> </span>
+                                    <?php
+                                        $totalBill += $row['price_sale']*$row['quantity_item'];
+                                    ?>
+                                <?php } ?>
+                            </p>
+                        </li>
+                    <?php } ?>
                     <li class="list-group-item">
                         <p class="d-flex justify-content-between">
                             <span>Tổng hóa đơn (đã gồm VAT)</span>

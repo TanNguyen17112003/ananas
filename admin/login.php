@@ -18,6 +18,7 @@ $ketqua = $conn->query($sql);
   <title>Login</title>
   <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
   <!-- CSS only -->
+  <link rel="stylesheet" href="../public/css/showPassword.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 
@@ -63,9 +64,12 @@ $ketqua = $conn->query($sql);
                 </div>
               </div>
               <div class="d-flex flex-row align-items-center mb-4">
-                <div class="input-group flex-nowrap">
+                <div class="input-group flex-nowrap password-container">
                   <span class="input-group-text"><i class="fa-light fa-key"></i></span>
-                  <input type="password" class="form-control" name="password" value="<?php echo $password; ?>" placeholder="Password">
+                  <input id="password" type="password" class="form-control" name="password" value="<?php echo $password; ?>" placeholder="Password">
+                  <span>
+                    <i class="far fa-eye" id="toggle-password"></i>
+                  </span>
                 </div>
               </div>
               <?php
@@ -89,6 +93,7 @@ $ketqua = $conn->query($sql);
   <?php
   require './includes/footer.php';
   ?>
+  <script src="../public/javascripts/showPassword.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 

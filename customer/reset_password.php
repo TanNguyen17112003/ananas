@@ -60,6 +60,7 @@
     <title>Reset Password</title>
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
+    <link rel="stylesheet" href="<?= $rootPath ?>/public/css/showPassword.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/css/base.css">
     <link rel="stylesheet" href="./public/css/home.css">
@@ -83,23 +84,38 @@
         <form class="mx-5" method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
             <div class="mb-3">
                 <label for="Name" class="form-label">Mật khẩu cũ</label>
-                <input type="password" name="old-password" class="form-control">
+                <div class="password-container">
+                    <input id="password" type="password" name="old-password" class="form-control">
+                    <span>
+                        <i class="far fa-eye" id="toggle-password"></i>
+                    </span>
+                </div>
                 <div class="form-text text-danger">
-                  <?php if (isset($errorPassword)) echo $errorPassword ?>
+                    <?php if (isset($errorPassword)) echo $errorPassword ?>
                 </div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Mật khẩu mới</label>
-                <input type="password" name="new-password" class="form-control">
+                <div class="password-container">
+                    <input id="password2" type="password" name="new-password" class="form-control">
+                    <span>
+                        <i class="far fa-eye" id="toggle-password2"></i>
+                    </span>
+                </div>
                 <div class="form-text text-danger">
-                  <?php if(isset($errorRePassword1)) echo $errorRePassword1 ?>
+                    <?php if(isset($errorRePassword1)) echo $errorRePassword1 ?>
                 </div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Nhập lại mật khẩu mới</label>
-                <input type="password" name="new-password2" class="form-control">
+                <div class="password-container">
+                    <input id="password3" type="password" name="new-password2" class="form-control">
+                    <span>
+                        <i class="far fa-eye" id="toggle-password3"></i>
+                    </span>
+                </div>
                 <div class="form-text text-danger">
-                  <?php if(isset($errorRePassword2)) echo $errorRePassword2 ?>
+                    <?php if(isset($errorRePassword2)) echo $errorRePassword2 ?>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary float-end">Cập nhật</button>
@@ -110,6 +126,7 @@
 <?php
     require '../includes/footer.php';
 ?>
+<script src="<?= $rootPath ?>/public/javascripts/showPassword.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
