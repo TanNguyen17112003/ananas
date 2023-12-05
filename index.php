@@ -143,33 +143,6 @@ require_once './database/DB.php';
         </div>
 
         <!-- best seller -->
-<<<<<<< HEAD
-        <div class="container mb-5">
-            <div class="row text-center">
-                <div class="h3 mb-2" style="color:#ED171F">BEST SELLER OF THE MONTH</div>
-            </div>
-            <div class="row">
-                <div class="col-xl-4">
-                    <div class="text-center">
-                        <a href="#"><img alt="topProduct" width="200" height="200" src="./public/img/products/bi-dao-suong-sao-qb2cpm44 (2).png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
-                        <p class="h4 text-dark" style="text-align: center;">Bí đao sương sáo</p>
-                        <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
-                    </div>
-                </div>
-                <div class="col-xl-4">
-                    <div class="text-center">
-                        <a href="#"><img alt="topProduct" width="200" src="./public/img/products/tra-sua-suong-sao-laessvwl (2).png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
-                        <p class="h4 text-dark" style="text-align: center;">Trà sữa sương sáo</p>
-                        <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
-                    </div>
-                </div>
-                <div class="col-xl-4">
-                    <div class="text-center">
-                        <a href="#"><img alt="topProduct" width="200" src="./public/img/products/suong-sao-latte-as9ofqbf (2).png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
-                        <p class="h4 text-dark" style="text-align: center;">Sương sáo latte</p>
-                        <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
-                    </div>
-=======
         <?php function DisplayBestSeller(){ ?>
             <?php 
                 global $result;
@@ -190,12 +163,11 @@ require_once './database/DB.php';
                                     src="public/img/products/<?php echo $productData['images']; ?>"
                                     class="rounded-circle mb-3 mt-3 border border-2" />
                                 </a>
-                                <p class="h4 text-dark"><?php echo $productData['name']; ?></p>
+                                <p class="h4 text-dark" style="text-align: center;"><?php echo $productData['name']; ?></p>
                                 <a class="btn btn-primary btn-lg" href="product_detail.php?productId=<?php echo $productData['product_id']; ?>">Buy Now</a>
                             </div>
                         </div>
                     <?php } ?>
->>>>>>> 8570d18fc709e74d81b4648387ff06c11f71defd
                 </div>
             </div>
         <?php } ?>
