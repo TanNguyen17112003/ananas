@@ -56,9 +56,9 @@ The following are the Programming Languages and Frameworks that my team uses dur
   * [![PHP][php.logo]][PHP-url]
   * [![MySQL][mysql.logo]][MySQL-url]
 
-* **Most Used Languages: (Adjust this when Luân makes the Repo public @@)**
+* **Most Used Languages:**
 
-    ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=tndgoat&layout=donut-vertical&repo=CompNetwAssignment)
+    ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Conganhluan&exclude_repo=The-Ocean-s-Mystery,Dormitory_Management,Investigation-Game,Message-To-Mail,TOEIC-Notifier&layout=pie)
 
 <p align="right">[<a href="#readme-top">Back to Top 🔝</a>]</p>
 
@@ -94,7 +94,7 @@ _To run the demo version of this application, you need to follow these steps:_
    ```
 3. Click 'Start' for Apache and MySQL in the XAMPP interface.
 4. Go to the URL http://localhost/phpmyadmin/ to add a database.
-5. Click 'Import' -> Select the SQL file in the Lap_trinh_web folder -> Click 'Go'.
+5. Click 'Import' -> Select the SQL file (ltwdb.sql - C:\xampp\htdocs\Lap_trinh_web\database\ltwdb.sql) in the database folder -> Click 'Go'.
 6. Visit the URL:
     ```sh
     Admin: http://localhost/Lap_trinh_web/admin
