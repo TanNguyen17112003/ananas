@@ -2,12 +2,12 @@
     session_start();
     ob_start();
     $rootPath = '/Lap_trinh_web';
-    // require_once '../PHPMailer/src/Exception.php';
-    // require_once '../PHPMailer/src/PHPMailer.php';
-    // require_once '../PHPMailer/src/SMTP.php';
-    // include_once '../helper/sendMail.php';
+    require_once '../PHPMailer/src/Exception.php';
+    require_once '../PHPMailer/src/PHPMailer.php';
+    require_once '../PHPMailer/src/SMTP.php';
+    include_once '../helper/sendMail.php';
 
-    // nếu khách hàng chưa đăng nhập thì chuyển đến trang đăng nhập
+    // Nếu khách hàng chưa đăng nhập thì chuyển đến trang đăng nhập
     if (!isset($_SESSION['email_user']) && empty($_SESSION['email_user']) ) header('location: login.php');
     require_once '../database/DB.php';
     $email = mysqli_real_escape_string($conn,$_SESSION['email_user']);
@@ -18,7 +18,7 @@
     $ketQua = $conn->query($sqlUser);
     $user = $ketQua->fetch_array();
     $id = $user['user_id'];
-    //Nếu không có sản phẩm trong giỏ hàng thì trở về trang giỏ hàng
+    // Nếu không có sản phẩm trong giỏ hàng thì trở về trang giỏ hàng
     if (isset($_POST['order'])) {
         $nameReceiver = $_POST['nameReceiver'];
         $phoneReceiver = $_POST['phoneReceiver'];
@@ -42,46 +42,44 @@
                     $conn->query($sqlOrderItem);
                 }
             }
-            // // send mail 
-            // $paymentMethod = $paymentMethod == 'tienMat' ? 'Tiền mặt khi nhận hàng' : 'Phương thức khác';
-            // $receiver = [
-            //                 'name' => $nameReceiver,
-            //                 'email' => $_SESSION['email_user'],
-            //                 'id' => $orderId,
-            //             ];
-            // // print_r($receiver);
-            // // exit;
-            // $order =  '<p>Đơn hàng gồm <span style="color: blue">'.sizeof($_SESSION['cart']).'</span> sản phẩm</p>
-            //         <table style="border: 1px solid #000;" cellspacing="0">
-            //             <thead>
-            //                 <tr style="border: 1px solid #000; padding: 4px">
-            //                     <th style="border: 1px solid #000; padding: 4px">STT</th>
-            //                     <th style="border: 1px solid #000; padding: 4px">Tên sản phẩm</th>
-            //                     <th style="border: 1px solid #000; padding: 4px">Số lượng</th>
-            //                     <th style="border: 1px solid #000; padding: 4px">Đơn giá</th>
-            //                     <th style="border: 1px solid #000; padding: 4px">Thành tiền</th>
-            //                 </tr>
-            //             </thead>
-            //             <tbody>';
-            //                 $i=1;
-            //                 foreach($_SESSION['cart'] as $key => $value) {
-            //         $order .= '<tr style="border: 1px solid #000; padding: 4px">
-            //                         <td style="border: 1px solid #000; padding: 4px">'.$i.'</td>
-            //                         <td style="border: 1px solid #000; padding: 4px">'.$value['name'].'</td>
-            //                         <td style="border: 1px solid #000; padding: 4px">'.$value['quantity'].'</td>
-            //                         <td style="border: 1px solid #000; padding: 4px">'.number_format($value['price']).' VND</td>
-            //                         <td style="border: 1px solid #000; padding: 4px">'.number_format($value['price'] * $value['quantity']).' VND</td>
-            //                     </tr>';
-            //                     $i++;
-            //                     }
-            // $order .= '</tbody>
-            //         </table>
+            // send mail 
+            $paymentMethod = $paymentMethod == 'tienMat' ? 'Tiền mặt khi nhận hàng' : 'Phương thức khác';
+            $receiver = [
+                            'name' => $nameReceiver,
+                            'email' => $_SESSION['email_user'],
+                            'id' => $orderId,
+                        ];
+            $order =  '<p>Đơn hàng gồm <span style="color: blue">'.sizeof($_SESSION['cart']).'</span> sản phẩm</p>
+                    <table style="border: 1px solid #000;" cellspacing="0">
+                        <thead>
+                            <tr style="border: 1px solid #000; padding: 4px">
+                                <th style="border: 1px solid #000; padding: 4px">STT</th>
+                                <th style="border: 1px solid #000; padding: 4px">Tên sản phẩm</th>
+                                <th style="border: 1px solid #000; padding: 4px">Số lượng</th>
+                                <th style="border: 1px solid #000; padding: 4px">Đơn giá</th>
+                                <th style="border: 1px solid #000; padding: 4px">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                            $i=1;
+                            foreach($_SESSION['cart'] as $key => $value) {
+                    $order .= '<tr style="border: 1px solid #000; padding: 4px">
+                                    <td style="border: 1px solid #000; padding: 4px">'.$i.'</td>
+                                    <td style="border: 1px solid #000; padding: 4px">'.$value['name'].'</td>
+                                    <td style="border: 1px solid #000; padding: 4px">'.$value['quantity'].'</td>
+                                    <td style="border: 1px solid #000; padding: 4px">'.number_format($value['price']).' VND</td>
+                                    <td style="border: 1px solid #000; padding: 4px">'.number_format($value['price'] * $value['quantity']).' VND</td>
+                                </tr>';
+                                $i++;
+                                }
+            $order .= '</tbody>
+                    </table>
         
-            //         <p>Tổng giá trị sản phẩm: '.number_format($payment).' VND</p>
-            //         <p>Phương thức thanh toán: '.$paymentMethod.'</p>
-            //         <p>Ngày đặt hàng: 25/10/2022</p>
-            //         <p>Địa chỉ giao hàng: '.$nameReceiver.', '.$phoneReceiver.', '.$addressReceiver.'</p>';
-            // sendMailOrder($mail, $receiver, $order);
+                    <p>Tổng giá trị sản phẩm: '.number_format($payment).' VND</p>
+                    <p>Phương thức thanh toán: '.$paymentMethod.'</p>
+                    <p>Ngày đặt hàng: 08/12/2023</p>
+                    <p>Địa chỉ giao hàng: '.$nameReceiver.', '.$phoneReceiver.', '.$addressReceiver.'</p>';
+            sendMailOrder($mail, $receiver, $order);
 
             $success = 1; 
             unset($_SESSION['cart']); 
@@ -202,12 +200,12 @@ if (empty($_SESSION['cart'])) {
                                         Thanh toán khi nhận hàng
                                     </label>
                                 </div>
-                                <!-- <div class="form-check">
+                                <div class="form-check">
                                     <input class="form-check-input" type="radio" name="paymentMethod" value="ATM" id="ATM">
                                     <label class="form-check-label" for="ATM">
-                                        Thanh toán qua ATM
+                                        Thanh toán qua Ví điện tử
                                     </label>
-                                </div> -->
+                                </div>
                             </p>
                             <p>
                                 <input type="hidden" name="payment" value="<?=$totalBill?>">

@@ -15,21 +15,21 @@ $sqlPassword = "SELECT password FROM admin WHERE email = '$email'";
 $ketQua = $conn->query($sqlPassword);
 $ketQua = $ketQua->fetch_array();
 $password = $ketQua['password'];
+
 if (isset($_POST['change'])) {
 	$oldPassword = $_POST['oldPassword'];
 	$newPassword = $_POST['newPassword'];
-	if ($oldPassword=='' || $newPassword =='') {
+	if ($oldPassword == '' || $newPassword == '') {
 		$tb = 'Bạn chưa nhập đầy đủ dữ liệu';
 	} else {
-		// $oldPassword = md5($oldPassword);
-		// $newPassword = md5($newPassword);
-		if ($oldPassword != $password) {
+		if (!password_verify($oldPassword, $password)) {
 			$tb = 'Bạn nhập sai mật khẩu cũ!';
 		} else {
-			if ($newPassword == $password) {
+			if ($newPassword == $oldPassword) {
 				$tb = 'Mật khẩu mới trùng mật khẩu cũ';
 			} else {
-				$sqlUpdate = "UPDATE admin SET password = '$newPassword' WHERE email = '$email'";
+				$newPWD = password_hash($newPassword, PASSWORD_DEFAULT);
+				$sqlUpdate = "UPDATE admin SET password = '$newPWD' WHERE email = '$email'";
 				$conn->query($sqlUpdate);
 				setcookie('thongBao', 'Đổi mật khẩu thành công! Vui lòng đăng nhập lại', time()+5);
 				$conn->close();

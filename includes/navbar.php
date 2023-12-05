@@ -64,7 +64,7 @@
                 <li><a class="dropdown-item" href="<?php echo $rootPath ?>/customer/my_account.php">Tài khoản</a></li>
                 <li><a class="dropdown-item" href="<?php echo $rootPath ?>/customer/my_order.php">Đơn hàng</a></li>
                 <li><a class="dropdown-item" href="<?php echo $rootPath ?>/customer/check_out.php">Thanh toán</a></li>
-                <li><a class="dropdown-item" href="<?php echo $rootPath ?>/customer/reset_password.php">Đổi mật khẩu</a></li>
+                <li><a class="dropdown-item" href="<?php echo $rootPath ?>/customer/changePassword.php">Đổi mật khẩu</a></li>
               </ul>
             </div>
           </li>

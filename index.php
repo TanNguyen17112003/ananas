@@ -16,6 +16,11 @@ require_once './database/DB.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/css/base.css">
     <!-- <link rel="stylesheet" href="./public/css/home.css"> -->
+    <style>
+        p {
+            text-align: justify;
+        }
+    </style>
 </head>
 
 <body>
@@ -96,34 +101,34 @@ require_once './database/DB.php';
         <!-- team member -->
         <div class="container mb-5">
             <div class="row text-center mb-2">
-                <div class="h2" style="color:#ED171F">MEMBER</div>
+                <div class="h2" style="color:#ED171F">TEAM MEMBERS</div>
             </div>
             <div class="row">
                 <div class="col-xl-3 col-md-6 col-sm-12">
                     <div class="text-center">
                         <a href="https://www.facebook.com/nguyenducbinh2003/"><img alt="AVT" width="200" height="200" src="<?php echo $rootPath ?>/public/img/profile1.jpg" class="rounded-circle mb-3 mt-3" /></a>
-                        <p class="text-dark">Nguyễn Đức Bình</p>
+                        <p class="text-dark" style="text-align: center; font-weight: bold;">Nguyễn Đức Bình</p>
                         <!-- <a class="btn btn-primary text-light" href="#">Contact</a> -->
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-sm-12">
                     <div class="text-center">
-                        <a href="https://www.facebook.com/hienlq161"><img alt="AVT" width="200" height="200" src="<?php echo $rootPath ?>/public/img/profile2.jpg" class="rounded-circle mb-3 mt-3" /></a>
-                        <p class="text-dark">Lê Quang Hiển</p>
+                        <a href="https://www.facebook.com/hienlq161"><img alt="AVT" width="200" height="200" src="<?php echo $rootPath ?>/public/img/profile2.jpg?v=<?php echo time(); ?>" class="rounded-circle mb-3 mt-3" /></a>
+                        <p class="text-dark" style="text-align: center; font-weight: bold;">Lê Quang Hiển</p>
                         <!-- <a class="btn btn-primary text-light" href="#">Contact</a> -->
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-sm-12">
                     <div class="text-center">
-                        <a href="#"><img alt="AVT" width="200" height="200" src="<?php echo $rootPath ?>/public/img/profile3.jpg" class=" rounded-circle mb-3 mt-3" /></a>
-                        <p class="text-dark">Nguyễn Công Anh Luân</p>
+                        <a href="https://www.facebook.com/nguyenconganhluan"><img alt="AVT" width="200" height="200" src="<?php echo $rootPath ?>/public/img/profile3.jpg" class=" rounded-circle mb-3 mt-3" /></a>
+                        <p class="text-dark" style="text-align: center; font-weight: bold;">Nguyễn Công Anh Luân</p>
                         <!-- <a class="btn btn-primary text-light" href="#">Contact</a> -->
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-sm-12">
                     <div class="text-center">
                         <a href="https://www.facebook.com/nguyenduytung259"><img alt="AVT" width="200" height="200" src="<?php echo $rootPath ?>/public/img/profile4.jpg" class="rounded-circle mb-3 mt-3" /></a>
-                        <p class="text-dark">Nguyễn Duy Tùng</p>
+                        <p class="text-dark" style="text-align: center; font-weight: bold;">Nguyễn Duy Tùng</p>
                         <!-- <a class="btn btn-primary text-light" href="#">Contact</a> -->
                     </div>
                 </div>
@@ -139,21 +144,21 @@ require_once './database/DB.php';
                 <div class="col-xl-4">
                     <div class="text-center">
                         <a href="#"><img alt="topProduct" width="200" height="200" src="./public/img/products/bi-dao-suong-sao-qb2cpm44 (2).png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
-                        <p class="h4 text-dark">Bí đao sương sáo</p>
+                        <p class="h4 text-dark" style="text-align: center;">Bí đao sương sáo</p>
                         <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
                     </div>
                 </div>
                 <div class="col-xl-4">
                     <div class="text-center">
                         <a href="#"><img alt="topProduct" width="200" src="./public/img/products/tra-sua-suong-sao-laessvwl (2).png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
-                        <p class="h4 text-dark">Trà sữa sương sáo</p>
+                        <p class="h4 text-dark" style="text-align: center;">Trà sữa sương sáo</p>
                         <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
                     </div>
                 </div>
                 <div class="col-xl-4">
                     <div class="text-center">
                         <a href="#"><img alt="topProduct" width="200" src="./public/img/products/suong-sao-latte-as9ofqbf (2).png" class="rounded-circle mb-3 mt-3 border border-2" /></a>
-                        <p class="h4 text-dark">Sương sáo latte</p>
+                        <p class="h4 text-dark" style="text-align: center;">Sương sáo latte</p>
                         <a class="btn btn-primary btn-lg" href="#">Buy Now</a>
                     </div>
                 </div>

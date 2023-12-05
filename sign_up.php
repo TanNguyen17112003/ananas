@@ -1,11 +1,15 @@
 <?php
 $rootPath = '/Lap_trinh_web';
 require_once './database/DB.php';
-// require_once './PHPMailer/src/Exception.php';
-// require_once './PHPMailer/src/PHPMailer.php';
-// require_once './PHPMailer/src/SMTP.php';
 
-// include_once './helper/sendMail.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require './PHPMailer/src/Exception.php';
+require './PHPMailer/src/PHPMailer.php';
+require './PHPMailer/src/SMTP.php';
+
+include_once './helper/sendMail.php';
 
 ?>
 
@@ -54,7 +58,8 @@ require_once './database/DB.php';
         }
         if ($is_validated) {
           $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-          $verifyCode = substr(number_format(time() * rand(), 0, '', ''), 0, 9);
+          $verifyCode = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+          // $verifyCode = isset($_SESSION['generated_otp']) ? $_SESSION['generated_otp'] : '';
           $sql = "INSERT INTO user (name, email, phone, address, password, verify_code) 
                   VALUES ('$name', '$email', '$phone', '$address', '$hashPassword', '$verifyCode')";
           if ($conn->query($sql) === TRUE) {
@@ -67,12 +72,13 @@ require_once './database/DB.php';
               // print_r($receiver);
               // exit;
               // verifyEmail($mail, $receiver, $verifyCode);
-              header("Location: ./customer/login.php");
-              // header("Location: ./customer/login.php");
+              // header("Location: ./customer/verifyOTP.php");
+              verifyEmail($mail, $receiver, $verifyCode);
+              header("Location: ./auth/register.php?email=$email");
           } else {
               echo "Error: ". $conn->error;
           }
-        }   
+        }
     }
 ?>
 

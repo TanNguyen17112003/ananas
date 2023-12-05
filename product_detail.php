@@ -42,7 +42,6 @@ if ($product->num_rows > 0) {
             <div class="col-lg-5 mt-5">
                 <div class="card mb-3">
                     <img class="card-img rounded img-fluid" id="product-detail" alt="bla" src="./public/img/products/<?php echo $row["images"]; ?>">
-                    <!-- <img class="card-img rounded img-fluid" id="product-detail" alt="bla" src="./public/img/products/hong-tra-dai-loan-zvyjy3xt (2).jpg"> -->
                 </div>
                 <div class="row">
                     <!--Start Controls-->
@@ -61,13 +60,13 @@ if ($product->num_rows > 0) {
                             <div class="carousel-item active">
                                 <div class="row">
                                     <div class="col-4">
-                                        <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?Enormous Rubber Knife" alt="Product Image 1">
+                                        <img class="card-img img-fluid" src="https://source.unsplash.com/random/600x600/?drink Rubber Knife" alt="Product Image 1">
                                     </div>
                                     <div class="col-4">
-                                        <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?Heavy Duty Paper Computer" alt="Product Image 2">
+                                        <img class="card-img img-fluid" src="https://source.unsplash.com/random/600x600/?drink Duty Paper Computer" alt="Product Image 2">
                                     </div>
                                     <div class="col-4">
-                                        <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?Rustic Marble Knife" alt="Product Image 3">
+                                        <img class="card-img img-fluid" src="https://source.unsplash.com/random/600x600/?drink Marble Knife" alt="Product Image 3">
                                     </div>
                                 </div>
                             </div>
@@ -77,13 +76,13 @@ if ($product->num_rows > 0) {
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
-                                        <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?Heavy Duty Copper Plate" alt="Product Image 4">
+                                        <img class="card-img img-fluid" src="https://source.unsplash.com/random/600x600/?drink Duty Copper Plate" alt="Product Image 4">
                                     </div>
                                     <div class="col-4">
-                                        <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?Incredible Wooden Computer" alt="Product Image 5">
+                                        <img class="card-img img-fluid" src="https://source.unsplash.com/random/600x600/?drink Wooden Computer" alt="Product Image 5">
                                     </div>
                                     <div class="col-4">
-                                        <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?Heavy Duty Bronze Coat" alt="Product Image 6">
+                                        <img class="card-img img-fluid" src="https://source.unsplash.com/random/600x600/?drink Duty Bronze Coat" alt="Product Image 6">
                                     </div>
                                 </div>
                             </div>
@@ -93,13 +92,13 @@ if ($product->num_rows > 0) {
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
-                                        <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?Aerodynamic Wool Coat" alt="Product Image 7">
+                                        <img class="card-img img-fluid" src="https://source.unsplash.com/random/600x600/?drink Wool Coat" alt="Product Image 7">
                                     </div>
                                     <div class="col-4">
-                                        <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?Fantastic Concrete Bag" alt="Product Image 8">
+                                        <img class="card-img img-fluid" src="https://source.unsplash.com/random/600x600/?drink Concrete Bag" alt="Product Image 8">
                                     </div>
                                     <div class="col-4">
-                                        <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?Fantastic Aluminum Coat" alt="Product Image 9">
+                                        <img class="card-img img-fluid" src="https://source.unsplash.com/random/600x600/?drink Aluminum Coat" alt="Product Image 9">
                                     </div>
                                 </div>
                             </div>

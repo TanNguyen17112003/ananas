@@ -1,10 +1,10 @@
 <?php
 session_start();
 ob_start();
-$rootPath = '/Lap_trinh_web/';
+$rootPath = '/Lap_trinh_web';
 require_once '../database/DB.php';
 
-$sql = "SELECT email, password FROM user";
+$sql = "SELECT email, password FROM user WHERE active = 1";
 $ketqua = $conn->query($sql);
 ?>
 
@@ -46,16 +46,23 @@ if (isset($_POST['login_user'])) {
       $errorEmail = "Email không tồn tại";
     }
     
-    while ($row = $ketqua->fetch_assoc()) {
-      if ($row["email"] == $email && password_verify($password, $row["password"])) {
-        $_SESSION["email_user"] = $email;
-        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) 
-            header('location: check_out.php');
-          else
-            header('location: my_account.php');
-      } else {
-        $is_validated = false;
-        $tb = 'Sai email hoặc mật khẩu';
+
+    if ($ketqua->num_rows == 0) {
+      $tb = 'Tài khoản không tồn tại hoặc chưa xác thực!';
+      $is_validated = false;
+    }
+    if ($ketqua->num_rows > 0) {
+      while ($row = $ketqua->fetch_assoc()) {
+        if ($row["email"] == $email && password_verify($password, $row["password"])) {
+          $_SESSION["email_user"] = $email;
+          if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) 
+              header('location: check_out.php');
+            else
+              header('location: my_account.php');
+        } else {
+          $is_validated = false;
+          $tb = 'Sai email hoặc mật khẩu';
+        }
       }
     }
 
@@ -80,9 +87,20 @@ if (isset($_POST['login_user'])) {
         <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
         <?php
           if (isset($_SESSION['success'])) {
-            echo '<div class="mb-2 text-center"><div class="alert alert-success">'.$_SESSION['success'].'</div></div>';
+              echo '<div id="success-message" class="mb-2 text-center"><div class="alert alert-success">'.$_SESSION['success'].'</div></div>';
+              // Xóa session 'success' sau khi hiển thị để tránh hiển thị lại khi trang được làm mới
+              unset($_SESSION['success']);
           }
-        ?>
+          ?>
+          <script>
+            // Sử dụng JavaScript để ẩn thông báo sau 2 giây
+            setTimeout(function() {
+                var successMessage = document.getElementById('success-message');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+            }, 2000);
+          </script>
           <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style="color:#002A54"> 
             Đăng nhập 
           </p>
@@ -101,10 +119,10 @@ if (isset($_POST['login_user'])) {
             </div>
             <p>
               Bạn chưa có tài khoản?
-              <a href="/Lap_trinh_web/sign_up.php">Đăng kí ngay.</a>
+              <a href="/Lap_trinh_web/sign_up.php">Đăng kí ngay</a>
             </p>
             <p class="mt-2 mb-2">
-              Quên mật khẩu <a href="#">click here</a>
+              Quên mật khẩu? <a href="/Lap_trinh_web/auth/forgot_password.php">Lấy lại mật khẩu</a>
             </p>
                 <?php 
                     if(!empty($tb)) {

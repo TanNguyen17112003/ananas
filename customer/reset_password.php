@@ -22,7 +22,7 @@
         $new_password1 = $_POST['new-password'];
         $new_password2 = $_POST['new-password2'];
         
-        if ($user["password"] != ($old_password)) {
+        if (!password_verify($old_password, $user["password"])) {
             $is_validated = false;
             $errorPassword = "Mật khẩu không đúng";
         }
@@ -38,8 +38,8 @@
         }
         
         if ($is_validated) {
-            $new_password1 = ($new_password1);
-            $sql = "UPDATE `user` SET password = '$new_password1' WHERE email='$email';";
+            $newPWD = password_hash($new_password1, PASSWORD_DEFAULT);
+            $sql = "UPDATE `user` SET password = '$newPWD' WHERE email='$email';";
             if ($conn->query($sql) === TRUE) {
                 echo "User password successfully updated";
                 $status = "Mật khẩu đã được cập nhật.";
@@ -72,7 +72,7 @@
     
 <div class="container-fluid bg-light p-xxl-5 p-md-3">
     <div class="col-lg-8 col-md-10 m-auto py-5 px-3" style="box-shadow: 0 10px 20px rgb(0 0 0 / 10%);">
-        <h1 class="h1 text-center">Đổi mật khẩu</h1>
+        <h1 class="h1 text-center"><b><code style="color: black;">Đổi mật khẩu</code></b></h1>
         <?php
             if ($status != "") {
               echo '<div class="alert alert-success" role="alert">

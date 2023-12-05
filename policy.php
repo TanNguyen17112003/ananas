@@ -17,6 +17,11 @@ require_once './database/DB.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/css/base.css">
     <!-- <link rel="stylesheet" href="./public/css/home.css"> -->
+    <style>
+        p {
+            text-align: justify;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,7 +45,7 @@ require_once './database/DB.php';
                         <div class="accordion-body">
                             <p>- Chứng minh nhân dân hợp lệ, giấy xác nhận không phạm tội, đủ tư cách để xin các giấy phép liên quan.</p>
                             <p>- Có hứng thú với ngành thức uống, chấp nhận văn hóa thương hiệu và triết lí kinh doanh, toàn tâm toàn ý cho việc kinh doanh, tuân theo sự thống nhất điều hành của công ty và có tinh thần hợp tác cao.</p>
-                            <p>- Bên nhượng quyền thương hiệu có thể trực tiếp tham gia khóa đào tạo, vận hành và quản lý cửa tiệm toàn thời gian ( Trước khi khai trương, phải đến công ty để tham gia học đào tạo, mỗi ngày cần học từ 7-8 tiếng, 5-7 ngày, tùy theo thực tế năng lực học tập để quyết định).</p>
+                            <p>- Bên nhượng quyền thương hiệu có thể trực tiếp tham gia khóa đào tạo, vận hành và quản lý cửa tiệm toàn thời gian (trước khi khai trương, phải đến công ty để tham gia học đào tạo, mỗi ngày cần học từ 7 - 8 tiếng và từ 5 - 7 ngày, tùy theo thực tế năng lực học tập để quyết định).</p>
                             <p>- Có khả năng chịu rủi ro nhất định, có đủ kinh phí hoạt động ( nguồn vốn hợp pháp), địa điểm, nhân sự …</p>
                             <p>- Không cùng lúc điều hành các doanh nghiệp có liên quan hoặc có tính cạnh tranh.</p>
                         </div>
@@ -57,11 +62,11 @@ require_once './database/DB.php';
                         <div class="accordion-body">
                             <p class="h6">1. Thêm sản phẩm vào giỏ hàng</p>
                             <p>
-                                Chọn mục Menu góc trái bên trên để hiển thị các danh mục Sau đó click vào mục sản phẩm hoặc click vào nút <button class="btn btn-warning"><i class="fa-light fa-cart-shopping"></i></button> để thêm sản phẩm vào giỏ.
+                                Chọn mục Menu góc trái bên trên để hiển thị các danh mục Sau đó click vào mục sản phẩm hoặc click vào nút <button class="btn btn-warning""><i class="fa-sharp fa-solid fa-bag-shopping"></i></button> để thêm sản phẩm vào giỏ.
                             </p>
                             <p class="h6">2. Thanh toán đơn hàng</p>
                             <p>
-                                Khách hàng cần <a href="#">đăng nhập</a> để đặt hàng (<a href="<?php echo $rootPath?>/sign_up.php">đăng kí</a> nếu bạn chưa có tài khoản). Sau đó bạn nhập các thông tin cần thiết theo mẫu để nhân viên xác nhận đơn hàng. 
+                                Khách hàng cần đăng nhập để đặt hàng (<a href="<?php echo $rootPath?>/sign_up.php" style="text-decoration: none; color: red;">đăng kí ngay</a> nếu bạn chưa có tài khoản). Sau đó bạn nhập các thông tin cần thiết theo mẫu để nhân viên xác nhận đơn hàng. 
                             </p>
                         </div>
                     </div>
@@ -76,7 +81,7 @@ require_once './database/DB.php';
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <h6>Quý khách có thể thanh toán bằng tiền mặt hoặc chuyển khoản qua ngân hàng</h6>
-                            <table class="table">
+                            <table class="table" style="text-align: center;">
                                 <thead>
                                     <tr>
                                         <th scope="col">Ngân hàng</th>
