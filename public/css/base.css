@@ -56,8 +56,8 @@ small.error {
     left: 0;
 }
 
-#live-search:focus ~ #live-search__result {
-    display: block;
+.live-search__result-link {
+    z-index: 20;
 }
 
 .live-search__result-link:hover {
@@ -66,7 +66,6 @@ small.error {
 
 #live-search__result {
 	background-color: #fff;
-    display: none;
     position: absolute;
     top: calc(100% + 2px);
     left: 0;

@@ -43,7 +43,8 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`admin_id`, `email`, `password`, `name`, `role`, `updated_at`) VALUES
 (1, 'hienlq16103@gmail.com', 'hienlqkt54', 'Le_Quang_Hien', 1, '2023-11-30 06:30:20'),
 (2, 'binhnguyen3816@gmail.com', 'binhnguyen3816', 'Nguyen_Duc_Binh', 1, '2023-11-15 18:17:08'),
-(3, 'ndtgoat@gmail.com', '123', 'Nguyen_Duy_Tung', 1, '2023-11-30 06:30:51');
+(3, 'ndtgoat@gmail.com', '123', 'Nguyen_Duy_Tung', 1, '2023-11-30 06:30:51'),
+(4, 'luan.nguyenexecutive@hcmut.edu.vn', '123', 'Nguyễn Công Anh Luân', 1, '2023-11-30 06:30:51');
 
 -- --------------------------------------------------------
 

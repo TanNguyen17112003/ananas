@@ -12,6 +12,7 @@ $('#live-search').keyup(function() {
             success: function(data) {
                 var liveSearch = document.getElementById("live-search__result");
                 liveSearch.innerHTML = data;
+                liveSearch.setAttribute("style", "display:block");
             },
             error: function (e) {
                 console.log(e.message);
@@ -21,5 +22,12 @@ $('#live-search').keyup(function() {
     } else {
         var liveSearch = document.getElementById("live-search__result");
         liveSearch.innerHTML = "<div class='p-2'>Vui lòng nhập từ khóa</div>";
+        liveSearch.setAttribute("style", "display:block");
     }
 });
+
+$('#live-search').blur(function() {
+    setTimeout(function() {
+        $('#live-search__result').css('display', 'none');
+    }, 100); 
+})
