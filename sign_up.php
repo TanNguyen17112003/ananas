@@ -88,7 +88,7 @@ include_once './helper/sendMail.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up</title>
+    <title>Đăng ký</title>
     <link rel="stylesheet" href="<?= $rootPath ?>/public/css/showPassword.css">
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
