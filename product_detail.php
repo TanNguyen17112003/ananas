@@ -168,7 +168,6 @@ if ($product->num_rows > 0) {
                                     </li>
                                     <li class="list-inline-item col-6">
                                         <select class="form-select" name="selectedSize" id="cart_item_product_stock">
-                                            <option value="" label=" "></option>
                                             <option value="Size S" selected>Size S</option>
                                             <option value="Size M">Size M</option>
                                             <option value="Size L">Size L</option>
