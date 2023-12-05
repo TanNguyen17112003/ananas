@@ -30,7 +30,19 @@ require_once './database/DB.php';
     } else {
         header('location: index.php');
     } 
-    $sqlSearch = "SELECT * FROM product WHERE product.name LIKE '%$key%' or product.description LIKE '%$key%'";
+    if ($_GET["sort"]=="all") {
+        $sqlSearch = "SELECT * FROM product WHERE product.name LIKE '%$key%' or product.description LIKE '%$key%'";
+    }
+    else if ($_GET["sort"]=="increment") {
+        $sqlSearch = "SELECT * FROM product WHERE product.name LIKE '%$key%' or product.description LIKE '%$key%' ORDER BY product.price_sale ASC";
+    }
+    else if ($_GET["sort"]=="decrement") {
+        $sqlSearch = "SELECT * FROM product WHERE product.name LIKE '%$key%' or product.description LIKE '%$key%' ORDER BY product.price_sale DESC";
+    }
+    else {
+        echo "WTF";
+        exit();
+    }
     $products = $conn->query($sqlSearch);
 ?>
 <div class="container ps-5 pe-5 pt-5 pb-5">  
@@ -40,9 +52,12 @@ require_once './database/DB.php';
         ?>
     <div class="row">
         <div class="d-flex justify-content-start me-4 mb-2">
-            <button class="btn btn-outline-primary me-2">Tất cả (<?php echo $totalProducts?>)</button>
-            <button class="btn btn-outline-primary me-2">Giá tăng dần</button>
-            <button class="btn btn-outline-primary me-2">Giá giảm dần</button>
+            <form>
+            <button class="btn btn-outline-primary me-2" type=submit name="sort" value="all">Tất cả (<?php echo $totalProducts?>)</button>
+            <button class="btn btn-outline-primary me-2" type="submit" name="sort" value="increment">Giá tăng dần</button>
+            <button class="btn btn-outline-primary me-2" type="submit" name="sort" value="decrement">Giá giảm dần</button>
+            <input hidden=true name="key" value="<?php echo $key ?>">
+            </form>
         </div>
     </div>
     <div class="row mt-3 mb-3">
@@ -158,7 +173,7 @@ require_once './database/DB.php';
                 if ($currentPage > 1 && $totalPage >1) {
             ?>
                 <li class="page-item">
-                    <a href="<?php echo $rootPath?>/search.php?key=<?php echo $key ?>&page=<?php echo ($currentPage - 1); ?>" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true">&lsaquo; Prev</a>
+                    <a href="<?php echo $rootPath?>/search.php?sort=<?php echo $_GET["sort"]; ?>&key=<?php echo $key ?>&page=<?php echo ($currentPage - 1); ?>" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true">&lsaquo; Prev</a>
                 </li>
             <?php
                 }
@@ -175,7 +190,7 @@ require_once './database/DB.php';
                     }  else {
             ?>
                 <li class="page-item">
-                    <a data-remote="true" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="<?php echo $rootPath ?>/search.php?key=<?php echo $key ?>&page=<?php echo $i ?>"><?php echo $i ?></a>
+                    <a data-remote="true" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="<?php echo $rootPath ?>/search.php?sort=<?php echo $_GET["sort"]; ?>&key=<?php echo $key ?>&page=<?php echo $i ?>"><?php echo $i ?></a>
                 </li>
             <?php
                     } 
@@ -185,7 +200,7 @@ require_once './database/DB.php';
                 if ($currentPage < $totalPage && $totalPage > 1) {
             ?>
                 <li class="page-item">
-                    <a href="<?php echo $rootPath;?>/search.php?key=<?php echo $key ?>&page=<?php echo ($currentPage + 1) ?>" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true">Next &rsaquo;</a>
+                    <a href="<?php echo $rootPath;?>/search.php?sort=<?php echo $_GET["sort"]; ?>&key=<?php echo $key ?>&page=<?php echo ($currentPage + 1) ?>" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true">Next &rsaquo;</a>
                 </li>
             <?php
                 }
