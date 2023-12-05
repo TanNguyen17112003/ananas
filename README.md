@@ -27,7 +27,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project 🔎
 
-[![Product Main Page Screen Shot][product-screenshot]](/Demo_image/index.png)
+![Main page](/Demo_image/index.png)
 
 In this semester (HK231), my team has been assigned an Assignment requiring the designing of the interface and implementation of basic features for a company or business website. All members in the group reached a consensus and decided to choose the Hong Tra Ngo Gia website as a template.
 
