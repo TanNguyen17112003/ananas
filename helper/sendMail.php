@@ -19,7 +19,7 @@ function sendMailOrder($mail, $receiver, $content) {
         $mail->Host = 'smtp.gmail.com';                     
         $mail->Port = 587; //465
         $mail->Username = 'tungnd.goat@gmail.com';
-        $mail->Password = 'xazq gfwi qmlh jlic';                          
+        $mail->Password = 'qzvu gbfs ovqg gtvc';                          
         
         // Recipients
         $mail->setFrom('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
@@ -59,7 +59,7 @@ function verifyEmail($mail, $receiver, $verifyCode) {
         $mail->Host = 'smtp.gmail.com';                     
         $mail->Port = 587; //465
         $mail->Username = 'tungnd.goat@gmail.com';
-        $mail->Password = 'xazq gfwi qmlh jlic';                          
+        $mail->Password = 'qzvu gbfs ovqg gtvc';                          
         
         // Recipients
         $mail->setFrom('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
@@ -102,7 +102,7 @@ function resetPassword($mail, $receiver) {
         $mail->Host = 'smtp.gmail.com';                     
         $mail->Port = 587; //465
         $mail->Username = 'tungnd.goat@gmail.com';
-        $mail->Password = 'xazq gfwi qmlh jlic';                          
+        $mail->Password = 'qzvu gbfs ovqg gtvc';                          
         
         // Recipients
         $mail->setFrom('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
@@ -143,7 +143,7 @@ function sendLink2ChangePWD($mail, $receiver, $content) {
         $mail->Host = 'smtp.gmail.com';                     
         $mail->Port = 587; //465
         $mail->Username = 'tungnd.goat@gmail.com';
-        $mail->Password = 'xazq gfwi qmlh jlic';                          
+        $mail->Password = 'qzvu gbfs ovqg gtvc';                          
         
         // Recipients
         $mail->setFrom('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');

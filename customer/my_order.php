@@ -73,7 +73,7 @@
                         <td scope="col"><?=number_format($row['payment'])?> <sup>đ</sup></td>
                         <td scope="col"><span class="text-danger"><?=$row['status']?></span></td>
                         <td scope="col"><?=$row['updated_at']?></td>
-                        <td scope="col"><?php if ($row['status']=="Đang xử lý") {echo "<form><button name='cancel' value='",$row['order_id'],"'>Huỷ</button></form>";}?> </td>
+                        <td scope="col"><?php if ($row['status']=="Đang xử lý") {echo "<form><button name='cancel' value='",$row['order_id'],"'>Hủy đơn</button></form>";}?> </td>
                     </tr>
             <?php
                     $i++;

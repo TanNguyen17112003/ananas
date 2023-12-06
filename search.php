@@ -146,7 +146,7 @@ require_once './database/DB.php';
         ?>
             <div class="alert alert-warning" role="alert">
                 <i class="fa-light fa-circle-exclamation"></i>
-                Rất tiếc, <strong>theCoffeeHouse.com</strong> không tìm thấy kết quả nào phù hợp với từ khóa "<?php echo $key?>"
+                Rất tiếc, <strong>HongTraNgoGia.com</strong> không tìm thấy kết quả nào phù hợp với từ khóa "<?php echo $key?>"
             </div>
             <div class="d-flex justify-content-center">
                 <div>

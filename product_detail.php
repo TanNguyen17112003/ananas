@@ -161,21 +161,6 @@ if ($product->num_rows > 0) {
                         ?>
                         <form action="process_cart.php" accept-charset="UTF-8" method="get">
                             <div class="row">
-                                <div class="col-5">
-                                <ul class="list-inline pb-3 equal-width">
-                                    <li class="list-inline-item">
-                                        <label class="form-label" for="cart_item_product_stock">Chọn size</label>
-                                    </li>
-                                    <li class="list-inline-item col-6">
-                                        <select class="form-select" name="selectedSize" id="cart_item_product_stock">
-                                            <option value="Size S" selected>Size S</option>
-                                            <option value="Size M">Size M</option>
-                                            <option value="Size L">Size L</option>
-                                        </select>
-                                    </li>
-                                </ul>
-                                </div>
-
                                 <div class="col-7">
                                     <ul class="list-inline pb-3 equal-width">
                                         <li class="list-inline-item text-right col-2.5">

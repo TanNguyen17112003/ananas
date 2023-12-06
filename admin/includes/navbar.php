@@ -12,7 +12,7 @@
             <a class="nav-link active" aria-current="page" href="<?php echo $rootPath ?>">Trang chủ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo $rootPath?>/report.php">Thông kê</a>
+            <a class="nav-link" href="<?php echo $rootPath?>/report.php">Thống kê</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
