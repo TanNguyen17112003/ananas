@@ -20,6 +20,11 @@
         grid-template-columns: auto;
         justify-content: center;
     }
+    .brand-name>div>a{
+        display: grid;
+        grid-template-columns: auto;
+        justify-items: center;
+    }
     .brand-name>div>ul{
         margin: auto;
     }
@@ -42,7 +47,7 @@
         <div class="row footer-row">
             <div class="col-md-3 pt-5 brand-name">
                 <div>
-                <a href="<?php echo $rootPath?>"><img style="width: 70%;" class="mb-3 mx-auto" src="https://wujiateavn.com/files/systems/logo-l6m1s0u2.png" alt="logo.png"></a>
+                    <a href="<?php echo $rootPath?>"><img style="width: 70%;" class="mb-3 mx-auto" src="https://wujiateavn.com/files/systems/logo-l6m1s0u2.png" alt="logo.png"></a>
                 </div>
                 <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
