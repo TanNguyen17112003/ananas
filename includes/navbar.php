@@ -1,7 +1,12 @@
-<nav class="navbar navbar-expand-lg bg-primary p-3 bg-body rounded" id="navbar-top">
+<style>
+  .nav-link {
+    font-weight: bold;
+  }
+</style> 
+<nav class="navbar navbar-light navbar-expand-lg p-3" id="navbar-top" style="background-color: #f0f1f2; height: 100px;">
   <div class="container">
     <a class="navbar-brand" href="<?php echo $rootPath; ?>">
-      <img src="https://wujiateavn.com/files/systems/logo-l6m1s0u2.png" alt="Logo" width="70" height="30" class="d-inline-block align-text-top">
+      <img src="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png" alt="Logo" height="80" class="d-inline-block align-text-top" style="object-fit: contain;">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,25 +14,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?php echo $rootPath ?>">Trang chủ</a>
+          <a class="nav-link active" aria-current="page" href="<?php echo $rootPath ?>">TRANG CHỦ</a>
+        </li>
+        <li class="nav-item nav-item-dropdown">
+          <a class="nav-link" href="<?php echo $rootPath; ?>/product.php"  id="navbarDropdown">SẢN PHẨM</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/product.php">Sản phẩm</a>
+          <a class="nav-link" href="<?php echo $rootPath; ?>/product.php">NAM</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/contact.php">Liên hệ</a>
+          <a class="nav-link" href="<?php echo $rootPath; ?>/contact.php">NỮ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/posts.php">Tin tức</a>
+          <a class="nav-link" href="<?php echo $rootPath; ?>/contact.php">SALE OFF</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/policy.php">Chính sách</a>
+          <a class="nav-link" href="<?php echo $rootPath; ?>/posts.php">TIN TỨC</a>
         </li>
       </ul>
       <form action="<?php echo $rootPath ?>/search.php" method="get" class="d-flex me-3" role="search">
         <div class="input-group flex-nowrap search-top">
           <input hidden=true name="sort" value="all">
-          <input class="form-control" type="search" name="key" placeholder="Search..." id="live-search" aria-label="Search" value="<?php if (!empty($_GET['key'])) echo $_GET['key']; ?>">
+          <input class="form-control" type="search" name="key" placeholder="Tìm kiếm" id="live-search" aria-label="Search" value="<?php if (!empty($_GET['key'])) echo $_GET['key']; ?>">
           <button class="btn btn-primary round-circle" type="submit"><i class="fa-regular fa-magnifying-glass text-white"></i></button>
           <div id="live-search__result"></div>
         </div>

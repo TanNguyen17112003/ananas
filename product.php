@@ -10,7 +10,7 @@ require_once './database/DB.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu đồ uống</title>
+    <title>Sản phẩm - Ananas</title>
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -37,28 +37,98 @@ require_once './database/DB.php';
     }
     $products = $conn->query($sqlShowProducts);
 ?>
-<div class="container-fluid mt-5 mb-5">
+<div class="container container-fluid mt-5 mb-5">
     <div class="row">
-        <div class="col-xl-2 col-md-4 col-sm-6">
-            <div class="list-group mb-5">
-                <span class="list-group-item bg-primary text-dark" aria-current="true">
-                    <b class="user-select-none text-light">Danh mục</b>
+        <div class="col-xl-3 col-md-4 col-sm-6">
+            <div class="dropdown mb-5">
+                <span class=" dropdown-toggle" aria-current="true" id="dropdownMenuButton" data-toggle="dropdown">
+                    <span class="user-select-none" style="font-size: 24px; font-weight: bold">Kiểu dáng</span>
                 </span>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <?php
-                    $sqlShowCategory = "SELECT * FROM category";
-                    $category = $conn->query($sqlShowCategory);
+                    $sqlShowStyle = "SELECT * FROM style";
+                    $style = $conn->query($sqlShowStyle);
                     $i = 1;
-                    while ($row = $category->fetch_assoc()) {
+                    while ($row = $style->fetch_assoc()) {
                 ?>
-                <a href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['category_id']?>" class=" <?php if ($categoryId == $i) echo 'bg-primary text-dark bg-opacity-25' ?> list-group-item list-group-item-action "><?php echo $row['category_name']?></a>
+                <a href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['style_id']?>" class=" <?php if ($categoryId == $i) echo 'bg-primary text-dark bg-opacity-25 dropdown-item' ?> list-group-item list-group-item-action dropdown-item"><?php echo $row['style_name']?></a>
                 <?php
                         $i++;
                     }
                 ?>
-                <a href="<?php echo $rootPath?>/product.php?categoryId=0" class="list-group-item list-group-item-action <?php if($categoryId == 0) echo 'bg-primary text-dark bg-opacity-25'?>">Xem tất cả</a>
+                </div>
+                
+            </div>
+           <div class="dropdown mb-5">
+                <span class=" dropdown-toggle" aria-current="true" id="dropdownMenuButton" data-toggle="dropdown">
+                    <span class="user-select-none" style="font-size: 24px; font-weight: bold">Dòng sản phẩm</span>
+                </span>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <?php
+                    $sqlShowProductLine = "SELECT * FROM product_line";
+                    $style = $conn->query($sqlShowProductLine);
+                    $i = 1;
+                    while ($row = $style->fetch_assoc()) {
+                ?>
+                <a href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['id']?>" class=" <?php if ($categoryId == $i) echo 'bg-primary text-dark bg-opacity-25 dropdown-item' ?> list-group-item list-group-item-action dropdown-item"><?php echo $row['name']?></a>
+                <?php
+                        $i++;
+                    }
+                ?>
+                </div>
+                
+            </div>
+            <div class="dropdown mb-5">
+                <span class=" dropdown-toggle" aria-current="true" id="dropdownMenuButton" data-toggle="dropdown">
+                    <span class="user-select-none" style="font-size: 24px; font-weight: bold">Chất liệu</span>
+                </span>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <?php
+                    $sqlShowMaterial = "SELECT * FROM material";
+                    $style = $conn->query($sqlShowMaterial);
+                    $i = 1;
+                    while ($row = $style->fetch_assoc()) {
+                ?>
+                <a href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['id']?>" class=" <?php if ($categoryId == $i) echo 'bg-primary text-dark bg-opacity-25 dropdown-item' ?> list-group-item list-group-item-action dropdown-item"><?php echo $row['name']?></a>
+                <?php
+                        $i++;
+                    }
+                ?>
+                </div>
+                
+            </div>
+            <div class="dropdown mb-5">
+                <span class=" dropdown-toggle" aria-current="true" id="dropdownMenuButton" data-toggle="dropdown">
+                    <span class="user-select-none" style="font-size: 24px; font-weight: bold">Giá</span>
+                </span>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <?php
+                    $sqlShowCostRange = "SELECT * FROM cost_range";
+                    $style = $conn->query($sqlShowCostRange);
+                    $i = 1;
+                    while ($row = $style->fetch_assoc()) {
+                ?>
+<a href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['range_id']?>" class=" <?php if ($categoryId == $i) echo 'bg-primary text-dark bg-opacity-25 dropdown-item' ?> list-group-item list-group-item-action dropdown-item">
+    <?php 
+        if (isset($row['low_cost']) && isset($row['high_cost'])) {
+            echo ' ' . $row['low_cost'] . 'k - ' . $row['high_cost'] . 'k';
+        } elseif (isset($row['high_cost'])) {
+            echo ' < ' . $row['high_cost'] . 'k';
+        }
+        else {
+            echo ' > ' . $row['low_cost'] . 'k';
+        }
+    ?>
+</a>
+                <?php
+                        $i++;
+                    }
+                ?>
+                </div>
+                
             </div>
         </div>
-        <div class="col-xl-10 col-md-8 col-sm-6">
+        <div class="col-xl-9 col-md-8 col-sm-6">
             <div class="container mb-5">    
                 <div class="row">
                     <?php
@@ -206,6 +276,10 @@ require_once './database/DB.php';
 ?>
 
 <!-- JavaScript Bundle with Popper -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="./public/javascripts/loadCartHeader.js"></script>
