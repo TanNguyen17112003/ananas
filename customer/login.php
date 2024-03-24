@@ -17,10 +17,40 @@ $ketqua = $conn->query($sql);
     <title>Đăng nhập</title>
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="<?= $rootPath ?>/public/css/showPassword.css">
   </head>
-<body >
+  <style>
+    .bg-align {
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    .form-login {
+      border: 1px solid #000000;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-radius: 20px;
+      box-shadow: gray;
+    }
+    @media screen and (min-width: 620px){
+      .side-img {
+        width: 200px;
+      }
+    }
+    @media screen and (min-width: 920px){
+      .side-img {
+        width: 400px;
+      }
+      
+    }
+    @media screen and (max-width: 620px){
+      .side-img {
+        display: none;
+      }
+    }
+  </style>
+  <body >
 
 <?php 
     require '../includes/header.php';
@@ -81,7 +111,7 @@ if (isset($_POST['login_user'])) {
 }
 ?>
 
-<div class="row d-flex justify-content-center align-items-center h-100">
+<!-- <div class="row d-flex justify-content-center align-items-center h-100">
   <div class="col-lg-12 col-xl-11">
     <div class="card-body p-md-5">
       <div class="row justify-content-center">
@@ -154,11 +184,47 @@ if (isset($_POST['login_user'])) {
       </div>
     </div>
   </div>
-</div>
+</div> -->
+<div class="vh-100 row d-flex justify-content-center align-items-center bg-align">
+ <div class="container">
+    <div class="row">
+      <div class="col-6 text-black py-3">
 
-<?php
-    require '../includes/footer.php';
-?>
+        <div class="px-5 ms-xl-4 d-flex items-center">
+          <img src="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png" alt="Logo" width="60" height="60"/>
+          <span class="h1 fw-bold mb-0 text-warning">Ananas</span>
+        </div>
+
+        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-3 pt-5 pt-xl-0 mt-xl-n5">
+
+          <form style="width: 23rem;">
+
+            <div class="form-outline mb-5">
+              <input type="email" id="form2Example18" class="form-control form-control-lg" placeholder="Email"/>
+            </div>
+
+            <div class="form-outline mb-5">
+              <input type="password" id="form2Example28" class="form-control form-control-lg" placeholder="Mật khẩu "/>
+            </div>
+
+            <div class="pt-1 mb-4">
+              <button class="btn btn-info btn-lg btn-block" type="button">Đăng nhập</button>
+            </div>
+
+            <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Quên mật khẩu?</a></p>
+            <p>Chưa có tài khoản? <a href="#!" class="link-info">Đăng ký ngay</a></p>
+
+          </form>
+
+        </div>
+
+      </div>
+      <div class="col-6 ">
+        <img src="../assets/login-sideimage.jpg" class="img-fluid side-img" alt="Login image"/>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- JavaScript Bundle with Popper -->
 <script src="<?= $rootPath ?>/public/javascripts/showPassword.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

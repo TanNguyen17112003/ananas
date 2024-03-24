@@ -19,8 +19,28 @@ $ketqua = $conn->query($sql);
   <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
   <!-- CSS only -->
   <link rel="stylesheet" href="../public/css/showPassword.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
+<style>
+  .bground {
+    background: url('../assets/admin-login-background.png') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.8;
+    height: 100vh;
+  }
+
+  .password-container {
+    position: relative;
+  }
+
+  .password-container i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+</style>
 
 <body>
   <?php
@@ -44,8 +64,8 @@ $ketqua = $conn->query($sql);
     }
   }
   ?>
-  <div class="row d-flex justify-content-center align-items-center h-100">
-    <div class="col-lg-12 col-xl-11">
+  <div class="row d-flex justify-content-center align-items-center bground">
+    <!-- <div class="col-lg-12 col-xl-11">
       <div class="card-body p-md-5">
         <div class="row justify-content-center">
           <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -82,17 +102,39 @@ $ketqua = $conn->query($sql);
               </div>
             </form>
           </div>
-          <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center justify-content-center order-1 order-lg-2">
-            <img class="img-fluid rounded w-75" alt="Login image" src="./assets/img/icon_title.png" />
+        </div>
+      </div>
+    </div> -->
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <h3 class="mb-5">Sign in</h3>
+
+            <div class="form-outline mb-4">
+              <input type="email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Email"/>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Password"/>
+            </div>
+
+            <!-- Checkbox -->
+            <div class="form-check d-flex justify-content-start mb-4">
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+              <label class="form-check-label" for="form1Example3"> Remember password </label>
+            </div>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  </div>
 
-  <?php
-  require './includes/footer.php';
-  ?>
   <script src="../public/javascripts/showPassword.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>

@@ -13,6 +13,7 @@ require_once './database/DB.php';
     <title>Sản phẩm - Ananas</title>
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
+    <link rel="icon" type="image/x-icon" href="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/css/base.css">
     <link rel="stylesheet" href="./public/css/product.css">
@@ -40,76 +41,77 @@ require_once './database/DB.php';
 <div class="container container-fluid mt-5 mb-5">
     <div class="row">
         <div class="col-xl-3 col-md-4 col-sm-6">
-            <div class="dropdown mb-5">
-                <span class=" dropdown-toggle" aria-current="true" id="dropdownMenuButton" data-toggle="dropdown">
-                    <span class="user-select-none" style="font-size: 24px; font-weight: bold">Kiểu dáng</span>
-                </span>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class=" mb-5">
+            <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse" href="#collapseStyle" role="button" aria-expanded="false" aria-controls="collapseStyle">
+                <span class="user-select-none" style="font-size: 24px; font-weight: bold">Kiểu dáng</span>
+            </a>
+            <ul class="collapse list-unstyled" id="collapseStyle">
                 <?php
                     $sqlShowStyle = "SELECT * FROM style";
                     $style = $conn->query($sqlShowStyle);
                     $i = 1;
                     while ($row = $style->fetch_assoc()) {
                 ?>
-                <a href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['style_id']?>" class=" <?php if ($categoryId == $i) echo 'bg-primary text-dark bg-opacity-25 dropdown-item' ?> list-group-item list-group-item-action dropdown-item"><?php echo $row['style_name']?></a>
+                <a class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['style_id']?>">
+                <li class="mb-2">
+                    <div class="form-check d-flex items-center gap-2">
+                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
+                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                            <?php echo $row['style_name']?>
+                        </label>
+                    </div>
+                </li>
+                </a>
                 <?php
                         $i++;
                     }
                 ?>
-                </div>
-                
-            </div>
-           <div class="dropdown mb-5">
-                <span class=" dropdown-toggle" aria-current="true" id="dropdownMenuButton" data-toggle="dropdown">
-                    <span class="user-select-none" style="font-size: 24px; font-weight: bold">Dòng sản phẩm</span>
-                </span>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            </ul>
+        </div>
+        <div class=" mb-5">
+            <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse" href="#collapseProductLine" role="button" aria-expanded="false" aria-controls="collapseProductLine">
+                <span class="user-select-none" style="font-size: 24px; font-weight: bold">Dòng sản phẩm</span>
+            </a>
+            <ul class="collapse list-unstyled" id="collapseProductLine">
                 <?php
                     $sqlShowProductLine = "SELECT * FROM product_line";
                     $style = $conn->query($sqlShowProductLine);
                     $i = 1;
                     while ($row = $style->fetch_assoc()) {
                 ?>
-                <a href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['id']?>" class=" <?php if ($categoryId == $i) echo 'bg-primary text-dark bg-opacity-25 dropdown-item' ?> list-group-item list-group-item-action dropdown-item"><?php echo $row['name']?></a>
+                <a class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['id']?>">
+                <li class="mb-2">
+                    <div class="form-check d-flex items-center gap-2">
+                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
+                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                            <?php echo $row['name']?>
+                        </label>
+                    </div>
+                </li>
+                </a>
                 <?php
                         $i++;
                     }
                 ?>
-                </div>
-                
-            </div>
-            <div class="dropdown mb-5">
-                <span class=" dropdown-toggle" aria-current="true" id="dropdownMenuButton" data-toggle="dropdown">
-                    <span class="user-select-none" style="font-size: 24px; font-weight: bold">Chất liệu</span>
-                </span>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <?php
-                    $sqlShowMaterial = "SELECT * FROM material";
-                    $style = $conn->query($sqlShowMaterial);
-                    $i = 1;
-                    while ($row = $style->fetch_assoc()) {
-                ?>
-                <a href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['id']?>" class=" <?php if ($categoryId == $i) echo 'bg-primary text-dark bg-opacity-25 dropdown-item' ?> list-group-item list-group-item-action dropdown-item"><?php echo $row['name']?></a>
-                <?php
-                        $i++;
-                    }
-                ?>
-                </div>
-                
-            </div>
-            <div class="dropdown mb-5">
-                <span class=" dropdown-toggle" aria-current="true" id="dropdownMenuButton" data-toggle="dropdown">
-                    <span class="user-select-none" style="font-size: 24px; font-weight: bold">Giá</span>
-                </span>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            </ul>
+        </div>
+        <div class=" mb-5">
+            <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse" href="#collapseCostRange" role="button" aria-expanded="false" aria-controls="collapseCostRange">
+                <span class="user-select-none" style="font-size: 24px; font-weight: bold">Giá</span>
+            </a>
+            <ul class="collapse list-unstyled" id="collapseCostRange">
                 <?php
                     $sqlShowCostRange = "SELECT * FROM cost_range";
                     $style = $conn->query($sqlShowCostRange);
                     $i = 1;
                     while ($row = $style->fetch_assoc()) {
                 ?>
-<a href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['range_id']?>" class=" <?php if ($categoryId == $i) echo 'bg-primary text-dark bg-opacity-25 dropdown-item' ?> list-group-item list-group-item-action dropdown-item">
-    <?php 
+                <a class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['range_id']?>">
+                <li class="mb-2">
+                    <div class="form-check d-flex items-center gap-2">
+                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
+                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                        <?php 
         if (isset($row['low_cost']) && isset($row['high_cost'])) {
             echo ' ' . $row['low_cost'] . 'k - ' . $row['high_cost'] . 'k';
         } elseif (isset($row['high_cost'])) {
@@ -119,14 +121,43 @@ require_once './database/DB.php';
             echo ' > ' . $row['low_cost'] . 'k';
         }
     ?>
-</a>
+                        </label>
+                    </div>
+                </li>
+                </a>
                 <?php
                         $i++;
                     }
                 ?>
-                </div>
-                
-            </div>
+            </ul>
+        </div>
+        <div class="mb-5">
+            <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse" href="#collapseMaterial" role="button" aria-expanded="false" aria-controls="collapseMaterial">
+                <span class="user-select-none" style="font-size: 24px; font-weight: bold">Chất liệu</span>
+            </a>
+            <ul class="collapse list-unstyled" id="collapseMaterial">
+                <?php
+                    $sqlShowMaterial = "SELECT * FROM material";
+                    $style = $conn->query($sqlShowMaterial);
+                    $i = 1;
+                    while ($row = $style->fetch_assoc()) {
+                ?>
+                <a class="text-decoration-none text-black font-weight-bold  " href="<?php echo $rootPath?>/product.php?categoryId=<?php echo $row['id']?>">
+                    <li class="mb-2">
+                        <div class="form-check d-flex items-center gap-2">
+                            <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
+                            <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                <?php echo $row['name']?>
+                            </label>
+                        </div>
+                    </li>
+                </a>
+                <?php
+                        $i++;
+                    }
+                ?>
+            </ul>
+        </div>
         </div>
         <div class="col-xl-9 col-md-8 col-sm-6">
             <div class="container mb-5">    

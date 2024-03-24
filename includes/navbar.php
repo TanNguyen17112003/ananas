@@ -29,7 +29,7 @@
           <a class="nav-link" href="<?php echo $rootPath; ?>/contact.php">SALE OFF</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/posts.php">TIN TỨC</a>
+          <a class="nav-link" href="<?php echo $rootPath; ?>/contact.php">LIÊN HỆ</a>
         </li>
       </ul>
       <form action="<?php echo $rootPath ?>/search.php" method="get" class="d-flex me-3" role="search">
