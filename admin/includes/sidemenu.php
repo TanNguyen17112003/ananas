@@ -50,7 +50,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a href="<?php echo $rootPath?>/" class="sidebar-link">
+            <a href="<?php echo $rootPath?>/changePassword.php" class="sidebar-link">
                 <i class = "lni lni-lock"></i>
                 <span>Đổi mật khẩu</span>
             </a>

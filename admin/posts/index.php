@@ -38,8 +38,8 @@
 ?>
 <div style = "overflow-x: auto;"
 class="main p-3" >
-<div class="container-fluid mt-5 mb-3">
-  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">Add post</button>
+<div class="container-fluid">
+  <button class="btn btn-primary mb-2   " data-bs-toggle="modal" data-bs-target="#add">Add post</button>
   <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -91,9 +91,11 @@ class="main p-3" >
       <tbody>
         <tr>
           <th class='align-middle' scope="row"><?php echo $count?></th>
-          <td class='align-middle'><?php echo $row["title"]?></td>
+          <td style='text-transform: uppercase  ' class='align-middle'><?php echo $row["title"]?></td>
           <td class='align-middle'><?php echo $row["content"]?></td>
-          <td class='align-middle'><?php echo $row["image"]?></td>
+          <td class='align-middle'>
+            <img src = <?php echo $row["image"]?> width=300  />
+          </td>
           <td class='align-middle'><?php echo $row["updated_at"]?></td>
           <td class='align-middle'>    
             <div class="d-inline-flex">
