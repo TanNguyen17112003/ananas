@@ -253,26 +253,13 @@ require_once './database/DB.php';
                                     <div class="card h-100">
                                         <!-- <div class="product-img" style="height:300px; width:100%; background-size:300px; background-image: url(<?php echo $rootPath ?>/public/img/products/<?php echo $row["images"]; ?>);"></div> -->
                                         <img src="<?php echo $rootPath ?>/public/img/products/<?php echo $row['images']; ?>" class="img-fluid" alt="...">
-                                        <div class="card-body d-flex flex-column justify-content-between">
+                                        <div class="card-body d-flex flex-column justify-content-between align-items-center">
                                             <div class="d-flex flex-column justify-content-start">
-                                                <h6 class="card-title"><?php echo $row["name"]; ?></h6>
+                                                <h6 class="card-title" style="font-size: 0.75rem"><?php echo $row["name"]; ?></h6>
                                             </div>
                                             <div class="card-text">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <!-- <?php
-                                                        if ($row["quantity"] > 0) {
-                                                        ?>
-                                                            <span class="badge bg-success">Còn hàng</span>
-                                                        <?php
-                                                        } else {
-                                                        ?>
-                                                            <span class="badge bg-danger">Hết hàng</span>
-                                                        <?php
-                                                        }
-                                                        ?> -->
-                                                    </div>
-                                                    <div class="btn btn-outline-danger"><i class=" fa-light fa-heart"></i> </div>
+                                                   
                                                 </div>
                                                 <p>
                                                     <?php
