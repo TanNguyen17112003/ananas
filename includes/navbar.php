@@ -3,7 +3,7 @@
     font-weight: bold;
   }
 </style> 
-<nav class="navbar navbar-light navbar-expand-lg p-3" id="navbar-top" style="background-color: #f0f1f2; height: 100px;">
+<nav class="navbar navbar-light navbar-expand-lg p-3" id="navbar-top" style="background-color: #f0f1f2">
   <div class="container">
     <a class="navbar-brand" href="<?php echo $rootPath; ?>">
       <img src="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png" alt="Logo" height="80" class="d-inline-block align-text-top" style="object-fit: contain;">

@@ -2,7 +2,7 @@
 $hostName = 'localhost:3307';
 $userName = 'root';
 $password = '';
-$database = 'test';
+$database = 'ltweb';
 $conn = @new mysqli( $hostName, $userName, $password, $database);
 $conn->error;
 if ($conn->error) {

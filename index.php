@@ -50,7 +50,7 @@ require_once './database/DB.php';
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner">
+        <div class="carousel-inner ">
             <div class="carousel-item active" data-bs-interval="3000"> 
                     <img class="d-block mx-auto img-fluid" src="https://ananas.vn/wp-content/uploads/Hi-im-Mule_1920x1050-Desktop.jpg" alt="First slide" />
             </div>
@@ -79,19 +79,19 @@ require_once './database/DB.php';
                 </div>
                 <div class="col-xl-3 col-md-6 col-sm-12 shadow-sm">
                     <div class="text-center card border border-2  card-info">
-                        <a href="https://www.facebook.com/hienlq161"><img alt="AVT" width="200" height="200" src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/278845862_2866247320339254_5072976998028888841_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEl2osANthFpodvVHiXCmIQfeHcUstbpYl94dxSy1ulify1UBWSchOfnOcpJkxZLifVQW5kb1cMTVWuT-sGFkzV&_nc_ohc=HpCeZ-Ke4rsAX_oXiLD&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfBKHxgSmR8M90zbZiUz8KC2HHcqx_0xMiTicdsvlb92zw&oe=6602C103" class="rounded-circle mb-3 mt-3" /></a>
+                        <a href="https://www.facebook.com/profile.php?id=100008620419001"><img alt="AVT" width="200" height="200" src="./assets/tue_avt.jpg" class="rounded-circle mb-3 mt-3" /></a>
                         <p class="text-dark" style="text-align: center; font-weight: bold;">Trần Nguyễn Minh Tuệ</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-sm-12 shadow-sm">
                     <div class="text-center card border border-2  card-info">
-                        <a href="https://www.facebook.com/nguyenconganhluan"><img alt="AVT" width="200" height="200" src="https://scontent.fhan4-3.fna.fbcdn.net/v/t39.30808-6/428710940_918265379774526_7666743542801049874_n.jpg?stp=cp6_dst-jpg&_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEHBHFNzwyCcfXn1dCPPSP3PbyUuj8qHjQ9vJS6PyoeNMvJ2NVldOn5AHgD4UmJQsCklLBqVVDSlqvIbqpvXW3O&_nc_ohc=S3RpwSYzaV0AX85B6e8&_nc_ht=scontent.fhan4-3.fna&oh=00_AfAyQS_Q_Ab079bguS8lvsGnqsrKzFL9w8-jc5a76oODqw&oe=660276CE" class=" rounded-circle mb-3 mt-3" /></a>
+                        <a href="https://www.facebook.com/minhloc1605"><img alt="AVT" width="200" height="200" src="./assets/loc_avt.jpg" class=" rounded-circle mb-3 mt-3" /></a>
                         <p class="text-dark" style="text-align: center; font-weight: bold;">Nguyễn Minh Lộc</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-sm-12 shadow-sm">
                     <div class="text-center card border border-2 card-info">
-                        <a href="https://www.facebook.com/nguyenduytung259"><img alt="AVT" width="200" height="200" src="https://scontent.fhan4-3.fna.fbcdn.net/v/t39.30808-6/422678895_3644956405775072_2989470423597768858_n.jpg?stp=cp6_dst-jpg&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeH3RdvlU56AUgS8tMXbJWEMnTGx1fHn4m-dMbHV8efib3n4Oh3BeC7vpOq2fuAVEk-0NpfqZcmiqtHAiJjURiQP&_nc_ohc=rdZOcqpKxosAX9QP2AI&_nc_ht=scontent.fhan4-3.fna&oh=00_AfC1sTjeHm8DpBIzCw5llcdQh7br8v_N1Ni75hucRu6i7A&oe=660240B6" class="rounded-circle mb-3 mt-3" /></a>
+                        <a href="https://www.facebook.com/huytran613"><img alt="AVT" width="200" height="200" src="./assets/huy_avt.jpg" class="rounded-circle mb-3 mt-3" /></a>
                         <p class="text-dark" style="text-align: center; font-weight: bold;">Trần Đan Huy</p>
                     </div>
                 </div>
