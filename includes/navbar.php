@@ -20,13 +20,7 @@
           <a class="nav-link" href="<?php echo $rootPath; ?>/product.php"  id="navbarDropdown">SẢN PHẨM</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/product.php">NAM</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/contact.php">NỮ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/contact.php">SALE OFF</a>
+          <a class="nav-link" href="<?php echo $rootPath; ?>/sale_off.php">SALE OFF</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo $rootPath; ?>/contact.php">LIÊN HỆ</a>

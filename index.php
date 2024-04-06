@@ -31,17 +31,8 @@ require_once './database/DB.php';
     <?php
         require './includes/header.php';
         require './includes/navbar.php';
-        $bestSellerQueryString = "SELECT product.product_id, `order`.`order_id`, product.name, SUM(order_item.quantity_item) AS number_sold, product.images
-        FROM order_item, product, `order`
-        WHERE order_item.product_id = product.product_id 
-            AND order_item.order_id = `order`.`order_id` 
-            AND MONTH(`order`.`updated_at`) = MONTH(CURRENT_DATE())
-            AND YEAR(`order`.`updated_at`) = YEAR(CURRENT_DATE())
-        GROUP BY product.product_id
-        ORDER BY number_sold DESC
-        LIMIT 3";
-
-        $result = mysqli_query($conn,$bestSellerQueryString);
+        $newArrivalQueryString = "SELECT * FROM product WHERE status = 'New Arrival'";
+        $newArrivalProducts = mysqli_query($conn,$newArrivalQueryString);
     ?>
 
     <div id="template-mo-zay-hero-carousel" class="carousel carousel-dark slide mb-5" data-bs-ride="carousel">
@@ -99,68 +90,62 @@ require_once './database/DB.php';
         </div>
 
         <!-- best seller -->
-        <?php function DisplayBestSeller(){ ?>
-            <?php 
-                global $result;
-                if (mysqli_num_rows($result) == 0){
-                    return;
-                }
-            ?>
-            <div class="container mb-5">
-                <div class="row text-center">
-                    <div class="h3 mb-2" style="color:#ED171F">BEST SELLER OF THE MONTH</div>
-                </div>
-                <div class="row">
-                    <?php while($productData = mysqli_fetch_assoc($result)){ ?>
-                        <div class="col-xl-4">
-                            <div class="text-center">
-                                <a href="product_detail.php?productId=<?php echo $productData['product_id']; ?>">
-                                    <img alt="topProduct" width="200" height="200" 
-                                    src="public/img/products/<?php echo $productData['images']; ?>"
-                                    class="rounded-circle mb-3 mt-3 border border-2" />
-                                </a>
-                                <p class="h4 text-dark" style="text-align: center;"><?php echo $productData['name']; ?></p>
-                                <a class="btn btn-primary btn-lg" href="product_detail.php?productId=<?php echo $productData['product_id']; ?>">Buy Now</a>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-        <?php } ?>
-        <?php 
-            DisplayBestSeller();
-        ?>
     </div>
 
-    <?php
-    $sqlShowProducts = "SELECT product_id, name, quantity, images, price, price_sale FROM product";
-    $categoryId = '';
-    if (isset($_POST['search_btn'])) {
-        $categoryId = $_POST['categoryId'];
-        $sqlShowProducts = "SELECT product_id, name, quantity, images, price, price_sale FROM product WHERE category_id = '$categoryId'";
-    }
-    $products = $conn->query($sqlShowProducts);
-    $totalProducts = $products->num_rows;
-    $currentPage = 1;
-    if (isset($_GET['page'])) {
-        settype($_GET['page'], 'int'); // tránh injection, trang tự về 0
-        $currentPage = $_GET['page'];
-    }
-    $limit = 8;
-    $totalPage = ceil($totalProducts / $limit);
+    <div>
+        <h3 class="text-danger text-uppercase text-center">sản phẩm mới của chúng tôi</h3>
+        <div class="row container-fluid">
+            <?php
+                while ($newArrivalProductRow = $newArrivalProducts->fetch_assoc()) {
+            ?>
+                <div class="col-lg-3 col-sm-6 mb-3">
+                                    <a href="<?php echo $rootPath ?>/product_detail.php?productId=<?php echo $newArrivalProductRow['product_id']?>" class="text-black text-decoration-none">
+                                        <div class="card h-100 position-relative">
+            
+                                            <img src="<?php echo $rootPath ?>/public/img/<?php echo $newArrivalProductRow['images']; ?>" class="img-fluid" alt="..." onmouseover="this.src='<?php echo $rootPath ?>/public/img/<?php echo $newArrivalProductRow['subimg_1'];?>'" onmouseout="this.src='<?php echo $rootPath ?>/public/img/<?php echo $newArrivalProductRow['images'];?>'">
+                                            <div class="btn btn-outline-danger position-absolute end-0 bottom-25"><i class=" fa-light fa-heart"></i> </div>
+                                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                                <div class="d-flex flex-column justify-content-start">
+                                                    <h6 class="card-title" style="font-size: 0.75rem"><?php echo $newArrivalProductRow["name"]; ?></h6>
+                                                </div>
+                                                <div class="card-text">                      
+                                                    <p>
+                                                        <?php
+                                                        // Nếu có giá Khuyến mãi
+                                                        if ($newArrivalProductRow["price_sale"] != 0) {
+                                                        ?>
+                                                            <?php
+                                                            echo '<del class="text-secondary">' . number_format($newArrivalProductRow["price"]) . '</del><sup>đ</sup>';
+                                                            ?>
 
-    // giới hạn phân trang trong 1-totalPage
-    if ($currentPage > $totalPage) {
-        $currentPage = $totalPage;
-    } elseif ($currentPage < 1) {
-        $currentPage = 1;
-    }
+                                                            <?php
+                                                            echo '<strong><span class="text-danger ms-3">' . number_format($newArrivalProductRow["price_sale"]) . '<sup>đ</sup></span></strong>';
+                                                            ?>
+                                                        <?php
+                                                            // nếu không có khuyến mãi, hiện giá gốc
+                                                        } else {
+                                                            echo '<strong>' . number_format($newArrivalProductRow["price"]) . '<sup>đ</sup></strong>';
+                                                        }
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer d-flex flex-column">
+                                                <!-- <a href="<?php echo $rootPath ?>/process_cart.php?action=add&id=<?php echo $row['product_id'] ?>&quantity=1" class="btn btn-warning mt-1 <?php if ($row["quantity"] == 0) echo 'disabled' ?>"><i class="fa-light fa-cart-plus"></i></a> -->
+                                                <!-- <button onclick="addCartItem(<?= $row['product_id'] ?>)" class="btn btn-warning mt-1 <?php if ($row["quantity"] == 0) echo 'disabled' ?>"><i class="fa-light fa-cart-plus"></i></button> -->
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+            <?php
+                }
+            ?>
+        </div>
+    </div>
 
-    $start = ($currentPage - 1) * $limit;
-    // $sqlShowProducts = "SELECT product_id, name, quantity, images, price, price_sale FROM product LIMIT $start, $limit";
-    $sqlShowProducts = $sqlShowProducts . " LIMIT $start, $limit";
-    $products = $conn->query($sqlShowProducts);
-    ?>
+   
+
+    
 
     <?php
         require './includes/footer.php';
