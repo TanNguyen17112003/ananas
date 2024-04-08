@@ -1,7 +1,7 @@
 <?php
   session_start();
   ob_start();
-  $rootPath = '/Lap_trinh_web/admin';
+  $rootPath = '/ananas/admin';
   if (!isset($_SESSION["email_ad"])) {
       header('location: ../login.php');
   }
@@ -23,18 +23,23 @@
     <!-- CSS only -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="../includes/css/base.css">
-    <link rel="stylesheet" href="../includes/css/home.css"> -->
+    <link rel="stylesheet" href="../../public/css/sidemenu.css">
+    <link rel="stylesheet" href="../../public/css/base.css">
+    <link rel="stylesheet" href="../../public/css/home.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
 </head>
 <body>
+
+
+
+<div class="wrapper">
 <?php
-    require '../includes/header.php';
-    require '../includes/navbar.php';
+    require '../includes/sidemenu.php';
 ?>
-
-
-<div class="container-fluid mt-5 mb-3">
-  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">Add post</button>
+<div style = "overflow-x: auto;"
+class="main p-3" >
+<div class="container-fluid">
+  <button class="btn btn-primary mb-2   " data-bs-toggle="modal" data-bs-target="#add">Add post</button>
   <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -86,9 +91,11 @@
       <tbody>
         <tr>
           <th class='align-middle' scope="row"><?php echo $count?></th>
-          <td class='align-middle'><?php echo $row["title"]?></td>
+          <td style='text-transform: uppercase  ' class='align-middle'><?php echo $row["title"]?></td>
           <td class='align-middle'><?php echo $row["content"]?></td>
-          <td class='align-middle'><?php echo $row["image"]?></td>
+          <td class='align-middle'>
+            <img src = <?php echo $row["image"]?> width=300  />
+          </td>
           <td class='align-middle'><?php echo $row["updated_at"]?></td>
           <td class='align-middle'>    
             <div class="d-inline-flex">
@@ -157,12 +164,11 @@
           </div>
         </div>
     </div>
-
+</div>
+</div>
 </div>
 
-<?php
-    require '../includes/footer.php';
-?>
+
 <script>
   $(".btn-edit").click(function (e) {
     const id = this.getAttribute('data-bs-id')
@@ -183,5 +189,6 @@ $(".btn-delete").click(function (e) {
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="../../public/javascripts/sidemenu.js"></script>
 </body>
 </html>

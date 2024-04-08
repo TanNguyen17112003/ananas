@@ -31,17 +31,8 @@ require_once './database/DB.php';
     <?php
         require './includes/header.php';
         require './includes/navbar.php';
-        $bestSellerQueryString = "SELECT product.product_id, `order`.`order_id`, product.name, SUM(order_item.quantity_item) AS number_sold, product.images
-        FROM order_item, product, `order`
-        WHERE order_item.product_id = product.product_id 
-            AND order_item.order_id = `order`.`order_id` 
-            AND MONTH(`order`.`updated_at`) = MONTH(CURRENT_DATE())
-            AND YEAR(`order`.`updated_at`) = YEAR(CURRENT_DATE())
-        GROUP BY product.product_id
-        ORDER BY number_sold DESC
-        LIMIT 3";
-
-        $result = mysqli_query($conn,$bestSellerQueryString);
+        $newArrivalQueryString = "SELECT * FROM product WHERE status = 'New Arrival'";
+        $newArrivalProducts = mysqli_query($conn,$newArrivalQueryString);
     ?>
 
     <div id="template-mo-zay-hero-carousel" class="carousel carousel-dark slide mb-5" data-bs-ride="carousel">
@@ -50,7 +41,7 @@ require_once './database/DB.php';
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner">
+        <div class="carousel-inner ">
             <div class="carousel-item active" data-bs-interval="3000"> 
                     <img class="d-block mx-auto img-fluid" src="https://ananas.vn/wp-content/uploads/Hi-im-Mule_1920x1050-Desktop.jpg" alt="First slide" />
             </div>
@@ -79,19 +70,19 @@ require_once './database/DB.php';
                 </div>
                 <div class="col-xl-3 col-md-6 col-sm-12 shadow-sm">
                     <div class="text-center card border border-2  card-info">
-                        <a href="https://www.facebook.com/hienlq161"><img alt="AVT" width="200" height="200" src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/278845862_2866247320339254_5072976998028888841_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEl2osANthFpodvVHiXCmIQfeHcUstbpYl94dxSy1ulify1UBWSchOfnOcpJkxZLifVQW5kb1cMTVWuT-sGFkzV&_nc_ohc=HpCeZ-Ke4rsAX_oXiLD&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfBKHxgSmR8M90zbZiUz8KC2HHcqx_0xMiTicdsvlb92zw&oe=6602C103" class="rounded-circle mb-3 mt-3" /></a>
+                        <a href="https://www.facebook.com/profile.php?id=100008620419001"><img alt="AVT" width="200" height="200" src="./assets/tue_avt.jpg" class="rounded-circle mb-3 mt-3" /></a>
                         <p class="text-dark" style="text-align: center; font-weight: bold;">Trần Nguyễn Minh Tuệ</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-sm-12 shadow-sm">
                     <div class="text-center card border border-2  card-info">
-                        <a href="https://www.facebook.com/nguyenconganhluan"><img alt="AVT" width="200" height="200" src="https://scontent.fhan4-3.fna.fbcdn.net/v/t39.30808-6/428710940_918265379774526_7666743542801049874_n.jpg?stp=cp6_dst-jpg&_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEHBHFNzwyCcfXn1dCPPSP3PbyUuj8qHjQ9vJS6PyoeNMvJ2NVldOn5AHgD4UmJQsCklLBqVVDSlqvIbqpvXW3O&_nc_ohc=S3RpwSYzaV0AX85B6e8&_nc_ht=scontent.fhan4-3.fna&oh=00_AfAyQS_Q_Ab079bguS8lvsGnqsrKzFL9w8-jc5a76oODqw&oe=660276CE" class=" rounded-circle mb-3 mt-3" /></a>
+                        <a href="https://www.facebook.com/minhloc1605"><img alt="AVT" width="200" height="200" src="./assets/loc_avt.jpg" class=" rounded-circle mb-3 mt-3" /></a>
                         <p class="text-dark" style="text-align: center; font-weight: bold;">Nguyễn Minh Lộc</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6 col-sm-12 shadow-sm">
                     <div class="text-center card border border-2 card-info">
-                        <a href="https://www.facebook.com/nguyenduytung259"><img alt="AVT" width="200" height="200" src="https://scontent.fhan4-3.fna.fbcdn.net/v/t39.30808-6/422678895_3644956405775072_2989470423597768858_n.jpg?stp=cp6_dst-jpg&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeH3RdvlU56AUgS8tMXbJWEMnTGx1fHn4m-dMbHV8efib3n4Oh3BeC7vpOq2fuAVEk-0NpfqZcmiqtHAiJjURiQP&_nc_ohc=rdZOcqpKxosAX9QP2AI&_nc_ht=scontent.fhan4-3.fna&oh=00_AfC1sTjeHm8DpBIzCw5llcdQh7br8v_N1Ni75hucRu6i7A&oe=660240B6" class="rounded-circle mb-3 mt-3" /></a>
+                        <a href="https://www.facebook.com/huytran613"><img alt="AVT" width="200" height="200" src="./assets/huy_avt.jpg" class="rounded-circle mb-3 mt-3" /></a>
                         <p class="text-dark" style="text-align: center; font-weight: bold;">Trần Đan Huy</p>
                     </div>
                 </div>
@@ -99,68 +90,62 @@ require_once './database/DB.php';
         </div>
 
         <!-- best seller -->
-        <?php function DisplayBestSeller(){ ?>
-            <?php 
-                global $result;
-                if (mysqli_num_rows($result) == 0){
-                    return;
-                }
-            ?>
-            <div class="container mb-5">
-                <div class="row text-center">
-                    <div class="h3 mb-2" style="color:#ED171F">BEST SELLER OF THE MONTH</div>
-                </div>
-                <div class="row">
-                    <?php while($productData = mysqli_fetch_assoc($result)){ ?>
-                        <div class="col-xl-4">
-                            <div class="text-center">
-                                <a href="product_detail.php?productId=<?php echo $productData['product_id']; ?>">
-                                    <img alt="topProduct" width="200" height="200" 
-                                    src="public/img/products/<?php echo $productData['images']; ?>"
-                                    class="rounded-circle mb-3 mt-3 border border-2" />
-                                </a>
-                                <p class="h4 text-dark" style="text-align: center;"><?php echo $productData['name']; ?></p>
-                                <a class="btn btn-primary btn-lg" href="product_detail.php?productId=<?php echo $productData['product_id']; ?>">Buy Now</a>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-        <?php } ?>
-        <?php 
-            DisplayBestSeller();
-        ?>
     </div>
 
-    <?php
-    $sqlShowProducts = "SELECT product_id, name, quantity, images, price, price_sale FROM product";
-    $categoryId = '';
-    if (isset($_POST['search_btn'])) {
-        $categoryId = $_POST['categoryId'];
-        $sqlShowProducts = "SELECT product_id, name, quantity, images, price, price_sale FROM product WHERE category_id = '$categoryId'";
-    }
-    $products = $conn->query($sqlShowProducts);
-    $totalProducts = $products->num_rows;
-    $currentPage = 1;
-    if (isset($_GET['page'])) {
-        settype($_GET['page'], 'int'); // tránh injection, trang tự về 0
-        $currentPage = $_GET['page'];
-    }
-    $limit = 8;
-    $totalPage = ceil($totalProducts / $limit);
+    <div>
+        <h3 class="text-danger text-uppercase text-center">sản phẩm mới của chúng tôi</h3>
+        <div class="row container-fluid">
+            <?php
+                while ($newArrivalProductRow = $newArrivalProducts->fetch_assoc()) {
+            ?>
+                <div class="col-lg-3 col-sm-6 mb-3">
+                                    <a href="<?php echo $rootPath ?>/product_detail.php?productId=<?php echo $newArrivalProductRow['product_id']?>" class="text-black text-decoration-none">
+                                        <div class="card h-100 position-relative">
+            
+                                            <img src="<?php echo $rootPath ?>/public/img/<?php echo $newArrivalProductRow['images']; ?>" class="img-fluid" alt="..." onmouseover="this.src='<?php echo $rootPath ?>/public/img/<?php echo $newArrivalProductRow['subimg_1'];?>'" onmouseout="this.src='<?php echo $rootPath ?>/public/img/<?php echo $newArrivalProductRow['images'];?>'">
+                                            <div class="btn btn-outline-danger position-absolute end-0 bottom-25"><i class=" fa-light fa-heart"></i> </div>
+                                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                                <div class="d-flex flex-column justify-content-start">
+                                                    <h6 class="card-title" style="font-size: 0.75rem"><?php echo $newArrivalProductRow["name"]; ?></h6>
+                                                </div>
+                                                <div class="card-text">                      
+                                                    <p>
+                                                        <?php
+                                                        // Nếu có giá Khuyến mãi
+                                                        if ($newArrivalProductRow["price_sale"] != 0) {
+                                                        ?>
+                                                            <?php
+                                                            echo '<del class="text-secondary">' . number_format($newArrivalProductRow["price"]) . '</del><sup>đ</sup>';
+                                                            ?>
 
-    // giới hạn phân trang trong 1-totalPage
-    if ($currentPage > $totalPage) {
-        $currentPage = $totalPage;
-    } elseif ($currentPage < 1) {
-        $currentPage = 1;
-    }
+                                                            <?php
+                                                            echo '<strong><span class="text-danger ms-3">' . number_format($newArrivalProductRow["price_sale"]) . '<sup>đ</sup></span></strong>';
+                                                            ?>
+                                                        <?php
+                                                            // nếu không có khuyến mãi, hiện giá gốc
+                                                        } else {
+                                                            echo '<strong>' . number_format($newArrivalProductRow["price"]) . '<sup>đ</sup></strong>';
+                                                        }
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer d-flex flex-column">
+                                                <!-- <a href="<?php echo $rootPath ?>/process_cart.php?action=add&id=<?php echo $row['product_id'] ?>&quantity=1" class="btn btn-warning mt-1 <?php if ($row["quantity"] == 0) echo 'disabled' ?>"><i class="fa-light fa-cart-plus"></i></a> -->
+                                                <!-- <button onclick="addCartItem(<?= $row['product_id'] ?>)" class="btn btn-warning mt-1 <?php if ($row["quantity"] == 0) echo 'disabled' ?>"><i class="fa-light fa-cart-plus"></i></button> -->
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+            <?php
+                }
+            ?>
+        </div>
+    </div>
 
-    $start = ($currentPage - 1) * $limit;
-    // $sqlShowProducts = "SELECT product_id, name, quantity, images, price, price_sale FROM product LIMIT $start, $limit";
-    $sqlShowProducts = $sqlShowProducts . " LIMIT $start, $limit";
-    $products = $conn->query($sqlShowProducts);
-    ?>
+   
+
+    
 
     <?php
         require './includes/footer.php';

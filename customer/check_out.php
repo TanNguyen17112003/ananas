@@ -2,10 +2,10 @@
     session_start();
     ob_start();
     $rootPath = '/Lap_trinh_web';
-    require_once '../PHPMailer/src/Exception.php';
-    require_once '../PHPMailer/src/PHPMailer.php';
-    require_once '../PHPMailer/src/SMTP.php';
-    include_once '../helper/sendMail.php';
+    // require_once '../PHPMailer/src/Exception.php';
+    // require_once '../PHPMailer/src/PHPMailer.php';
+    // require_once '../PHPMailer/src/SMTP.php';
+    // include_once '../helper/sendMail.php';
 
     // Nếu khách hàng chưa đăng nhập thì chuyển đến trang đăng nhập
     if (!isset($_SESSION['email_user']) && empty($_SESSION['email_user']) ) header('location: login.php');

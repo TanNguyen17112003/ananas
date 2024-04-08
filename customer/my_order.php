@@ -31,7 +31,7 @@
     }
 ?>
 
-<?php
+<!-- <?php
     $email = $_SESSION['email_user'];
     $sqlFindUser = "SELECT user_id FROM user WHERE email = '$email'";
     $ketQua = $conn->query($sqlFindUser);
@@ -97,7 +97,7 @@
             <a href="<?php echo $rootPath?>/product.php" class="btn btn-primary">Trở về trang sản phẩm</a>
         </div>
     </div>
-</div>
+</div> -->
 <?php
     }
     require '../includes/footer.php';

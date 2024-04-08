@@ -1,7 +1,7 @@
 <?php
 session_start();
 ob_start();
-$rootPath = '/Lap_trinh_web/admin/';
+$rootPath = '/ananas/admin/';
 if (!isset($_SESSION["email_ad"])) {
     header('location: login.php');
 }
@@ -43,15 +43,18 @@ if (isset($_POST['add'])) {
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="./includes/css/base.css">
-    <link rel="stylesheet" href="./includes/css/home.css">
+    <link rel="stylesheet" href="../../public/css/sidemenu.css">
+    <link rel="stylesheet" href="../../public/css/base.css">
+    <link rel="stylesheet" href="../../public/css/home.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
 </head>
 <body>
+<div class="wrapper">
 <?php
-    require '../includes/header.php';
-    require '../includes/navbar.php';
+    require '../includes/sidemenu.php';
 ?>
-<div class="container-fluid mt-5 mb-3">
+<div class="main p-3">
+<div class="container-fluid">
 </div>
 <div class="container">
     <div class="row">
@@ -114,11 +117,11 @@ if (isset($_POST['add'])) {
         <div class="col-xl-2"></div>
     </div>
 </div>
+</div>
+</div>
 
-<?php
-    require '../includes/footer.php';
-?>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="../public/javascripts/sidemenu.js"></script>
 </body>
 </html>

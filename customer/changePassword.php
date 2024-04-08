@@ -3,11 +3,11 @@ session_start();
 ob_start();
 $rootPath = '/Lap_trinh_web';
 
-require '../PHPMailer/src/Exception.php';
-require '../PHPMailer/src/PHPMailer.php';
-require '../PHPMailer/src/SMTP.php';
+// require '../PHPMailer/src/Exception.php';
+// require '../PHPMailer/src/PHPMailer.php';
+// require '../PHPMailer/src/SMTP.php';
 
-include_once '../helper/sendMail.php';
+// include_once '../helper/sendMail.php';
 
 $basename = basename($_SERVER['HTTP_REFERER']);
 $basname_replace = str_replace($basename, "reset_password.php", $_SERVER['HTTP_REFERER']);

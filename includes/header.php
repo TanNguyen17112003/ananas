@@ -7,7 +7,7 @@
                 &nbsp;&nbsp;&nbsp;
                 <i class="fa">&#xf095;</i>
                 &nbsp;
-                <code style="color: black">Đặt hàng: </code><a class="navbar-sm-brand text-decoration-none text-color-primary fs-header-item" href="tel:0337553332"><code style="color: black">033.755.3332</code></a>
+                <code style="color: black">Đặt hàng: </code><a class="navbar-sm-brand text-decoration-none text-color-primary fs-header-item" href="tel:0337553332"><code style="color: black">086.289.8859</code></a>
             </div>
             <div>
                 <a class="text-primary text-color-primary" href="https://www.facebook.com/Ananas.vietnam" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>

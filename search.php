@@ -90,8 +90,7 @@ require_once './database/DB.php';
         ?>
         <div class="col-xl-3 col-md-6 col-sm-12 mb-3">
             <div class="card h-100">
-            <!-- <div class="product-img" style="background-image: url(<?php echo $rootPath?>/public/img/products/<?php echo $row["images"];?>);"></div> -->
-            <img src="<?php echo $rootPath?>/public/img/products/<?php echo $row['images'];?>" class="img-fluid" alt="...">
+            <img src="<?php echo $rootPath?>/public/img/<?php echo $row['images'];?>" class="img-fluid" alt="...">
             <div class="card-body d-flex flex-column justify-content-between">
                 <div class="d-flex flex-column justify-content-start">
                     <h6 class="card-title"><?php echo $row["name"];?></h6>

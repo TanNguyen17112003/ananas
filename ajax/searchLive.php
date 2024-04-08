@@ -14,7 +14,7 @@ if (isset($_POST['key'])) {
             <a href="<?= $rootPath ?>/product_detail.php?productId=<?= $row['product_id'] ?>" class="d-block p-2 text-decoration-none live-search__result-link">
                 <div class="d-flex">
                     <div>
-                        <img src="<?= $rootPath ?>/public/img/products/<?= $row['images'] ?>" class="rounded" width="50px">
+                        <img src="<?= $rootPath ?>/public/img/<?= $row['images'] ?>" class="rounded" width="50px">
                     </div>
                     <div class="ps-3">
                         <div class="text-primary"><?= $row['name'] ?></div>
