@@ -2,7 +2,7 @@
   .nav-link {
     font-weight: bold;
   }
-</style> 
+</style>
 <nav class="navbar navbar-light navbar-expand-lg p-3" id="navbar-top" style="background-color: #f0f1f2">
   <div class="container">
     <a class="navbar-brand" href="<?php echo $rootPath; ?>">
@@ -13,18 +13,30 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <?php
+        $current_page = $_SERVER['PHP_SELF'];
+        ?>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?php echo $rootPath ?>">TRANG CHỦ</a>
+          <a class="nav-link <?= ($current_page == $rootPath . '/index.php') ? 'active text-danger' : '' ?>" aria-current="page" href="<?php echo $rootPath ?>">TRANG CHỦ</a>
         </li>
         <li class="nav-item nav-item-dropdown">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/product.php"  id="navbarDropdown">SẢN PHẨM</a>
+          <a class="nav-link <?= ($current_page == $rootPath . '/product.php') ? 'active text-danger' : '' ?>" href="<?php echo $rootPath; ?>/product.php" id="navbarDropdown">SẢN PHẨM</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/sale_off.php">SALE OFF</a>
+          <a class="nav-link <?= ($current_page == $rootPath . '/sale_off.php') ? 'active text-danger' : '' ?>" href="<?php echo $rootPath; ?>/sale_off.php">SALE OFF</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo $rootPath; ?>/contact.php">LIÊN HỆ</a>
+          <a class="nav-link <?= ($current_page == $rootPath . '/contact.php') ? 'active text-danger' : '' ?>" href="<?php echo $rootPath; ?>/contact.php">LIÊN HỆ</a>
         </li>
+        <?php
+        if (isset($_SESSION['email_user'])) {
+        ?>
+          <li class="nav-item">
+            <a class="nav-link <?= ($current_page == $rootPath . '/customer/my_order.php') ? 'active text-danger' : '' ?>" href="<?php echo $rootPath ?>/customer/my_order.php">ĐƠN HÀNG</a>
+          </li>
+        <?php
+        }
+        ?>
       </ul>
       <form action="<?php echo $rootPath ?>/search.php" method="get" class="d-flex me-3" role="search">
         <div class="input-group flex-nowrap search-top">
@@ -53,8 +65,10 @@
         } else {
         ?>
           <li class="nav-item">
-            <div class="dropdown">
+            <div class="dropdown d-flex">
+
               <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-user"></i>
                 <?php
                 $email = $_SESSION['email_user'];
                 $sqlUser = "SELECT name FROM user WHERE email = '$email'";
@@ -63,9 +77,9 @@
                 echo $user['name'];
                 ?>
               </button>
+
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?php echo $rootPath ?>/customer/my_account.php">Tài khoản</a></li>
-                <li><a class="dropdown-item" href="<?php echo $rootPath ?>/customer/my_order.php">Đơn hàng</a></li>
                 <li><a class="dropdown-item" href="<?php echo $rootPath ?>/customer/check_out.php">Thanh toán</a></li>
                 <li><a class="dropdown-item" href="<?php echo $rootPath ?>/customer/changePassword.php">Đổi mật khẩu</a></li>
               </ul>

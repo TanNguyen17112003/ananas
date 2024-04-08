@@ -31,7 +31,7 @@ if (isset($_SESSION["cart"]) && !empty($_SESSION["cart"])) {
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-xl-3 d-none d-xl-block d-xxl-none">
-                                                        <img src="' . $rootPath . '/public/img/' . $value['img'] . '" class="img-fluid rounded">
+                                                        <img src="' . $rootPath . '/public/img/' . $value['images'] . '" class="img-fluid rounded">
                                                     </div>
                                                     <div class="col-xl-9">
                                                         <div class="d-flex flex-column justify-content-center">

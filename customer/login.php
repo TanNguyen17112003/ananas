@@ -67,7 +67,6 @@ if (isset($_POST['login_user'])) {
     $errorEmail = $errorPassword = "";
     $email = $_POST['email'];
     $password = $_POST['password'];
-
     if ($email == "" || $password == "") {
       $is_validated = false;
       $tb = "Vui lòng nhập các ô còn thiếu";
@@ -89,7 +88,7 @@ if (isset($_POST['login_user'])) {
           if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) 
               header('location: check_out.php');
             else
-              header('location: my_account.php');
+              header('location: ../product.php');
         } else {
           $is_validated = false;
           $tb = 'Sai email hoặc mật khẩu';
@@ -106,7 +105,7 @@ if (isset($_POST['login_user'])) {
       if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) 
         header('location: check_out.php');
       else
-        header('location: my_account.php');
+        header('location: ../product.php');
     }
 }
 ?>
@@ -194,26 +193,50 @@ if (isset($_POST['login_user'])) {
           <img src="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png" alt="Logo" width="60" height="60"/>
           <span class="h1 fw-bold mb-0 text-warning">Ananas</span>
         </div>
-
+        <?php
+          if (isset($_SESSION['success'])) {
+              echo '<div id="success-message" class="mb-2 text-center"><div class="alert alert-success">'.$_SESSION['success'].'</div></div>';
+              // Xóa session 'success' sau khi hiển thị để tránh hiển thị lại khi trang được làm mới
+              unset($_SESSION['success']);
+          }
+          ?>
+          <script>
+            // Sử dụng JavaScript để ẩn thông báo sau 2 giây
+            setTimeout(function() {
+                var successMessage = document.getElementById('success-message');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+            }, 2000);
+          </script>
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-3 pt-5 pt-xl-0 mt-xl-n5">
 
-          <form style="width: 23rem;">
-
-            <div class="form-outline mb-5">
-              <input type="email" id="form2Example18" class="form-control form-control-lg" placeholder="Email"/>
+          <form style="width: 23rem;"  action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
+            <div class="input-group mb-3">
+              <input type="email" id="form2Example18" name="email" value="<?php echo $email ?>" class="form-control form-control-lg" placeholder="Email"/>
             </div>
-
-            <div class="form-outline mb-5">
-              <input type="password" id="form2Example28" class="form-control form-control-lg" placeholder="Mật khẩu "/>
-            </div>
-
+            <div class="input-group flex-nowrap mb-3">
+                <input type="password" id="password" class="form-control form-control-lg" name="password" value="<?php echo $password; ?>" placeholder="Password">
+                <span>
+                  <i class="far fa-eye" id="toggle-password"></i>
+                </span>
+              </div>
             <div class="pt-1 mb-4">
-              <button class="btn btn-info btn-lg btn-block" type="button">Đăng nhập</button>
+              <input type="submit" name="login_user" value="Đăng nhập" class="btn btn-primary w-100" data-disable-with="Create account" />
             </div>
-
-            <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Quên mật khẩu?</a></p>
-            <p>Chưa có tài khoản? <a href="#!" class="link-info">Đăng ký ngay</a></p>
-
+            <?php 
+                    if(!empty($tb)) {
+                      echo '<div class="alert alert-danger">'.$tb. '</div>';
+                    }
+                    else if(!empty($errorEmail)) {
+                        echo '<div class="alert alert-danger">'.$errorEmail. '</div>';
+                    } else if (!empty($errorPassword)) {
+                      echo '<div class="alert alert-danger">'.$errorPassword. '</div>';
+                    } 
+            ?>
+            <p class="small mb-5 pb-lg-2"><a class="text-muted" href="/Lap_trinh_web/auth/forgot_password.php">Quên mật khẩu?</a></p>
+            <p>Chưa có tài khoản? <a href="/Lap_trinh_web/sign_up.php" class="link-info">Đăng ký ngay</a></p>
+            
           </form>
 
         </div>

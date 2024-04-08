@@ -44,7 +44,7 @@ function checkPassword($password1, $password2) {
 }
 
 function checkEmailExist($email) {
-    $conn = @new mysqli("localhost:3307", "root", "", "ltwdb");
+    $conn = @new mysqli("localhost:3307", "root", "", "ltweb");
     $conn->error;
     if ($conn->error) {
         die('Kết nối thất bại'.$conn->error);

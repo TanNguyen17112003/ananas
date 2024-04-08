@@ -49,6 +49,11 @@
     <link rel="stylesheet" href="./public/css/base.css">
     <link rel="stylesheet" href="./public/css/home.css">
 </head>
+<style>
+    .form-label {
+        font-weight: bold;
+    }
+</style>
 <body>
 <?php
     require '../includes/header.php';
