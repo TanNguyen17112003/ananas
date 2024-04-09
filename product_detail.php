@@ -44,6 +44,10 @@ if ($product->num_rows > 0) {
                 .sub_image {
                     cursor: pointer
                 }
+                .test-label {
+                    font-weight: bold;
+                    font-size: 1.5rem;
+                }
             </style>
         </head>
 
@@ -146,7 +150,7 @@ if ($product->num_rows > 0) {
                                         <div class="row">
                                             <ul class="list-inline mb-3 equal-width row">
                                                 <li class="list-inline-item col-5">
-                                                    <h4 class="form-label text-uppercase" for="cart_item_product_stock">Size</h4>
+                                                    <label class="form-label text-uppercase test-label" for="cart_item_product_stock">Size</label>
                                                     <select id="pickSize" class="selectpicker bs-select-hidden p-2" data-style="btn">
                                                         <?php
                                                         foreach ($pairListArray as $pair) {
@@ -156,15 +160,16 @@ if ($product->num_rows > 0) {
                                                     </select>
                                                 </li>
                                                 <li class="list-inline-item col-5">
-                                                    <h4 class="form-label text-uppercase" for="cart_item_product_stock">Số lượng</h4>
-                                                    <select id="pickQuantity" class="selectpicker p-2" data-style="btn">
+                                                    <label class="form-label text-uppercase test-label" for="pickQuantity">Số lượng</label>
+                                                    <select id="pickQuantity" class="selectpicker p-2" data-style="btn" name="quantity">
 
                                                     </select>
                                                 </li>
                                             </ul>
                                         </div>
-
-                                        <button id="addCartButton" onclick="addCartItem(<?php echo $productId ?>)" class="text-uppercase w-100 py-3 bg-black text-white <?php if ($row["quantity"] <= 0) echo 'disabled' ?>">
+                                        <input type="hidden" name="action" value="add"> 
+                                        <input type="hidden" name="id" value="<?php echo $row['product_id']?>">
+                                        <button id="addCartButton" onclick="addCartItem(<?= $row['product_id'] ?>)" class="text-uppercase w-100 py-3 bg-black text-white <?php if ($row["quantity"] <= 0) echo 'disabled' ?>">
                                             <h4>thêm vào giỏ hàng</h4>
                                         </button>
                                     </form>

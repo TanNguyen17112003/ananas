@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
 
 if (isset($_POST['update'])) {
     $status = mysqli_real_escape_string($conn,$_POST['status']);
-    $sqlUpdate = "UPDATE `ltwdb`.`order` SET status = '$status' WHERE order_id = '$orderId'";
+    $sqlUpdate = "UPDATE `ltweb`.`order` SET status = '$status' WHERE order_id = '$orderId'";
     $conn->query($sqlUpdate);
     setcookie('thongBao', 'Cập nhật thành công', time()+5);
     $conn->close();
@@ -57,7 +57,7 @@ if (isset($_POST['update'])) {
             <div class="col-xl-6 col-md-6 col-sm-12">
                 <?php
                     $sqlOrder = "SELECT order_id, payment_method, address_receiver, phone_receiver, name_receiver, order.updated_at, status, name, email 
-                    FROM `ltwdb`.`order`, user 
+                    FROM `ltweb`.`order`, user 
                     WHERE order.user_id = user.user_id
                     AND order_id = '$orderId'";
                     $ketQua = $conn->query($sqlOrder);

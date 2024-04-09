@@ -28,7 +28,7 @@
         if ($nameReceiver == '' || $phoneReceiver =='' || $addressReceiver =='' || $payment == '' || $paymentMethod =='') {
             $tb = 'Bạn chưa nhập đầy đủ thông tin, vui lòng kiểm tra lại!!!';
         } else {
-            $sqlOrder = "INSERT INTO `ltwdb`.`order` (`payment`, `address_receiver`, `phone_receiver`, `name_receiver`, `user_id`) 
+            $sqlOrder = "INSERT INTO `ltweb`.`order` (`payment`, `address_receiver`, `phone_receiver`, `name_receiver`, `user_id`) 
             VALUES ('$payment', '$addressReceiver', '$phoneReceiver', '$nameReceiver', '$id');";  
             if ($conn->query($sqlOrder)) {
                 // lấy order id

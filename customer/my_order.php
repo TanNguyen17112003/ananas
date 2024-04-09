@@ -25,19 +25,12 @@
 ?>
 
 <?php
-    if (isset($_GET["cancel"])) {
-        $sqlDeleteOrder = "DELETE FROM `ltwdb`.`order` WHERE order.order_id = " . $_GET["cancel"];
-        $conn->query($sqlDeleteOrder);
-    }
-?>
-
-<!-- <?php
     $email = $_SESSION['email_user'];
     $sqlFindUser = "SELECT user_id FROM user WHERE email = '$email'";
     $ketQua = $conn->query($sqlFindUser);
     $user = $ketQua->fetch_array();
     $userId = $user['user_id'];
-    $sqlFindOrder = "SELECT order_id, name_receiver, status, address_receiver, payment, order.updated_at FROM `ltwdb`.`order`, user WHERE order.user_id = '$userId' AND order.user_id = user.user_id";
+    $sqlFindOrder = "SELECT order_id, name_receiver, status, address_receiver, payment, order.updated_at  FROM `ltweb`.`order`, user WHERE order.user_id = '$userId' AND order.user_id = user.user_id";
     $orders = $conn->query($sqlFindOrder);
 
     if ($orders->num_rows>0) {
@@ -57,7 +50,6 @@
                         <th scope="col">Tổng tiền</th>
                         <th scope="col">Trạng thái</th>
                         <th scope="col">Ngày đặt</th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,7 +65,6 @@
                         <td scope="col"><?=number_format($row['payment'])?> <sup>đ</sup></td>
                         <td scope="col"><span class="text-danger"><?=$row['status']?></span></td>
                         <td scope="col"><?=$row['updated_at']?></td>
-                        <td scope="col"><?php if ($row['status']=="Đang xử lý") {echo "<form><button name='cancel' value='",$row['order_id'],"'>Hủy đơn</button></form>";}?> </td>
                     </tr>
             <?php
                     $i++;
@@ -97,7 +88,7 @@
             <a href="<?php echo $rootPath?>/product.php" class="btn btn-primary">Trở về trang sản phẩm</a>
         </div>
     </div>
-</div> -->
+</div>
 <?php
     }
     require '../includes/footer.php';

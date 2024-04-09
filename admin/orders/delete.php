@@ -8,7 +8,7 @@
         settype($_GET['id'], 'int');
         if ($_GET['id'] == 0) header('location: ../../404.php');
         $orderId = $_GET['id'];
-        $sqlDelete = "DELETE FROM `ltwdb`.`order` WHERE order_id = '$orderId'";
+        $sqlDelete = "DELETE FROM `ltweb`.`order` WHERE order_id = '$orderId'";
         $conn->query($sqlDelete);
         $conn->close();
         setcookie('thongBao', 'Đã xóa thành công', time()+5);
