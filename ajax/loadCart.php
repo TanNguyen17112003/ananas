@@ -13,49 +13,49 @@ if (isset($_SESSION["cart"]) && !empty($_SESSION["cart"])) {
 
     $cart .= '<div class="container-fluid mt-5 mb-5">
                     <div class="row">
-                        <div class="col-xl-9 col-md-8 col-sm-12">
-                            <table class="table">
-                                <thead>
-                                    <tr class="table-primary">
-                                        <th scope="col">Sản phẩm</th>
-                                        <th scope="col">Đơn giá</th>
-                                        <th scope="col">Số lượng</th>
-                                        <th scope="col">Thành tiền</th>
-                                        <th scope="col">Chức năng</th>
-                                    </tr>
-                                </thead>
-                                <tbody>';
+                    <div class="col-xl-9 col-md-8 col-sm-12">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr class="table-primary" style="text-align: center">
+                                <th scope="col">Sản phẩm</th>
+                              
+                                <th scope="col">Đơn giá</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
     foreach ($_SESSION['cart'] as $key => $value) {
-        $cart .=    '<tr>
-                                        <td scope="row">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-xl-3 d-none d-xl-block d-xxl-none">
-                                                        <img src="' . $rootPath . '/public/img/' . $value['images'] . '" class="img-fluid rounded">
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <p>' . $value['name'] . '</p>
-                                                            <p>Mã sản phẩm: <strong>#' . $value['id'] . '</strong></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td> &emsp; &emsp; &emsp;' . number_format($value['price']) . ' <sup>đ</sup></td>
-                                        <td class="align-middle">
-                                            <div class="d-flex align-items-center">
-                                                <button class="btn btn-secondary btn-sm ms-1" onclick="subCartQty(' . $value['id'] . ')">-</button>
-                                                <button class="btn btn-light disabled">' . $value['quantity'] . '</button>
-                                                <button class="btn btn-secondary btn-sm me-1" onclick="addCartQty(' . $value['id'] . ')">+</button>
-                                            </div>
-                                        </td>
-                                        <td class="text-danger">&emsp; &emsp; &emsp; <strong>' . number_format($value['price'] * $value['quantity']) . ' <sup>đ</sup></strong></td>
-                                        <td>
-                                            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-                                            <button class="btn btn-danger" onclick="deleteCartItem(' . $value['id'] . ')"><i class="fa-solid fa-trash-can"></i></button>
-                                        </td>
-                                    </tr>';
+        $cart .=    '<tr>           
+                                   <td scope="row" class="align-middle">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-3 d-none d-xl-block">
+                <img src="' . $rootPath . '/public/img/' . $value['img'] . '" class="img-fluid rounded">
+            </div>
+            <div class="col-xl-9">
+                <div class="d-flex flex-column justify-content-center">
+                    <p>' . $value['name'] . '</p>
+                    <p>Mã sản phẩm: <strong>#' . $value['id'] . '</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+                                    <td class="text-center align-middle">' . number_format($value['price']) . ' <sup>đ</sup></td>
+                                    <td class="text-center align-middle">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <button class="btn btn-secondary btn-sm ms-1" onclick="subCartQty(' . $value['id'] . ')">-</button>
+                                            <button class="btn btn-light disabled">' . $value['quantity'] . '</button>
+                                            <button class="btn btn-secondary btn-sm me-1" onclick="addCartQty(' . $value['id'] . ')">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="text-center text-danger align-middle"><strong>' . number_format($value['price'] * $value['quantity']) . ' <sup>đ</sup></strong></td>
+                                    <td class="text-center align-middle">
+                                        <button class="btn btn-danger" onclick="deleteCartItem(' . $value['id'] . ')"><i class="fa-solid fa-trash-can"></i></button>
+                                    </td>
+                                </tr>';
         $totalBill += $value['price'] * $value['quantity'];
     }
     $cart .=    '</tbody>

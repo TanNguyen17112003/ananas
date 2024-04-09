@@ -30,7 +30,7 @@ require_once '../../database/DB.php';
 ?>
 <div class="main py-3">
 <?php
-    $sqlOrders = "SELECT order_id, user.name, status, address_receiver, payment  FROM `ltwdb`.`order`, user WHERE order.user_id = user.user_id";
+    $sqlOrders = "SELECT order_id, user.name, status, address_receiver, payment  FROM `ltweb`.`order`, user WHERE order.user_id = user.user_id";
     $orders = $conn->query($sqlOrders);
 
     if ($orders->num_rows>0) {
