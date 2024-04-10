@@ -189,7 +189,7 @@
                         <td align="center" bgcolor="#e9ecef"
                             style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
                             <p style="margin: 0;">If you are interested in experiencing our website, you can <a
-                                    href="http://localhost/Lap_trinh_web" target="_blank">VISIT</a> it any time.</p>
+                                    href="http://localhost/ananas" target="_blank">VISIT</a> it any time.</p>
                             <p style="margin: 0;">Dai hoc Bach Khoa, TP. HCM</p>
                         </td>
                     </tr>

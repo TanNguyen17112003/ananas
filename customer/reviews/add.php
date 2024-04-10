@@ -1,7 +1,7 @@
 <?php
     session_start();
     ob_start();
-    $rootPath = '/Lap_trinh_web/customer';
+    $rootPath = '/ananas/customer';
     require_once '../../database/DB.php'; 
     echo "bla";
     if (isset($_POST['review'])) {
@@ -12,9 +12,9 @@
         $sqlInsert = "INSERT INTO review (title, content, user_id, product_id) VALUES ('$title', '$content', '$userId', '$productId')";
         $conn->query($sqlInsert);
         $conn->close();
-        header("location: /Lap_trinh_web/product.php");
+        header("location: /ananas/product.php");
     } else {
         $conn->close();
-        header('location: /Lap_trinh_web/404.php');
+        header('location: /ananas/404.php');
     }
 ?>

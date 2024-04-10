@@ -1,7 +1,7 @@
 <?php
     session_start();
     ob_start();
-    $rootPath = '/Lap_trinh_web/customer';
+    $rootPath = '/ananas/customer';
     require_once '../../database/DB.php';
     if (isset($_POST['update'])) {
         $reviewId = mysqli_real_escape_string($conn, $_POST['reviewId']);
@@ -36,12 +36,12 @@
     if (isset($_GET['id'])) {
        settype($_GET['id'], 'int');
        $reviewId = $_GET['id'];
-       if ($_GET['id'] == 0) header('location: /Lap_trinh_web/404.php');
+       if ($_GET['id'] == 0) header('location: /ananas/404.php');
        $sqlReview = "SELECT review_id, title, content FROM review WHERE review_id = '$reviewId'";
        $ketQua = $conn->query($sqlReview);
     } else {
         $conn->close();
-        header('location: /Lap_trinh_web/404.php');
+        header('location: /ananas/404.php');
     }
 
     if ($ketQua->num_rows>0) {
@@ -66,7 +66,7 @@
         }
     } else {
         $conn->close();
-        header('location: /Lap_trinh_web/404.php');
+        header('location: /ananas/404.php');
     }
 ?>
 <?php

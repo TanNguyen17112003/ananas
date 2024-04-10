@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-$rootPath = '/Lap_trinh_web';
+$rootPath = '/ananas';
 require_once './database/DB.php';
 
 ?>

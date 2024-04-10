@@ -1,7 +1,7 @@
 <?php
 session_start();
 ob_start();
-$rootPath = '/Lap_trinh_web';
+$rootPath = '/ananas';
 require_once '../database/DB.php';
 if (isset($_POST['productId'])) {
     settype($_POST['productId'], 'int');
