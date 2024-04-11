@@ -132,36 +132,70 @@ require_once './database/DB.php';
     require './includes/navbar.php';
     ?>
     <?php
-
-    // if (isset($_GET['categoryId'])) {
-    //     settype($_GET['categoryId'], 'int');
-    //     $categoryId = $_GET['categoryId'];
-    //     if ($categoryId == 0) {
-    //         $sqlShowProducts = "SELECT product_id, name, quantity, images, price, price_sale FROM product";
-    //     } else {
-    //         $sqlShowProducts = "SELECT product_id, name, quantity, images, price, price_sale FROM product WHERE category_id = '$categoryId'";
-    //     }
-    // } else {
-    //     $categoryId = 0;
-    // }
     $limit = isset($_GET['limit']) ? $_GET['limit'] : 15;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $start = ($page - 1) * $limit;
-    $sqlShowProducts = "SELECT product_id, name, images, price, price_sale, subimg_1 FROM product LIMIT $start, $limit";
-    $result = $conn->query($sqlShowProducts);
+
+
+$getProductsQuery = "SELECT product_id, name, images, price, price_sale, subimg_1, category_id, range_id FROM product, cost_range WHERE ((price_sale IS NOT NULL AND ((low_cost IS NULL AND price_sale <= high_cost) OR (high_cost IS NULL AND price_sale >= low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price_sale BETWEEN low_cost AND high_cost))) OR (price_sale IS NULL AND price IS NOT NULL AND ((low_cost IS NULL AND price <= high_cost) OR (high_cost IS NULL AND price >= low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price BETWEEN low_cost AND high_cost))))";
+$getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_range WHERE ((price_sale IS NOT NULL AND ((low_cost IS NULL AND price_sale <= high_cost) OR (high_cost IS NULL AND price_sale >= low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price_sale BETWEEN low_cost AND high_cost))) OR (price_sale IS NULL AND price IS NOT NULL AND ((low_cost IS NULL AND price <= high_cost) OR (high_cost IS NULL AND price >= low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price BETWEEN low_cost AND high_cost))))");
+    if (isset($_GET['line'])) {
+        $line = $_GET['line'];
+    }
+    else {
+        $line = '';
+    }
+    if (isset($_GET['material'])) {
+        $material = $_GET['material'];
+    }
+    else {
+        $material = '';
+    }
+    if (isset($_GET['costRange'])) {
+        $costRangeId = $_GET['costRange'];
+    }
+    else {
+        $costRangeId = '';
+    }
+    $lineCondition = '';
+            if ($line != '') {
+                $lines = explode(',', $line);
+                foreach ($lines as $l) {
+                    $lineCondition .= " OR name LIKE '%$l%'";
+                }
+                $lineCondition = substr($lineCondition, 4);
+                $lineCondition = " AND ($lineCondition)";
+            }
+    if (isset($_GET['categoryId'])) {
+        $categoryId = $_GET['categoryId'];
+        if ($categoryId == 0 || $categoryId == '') {
+            
+            $getProductsQuery = $getProductsQuery . ($material != '' ? "AND FIND_IN_SET(upper_material, '$material')" : '') . ($costRangeId != '' ? "AND FIND_IN_SET(range_id, '$costRangeId')" : '') . $lineCondition;
+            $getCountProductsQuery = $getCountProductsQuery . ($material != '' ? "AND FIND_IN_SET(upper_material, '$material')" : '') . ($costRangeId != '' ? "AND FIND_IN_SET(range_id, '$costRangeId')" : '') . $lineCondition;
+        } else {
+            $getCountProductsQuery =$getCountProductsQuery . "AND FIND_IN_SET(category_id, '$categoryId')"  . ($material != '' ? " AND FIND_IN_SET(upper_material, '$material')" : '') . ($costRangeId != '' ? "AND FIND_IN_SET(range_id, '$costRangeId')" : '') . $lineCondition;
+            $getProductsQuery = $getProductsQuery . "AND FIND_IN_SET(category_id, '$categoryId')"  . ($material != '' ? " AND FIND_IN_SET(upper_material, '$material')" : '') . ($costRangeId != '' ? "AND FIND_IN_SET(range_id, '$costRangeId')" : '') . $lineCondition;
+        }
+    } else {
+        $categoryId = 0;
+    }
+    $getProductsQuery .= " LIMIT $start, $limit";
+    $result = $conn->query($getProductsQuery);
     $products = $result->fetch_all(MYSQLI_ASSOC);
-    $result1 = $conn->query("SELECT count(product_id) AS id FROM product");
-    $productCount = $result1->fetch_all(MYSQLI_ASSOC);
-    $total = $productCount[0]['id'];
+    $total = $conn->query($getCountProductsQuery)->fetch_assoc()['id'];
     $pages = ceil($total / $limit);
     $Previous = $page - 1;
     $Next = $page + 1;
+    $categoryIdParam = isset($_GET['categoryId']) ? $_GET['categoryId'] : '';
     ?>
     <div class="mt-lg-5 mb-lg-5">
         <div class="row">
-            <div class="col-lg-3">
-                <div class="dropdown-toggle list text-decoration-none text-white p-4 bg-black d-lg-none" data-toggle="collapse" href="#collapseOptions" role="button" aria-expanded="false" aria-controls="collapseOptions">
-                    <span class="user-select-none" style="font-size: 32px; font-weight: bold">Tùy chọn</span>
+            <div class="col-lg-3 row p-lg-3 p-sm-0">
+                <div class="col-6 dropdown-toggle list text-decoration-none text-white p-4 bg-black d-lg-none" data-toggle="collapse" href="#collapseOptions" role="button" aria-expanded="false" aria-controls="collapseOptions">
+                    <span class="user-select-none" style="font-size: 2rem; font-weight: bold">Tùy chọn</span>
+                </div>
+                <div class="col-6 text-white p-4 bg-black d-lg-none" style="text-align: right; border-left: 1px solid #ddd">
+                    <span style="font-size: 2rem; font-weight: bold;"><?= $total ?> sản phẩm</span>
                 </div>
                 <div class="px-4 collapse-option" id="collapseOptions">
                     <div class="mb-5">
@@ -175,16 +209,16 @@ require_once './database/DB.php';
                             $i = 1;
                             while ($row = $style->fetch_assoc()) {
                             ?>
-                                <a class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['category_id'] ?>">
+                                <div class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['category_id'] ?>">
                                     <li class="mb-2">
                                         <div class="form-check d-flex items-center gap-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                            <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                            <input class="form-check-category" type="checkbox" value="<?php echo $row['category_id'] ?>" id="categoryCheck<?php echo $i ?>" <?php echo strpos($categoryId, (string)$row['category_id']) !== false ? "checked" : "" ?>>
+                                            <label class="form-check-label list-group-item list-group-item-action dropdown-item" for="categoryCheck<?php echo $i ?>">
                                                 <?php echo $row['category_name'] ?>
                                             </label>
                                         </div>
                                     </li>
-                                </a>
+                                </div>
                             <?php
                                 $i++;
                             }
@@ -196,46 +230,46 @@ require_once './database/DB.php';
                             <span class="user-select-none" style="font-size: 24px; font-weight: bold">Dòng sản phẩm</span>
                         </a>
                         <ul class="collapse list-unstyled" id="collapseProductLine">
-                            <a class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['id'] ?>">
+                            <div class="text-decoration-none text-black font-weight-bold">
                                 <li class="mb-2">
                                     <div class="form-check d-flex items-center gap-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                        <input class="form-check-line" type="checkbox" value="Basas" id="lineCheck<?php echo $i ?>" <?php echo strpos($line, "Basas") !== false ? "checked" : "" ?>>
+                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="lineCheck<?php echo $i ?>">
                                             Basas
                                         </label>
                                     </div>
                                 </li>
-                            </a>
-                            <a class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['id'] ?>">
+                            </div>
+                            <div class="text-decoration-none text-black font-weight-bold">
                                 <li class="mb-2">
                                     <div class="form-check d-flex items-center gap-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                        <input class="form-check-line" type="checkbox" value="Vintas" id="lineCheck<?php echo $i ?>" <?php echo strpos($line, "Vintas") !== false ? "checked" : "" ?>>
+                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="lineCheck<?php echo $i ?>">
                                             Vintas
                                         </label>
                                     </div>
                                 </li>
-                            </a>
-                            <a class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['id'] ?>">
+                            </div>
+                            <div class="text-decoration-none text-black font-weight-bold">
                                 <li class="mb-2">
                                     <div class="form-check d-flex items-center gap-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                        <input class="form-check-line" type="checkbox" value="Urbas" id="lineCheck<?php echo $i ?>" <?php echo strpos($line, "Urbas") !== false ? "checked" : "" ?>>
+                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="lineCheck<?php echo $i ?>">
                                             Urbas
                                         </label>
                                     </div>
                                 </li>
-                            </a>
-                            <a class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['id'] ?>">
+                            </div>
+                            <div class="text-decoration-none text-black font-weight-bold" >
                                 <li class="mb-2">
                                     <div class="form-check d-flex items-center gap-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                        <input class="form-check-line" type="checkbox" value="Pattas" id="lineCheck<?php echo $i ?>" <?php echo strpos($line, "Pattas") !== false ? "checked" : "" ?>>
+                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="lineCheck<?php echo $i ?>">
                                             Pattas
                                         </label>
                                     </div>
                                 </li>
-                            </a>
+                            </div>
                         </ul>
                     </div>
                     <div class=" mb-5">
@@ -249,11 +283,11 @@ require_once './database/DB.php';
                             $i = 1;
                             while ($row = $style->fetch_assoc()) {
                             ?>
-                                <a class="text-decoration-none text-black font-weight-bold" href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['range_id'] ?>">
+                                <div class="text-decoration-none text-black font-weight-bold">
                                     <li class="mb-2">
                                         <div class="form-check d-flex items-center gap-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                            <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                            <input class="form-check-cost-range" type="checkbox" value="<?= $i ?>" id="costRangeCheck<?php echo $i ?>"  <?php echo strpos($costRangeId, (string)$row['range_id']) !== false ? "checked" : "" ?>>
+                                            <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="costRangeCheck<?php echo $i ?>">
                                                 <?php
                                                 if (isset($row['low_cost']) && isset($row['high_cost'])) {
                                                     echo ' ' . $row['low_cost'] . 'k - ' . $row['high_cost'] . 'k';
@@ -266,7 +300,7 @@ require_once './database/DB.php';
                                             </label>
                                         </div>
                                     </li>
-                                </a>
+                                </div>
                             <?php
                                 $i++;
                             }
@@ -278,46 +312,46 @@ require_once './database/DB.php';
                             <span class="user-select-none" style="font-size: 24px; font-weight: bold">Chất liệu</span>
                         </a>
                         <ul class="collapse list-unstyled" id="collapseMaterial">
-                            <a class="text-decoration-none text-black font-weight-bold  " href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['id'] ?>">
+                            <div class="text-decoration-none text-black font-weight-bold">
                                 <li class="mb-2">
                                     <div class="form-check d-flex items-center gap-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                        <input class="form-check-material" type="checkbox" value="Canvas" id="materialCheck<?php  ?>" <?php echo strpos($material, "Canvas") !== false ? "checked" : "" ?>>
+                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="materialCheck<?php echo $i ?>">
                                             Canvas
                                         </label>
                                     </div>
                                 </li>
-                            </a>
-                            <a class="text-decoration-none text-black font-weight-bold  " href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['id'] ?>">
+                            </div>
+                            <div class="text-decoration-none text-black font-weight-bold">
                                 <li class="mb-2">
                                     <div class="form-check d-flex items-center gap-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                        <input class="form-check-material" type="checkbox" value="Suede" id="materialCheck<?php echo $i ?>" <?php echo strpos($material, "Suede") !== false ? "checked" : "" ?>>
+                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="materialCheck<?php echo $i ?>">
                                             Suede
                                         </label>
                                     </div>
                                 </li>
-                            </a>
-                            <a class="text-decoration-none text-black font-weight-bold  " href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['id'] ?>">
+                            </div>
+                            <div class="text-decoration-none text-black font-weight-bold  ">
                                 <li class="mb-2">
                                     <div class="form-check d-flex items-center gap-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                        <input class="form-check-material" type="checkbox" value="Leather" id="materialCheck<?php echo $i ?>" <?php echo strpos($material, "Leather") !== false ? "checked" : "" ?>>
+                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="materialCheck<?php echo $i ?>">
                                             Leather
                                         </label>
                                     </div>
                                 </li>
-                            </a>
-                            <a class="text-decoration-none text-black font-weight-bold  " href="<?php echo $rootPath ?>/product.php?categoryId=<?php echo $row['id'] ?>">
+                            </div>
+                            <div class="text-decoration-none text-black font-weight-bold  " >
                                 <li class="mb-2">
                                     <div class="form-check d-flex items-center gap-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="styleCheck<?php echo $i ?>">
-                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="styleCheck<?php echo $i ?>">
+                                        <input class="form-check-material" type="checkbox" value="Cotton" id="materialCheck<?php echo $i ?>"  <?php echo strpos($material, "Cotton") !== false ? "checked" : "" ?>>
+                                        <label class="form-check-label  list-group-item list-group-item-action dropdown-item" for="materialCheck<?php echo $i ?>">
                                             Cotton
                                         </label>
                                     </div>
                                 </li>
-                            </a>
+                            </div>
                         </ul>
                     </div>
                 </div>
@@ -337,9 +371,8 @@ require_once './database/DB.php';
 
                                 <div class="col-xl-4 col-sm-6 mb-3">
                                     <a href="<?php echo $rootPath ?>/product_detail.php?productId=<?php echo $row['product_id'] ?>" class="text-black text-decoration-none">
-                                        <div class="card h-100 position-relative">
-
-                                            <img src="<?php echo $rootPath ?>/public/img/<?php echo $row['images']; ?>" class="img-fluid" alt="..." onmouseover="this.src='<?php echo $rootPath ?>/public/img/<?php echo $row['subimg_1']; ?>'" onmouseout="this.src='<?php echo $rootPath ?>/public/img/<?php echo $row['images']; ?>'">
+                                        <div class="card h-100 position-relative"> 
+                                        <img src="<?php echo $rootPath ?>/public/img/<?php echo $row['images']; ?>" class="img-fluid" alt="..." onmouseover="this.src='<?php echo $rootPath ?>/public/img/<?php echo $row['subimg_1']; ?>'" onmouseout="this.src='<?php echo $rootPath ?>/public/img/<?php echo $row['images']; ?>'">
                                             <div class="btn btn-outline-danger position-absolute end-0 bottom-25"><i class=" fa-light fa-heart"></i> </div>
                                             <div class="card-body d-flex flex-column justify-content-between align-items-center">
                                                 <div class="d-flex flex-column justify-content-start">
@@ -348,7 +381,6 @@ require_once './database/DB.php';
                                                 <div class="card-text">
                                                     <p>
                                                         <?php
-                                                        // Nếu có giá Khuyến mãi
                                                         if ($row["price_sale"] != 0) {
                                                         ?>
                                                             <?php
@@ -376,24 +408,24 @@ require_once './database/DB.php';
                                 </div>
                             <?php endforeach; ?>
                             <div class="mt-2 d-flex justify-content-center">
-                        <nav class="pagination-outer" aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li class="page-item <?= ($page == 1) ? 'disabled' : '' ?>">
-                                    <a href="product.php?page=<?= $Previous; ?>" aria-label="Previous" class="page-link">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <?php for ($i = 1; $i <= $pages; $i++) : ?>
-                                    <li class="page-item <?= ($i == $page) ? 'active' : '' ?>"><a href="product.php?page=<?= $i; ?>" class="page-link"><?= $i; ?></a></li>
-                                <?php endfor; ?>
-                                <li class="page-item <?= ($page == $pages) ? 'disabled' : '' ?>">
-                                    <a href="product.php?page=<?= $Next; ?>" aria-label="Next" class="page-link">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                                <nav class="pagination-outer" aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li class="page-item <?= ($page == 1) ? 'disabled' : '' ?>">
+                                            <a href="product.php?categoryId=<?= $categoryId ?>&page=<?= $Previous; ?>&line=<?= $line?>&material=<?= $material?>&costRange=<?= $costRangeId ?>" aria-label="Previous" class="page-link">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <?php for ($i = 1; $i <= $pages; $i++) : ?>
+                                            <li class="page-item <?= ($i == $page) ? 'active' : '' ?>"><a href="product.php?categoryId=<?= $categoryId ?>&page=<?= $i; ?>&line=<?= $line?>&material=<?= $material?>&costRange=<?= $costRangeId?>" class="page-link"><?= $i; ?></a></li>
+                                        <?php endfor; ?>
+                                        <li class="page-item <?= ($page == $pages) ? 'disabled' : '' ?>">
+                                            <a href="product.php?categoryId=<?= $categoryId ?>&page=<?= $Next; ?>&line=<?= $line?>&material=<?= $material?>&costRange=<?= $costRangeId ?>" aria-label="Next" class="page-link">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
                         <?php
                         } else {
                             echo '<div class="alert alert-warning" role="alert"><i class="fa-light fa-circle-exclamation"></i> Không tìm thấy sản phẩm nào</div>';
@@ -401,9 +433,9 @@ require_once './database/DB.php';
 
                         $conn->close();
                         ?>
-                  
+
                     </div>
-                   
+
                     <?php
 
                     ?>
@@ -467,6 +499,16 @@ require_once './database/DB.php';
                 }
             });
         }
+        function checkline(s1, s2) {
+    var s1Array = s1.split(" ");
+    var s2Array = s2.split(",");
+    for (var i = 0; i < s1Array.length; i++) {
+        if (s2Array.includes(s1Array[i])) {
+            return true;
+        }
+    }
+    return false;
+}
 
         $(document).ready(function() {
             loadCartAjax();
@@ -478,6 +520,27 @@ require_once './database/DB.php';
                     $("#navbar-top").removeClass('fix-nav')
                 }
             })
+        });
+
+        $(document).ready(function() {
+            $(".form-check-category, .form-check-line, .form-check-material, .form-check-cost-range").change(function() {
+                var categoryId = $(".form-check-category:checked").map(function() {
+                    return $(this).val();
+                }).get().join(",");
+
+                var line = $(".form-check-line:checked").map(function() {
+                    return $(this).val();
+                }).get().join(",");
+                
+                var material = $(".form-check-material:checked").map(function() {
+                    return $(this).val();
+                }).get().join(",");
+                
+                var costRange = $(".form-check-cost-range:checked").map(function() {
+                    return $(this).val();
+                }).get().join(",");
+                window.location.href = "<?php echo $rootPath ?>/product.php?categoryId=" + categoryId + "&page=<?= $page ?>" + "&line=" + line + "&material=" + material + "&costRange=" + costRange;
+            });
         });
     </script>
     <script src="./public/javascripts/liveSearch.js"></script>
