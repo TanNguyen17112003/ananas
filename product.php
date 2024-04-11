@@ -1,7 +1,7 @@
 <?php
 session_start();
 ob_start();
-$rootPath = '/Lap_trinh_web';
+$rootPath = '/ananas';
 require_once './database/DB.php';
 ?>
 <!DOCTYPE html>
@@ -15,113 +15,114 @@ require_once './database/DB.php';
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
     <link rel="icon" type="image/x-icon" href="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/css/base.css">
     <link rel="stylesheet" href="./public/css/product.css">
     <style>
-        @media (min-width: 992px) {
-            .collapse-option {
-                display: block !important;
-            }
+    @media (min-width: 992px) {
+        .collapse-option {
+            display: block !important;
         }
+    }
 
-        @media (max-width: 992px) {
-            .shipping-banner {
-                padding-left: 0;
-                padding-right: 0;
-            }
+    @media (max-width: 992px) {
+        .shipping-banner {
+            padding-left: 0;
+            padding-right: 0;
         }
+    }
 
+    .pagination {
+        font-family: 'Ubuntu', sans-serif;
+        display: inline-flex;
+        position: relative;
+    }
+
+    .pagination-outer {
+        text-align: center;
+    }
+
+    .pagination li a.page-link {
+        color: #fff;
+        background-color: #333;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 39px;
+        height: 40px;
+        width: 40px;
+        padding: 0;
+        margin: 0 5px;
+        border: none;
+        border-radius: 7px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease 0s;
+    }
+
+    .pagination li a.page-link:hover,
+    .pagination li a.page-link:focus,
+    .pagination li.active a.page-link:hover,
+    .pagination li.active a.page-link {
+        color: #fff;
+        background: #2ecc71;
+    }
+
+    .pagination li a.page-link:before,
+    .pagination li a.page-link:after {
+        content: '';
+        background: #555;
+        height: 100%;
+        width: 7px;
+        border-radius: 10px 0 0 10px;
+        opacity: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        transition: all 0.4s ease 0s;
+    }
+
+    .pagination li a.page-link:after {
+        border-radius: 0 10px 10px 0;
+        left: auto;
+        right: 0;
+        top: auto;
+        bottom: 0;
+    }
+
+    .pagination li a.page-link:hover:before,
+    .pagination li a.page-link:focus:before,
+    .pagination li.active a.page-link:before {
+        background-color: #27ae60;
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        height: 7px;
+    }
+
+    .pagination li a.page-link:hover:after,
+    .pagination li a.page-link:focus:after,
+    .pagination li.active a.page-link:after {
+        background-color: #27ae60;
+        border-radius: 0 0 10px 10px;
+        width: 100%;
+        height: 7px;
+    }
+
+    @media only screen and (max-width: 480px) {
         .pagination {
-            font-family: 'Ubuntu', sans-serif;
-            display: inline-flex;
-            position: relative;
-        }
-
-        .pagination-outer {
-            text-align: center;
-        }
-
-        .pagination li a.page-link {
-            color: #fff;
-            background-color: #333;
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 39px;
-            height: 40px;
-            width: 40px;
-            padding: 0;
-            margin: 0 5px;
+            font-size: 0;
             border: none;
-            border-radius: 7px;
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-            transition: all 0.3s ease 0s;
+            display: inline-block;
         }
 
-        .pagination li a.page-link:hover,
-        .pagination li a.page-link:focus,
-        .pagination li.active a.page-link:hover,
-        .pagination li.active a.page-link {
-            color: #fff;
-            background: #2ecc71;
+        .pagination li {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 0 10px;
         }
-
-        .pagination li a.page-link:before,
-        .pagination li a.page-link:after {
-            content: '';
-            background: #555;
-            height: 100%;
-            width: 7px;
-            border-radius: 10px 0 0 10px;
-            opacity: 1;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: -1;
-            transition: all 0.4s ease 0s;
-        }
-
-        .pagination li a.page-link:after {
-            border-radius: 0 10px 10px 0;
-            left: auto;
-            right: 0;
-            top: auto;
-            bottom: 0;
-        }
-
-        .pagination li a.page-link:hover:before,
-        .pagination li a.page-link:focus:before,
-        .pagination li.active a.page-link:before {
-            background-color: #27ae60;
-            border-radius: 10px 10px 0 0;
-            width: 100%;
-            height: 7px;
-        }
-
-        .pagination li a.page-link:hover:after,
-        .pagination li a.page-link:focus:after,
-        .pagination li.active a.page-link:after {
-            background-color: #27ae60;
-            border-radius: 0 0 10px 10px;
-            width: 100%;
-            height: 7px;
-        }
-
-        @media only screen and (max-width: 480px) {
-            .pagination {
-                font-size: 0;
-                border: none;
-                display: inline-block;
-            }
-
-            .pagination li {
-                display: inline-block;
-                vertical-align: top;
-                margin: 0 0 10px;
-            }
-        }
+    }
     </style>
 
 </head>
@@ -199,7 +200,8 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
                 </div>
                 <div class="px-4 collapse-option" id="collapseOptions">
                     <div class="mb-5">
-                        <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse" href="#collapseStyle" role="button" aria-expanded="false" aria-controls="collapseStyle">
+                        <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse"
+                            href="#collapseStyle" role="button" aria-expanded="false" aria-controls="collapseStyle">
                             <span class="user-select-none" style="font-size: 24px; font-weight: bold">Kiểu dáng</span>
                         </a>
                         <ul class="collapse list-unstyled" id="collapseStyle">
@@ -226,8 +228,11 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
                         </ul>
                     </div>
                     <div class=" mb-5">
-                        <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse" href="#collapseProductLine" role="button" aria-expanded="false" aria-controls="collapseProductLine">
-                            <span class="user-select-none" style="font-size: 24px; font-weight: bold">Dòng sản phẩm</span>
+                        <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse"
+                            href="#collapseProductLine" role="button" aria-expanded="false"
+                            aria-controls="collapseProductLine">
+                            <span class="user-select-none" style="font-size: 24px; font-weight: bold">Dòng sản
+                                phẩm</span>
                         </a>
                         <ul class="collapse list-unstyled" id="collapseProductLine">
                             <div class="text-decoration-none text-black font-weight-bold">
@@ -273,7 +278,9 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
                         </ul>
                     </div>
                     <div class=" mb-5">
-                        <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse" href="#collapseCostRange" role="button" aria-expanded="false" aria-controls="collapseCostRange">
+                        <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse"
+                            href="#collapseCostRange" role="button" aria-expanded="false"
+                            aria-controls="collapseCostRange">
                             <span class="user-select-none" style="font-size: 24px; font-weight: bold">Giá</span>
                         </a>
                         <ul class="collapse list-unstyled" id="collapseCostRange">
@@ -308,7 +315,9 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
                         </ul>
                     </div>
                     <div class="mb-5">
-                        <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse" href="#collapseMaterial" role="button" aria-expanded="false" aria-controls="collapseMaterial">
+                        <a class="dropdown-toggle list text-decoration-none text-warning" data-toggle="collapse"
+                            href="#collapseMaterial" role="button" aria-expanded="false"
+                            aria-controls="collapseMaterial">
                             <span class="user-select-none" style="font-size: 24px; font-weight: bold">Chất liệu</span>
                         </a>
                         <ul class="collapse list-unstyled" id="collapseMaterial">
@@ -365,7 +374,7 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
                         <?php
                         if ($total > 0) {
                         ?>
-                            <?php
+                        <?php
                             foreach ($products as $row) :
                             ?>
 
@@ -383,14 +392,14 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
                                                         <?php
                                                         if ($row["price_sale"] != 0) {
                                                         ?>
-                                                            <?php
+                                                <?php
                                                             echo '<del class="text-secondary">' . number_format($row["price"]) . '</del><sup>đ</sup>';
                                                             ?>
 
-                                                            <?php
+                                                <?php
                                                             echo '<strong><span class="text-danger ms-3">' . number_format($row["price_sale"]) . '<sup>đ</sup></span></strong>';
                                                             ?>
-                                                        <?php
+                                                <?php
                                                             // nếu không có khuyến mãi, hiện giá gốc
                                                         } else {
                                                             echo '<strong>' . number_format($row["price"]) . '<sup>đ</sup></strong>';
@@ -434,7 +443,9 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
                         $conn->close();
                         ?>
 
+
                     </div>
+
 
                     <?php
 
@@ -450,25 +461,35 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
     ?>
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./public/javascripts/loadCartHeader.js"></script>
 
     <script>
-        window.onload = function() {
-            var limit;
+    window.onload = function() {
+        var limit;
 
-            if (window.innerWidth <= 480) { // Mobile devices
-                limit = 8;
-            } else if (window.innerWidth <= 768) { // Tablets
-                limit = 12;
-            } else { // Desktop
-                limit = 15;
-            }
+        if (window.innerWidth <= 480) { // Mobile devices
+            limit = 8;
+        } else if (window.innerWidth <= 768) { // Tablets
+            limit = 12;
+        } else { // Desktop
+            limit = 15;
+        }
 
             // Use AJAX to send a request to the server with the limit
             var xhr = new XMLHttpRequest();
@@ -510,8 +531,8 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
     return false;
 }
 
-        $(document).ready(function() {
-            loadCartAjax();
+    $(document).ready(function() {
+        loadCartAjax();
 
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 114) {

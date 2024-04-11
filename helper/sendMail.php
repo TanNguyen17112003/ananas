@@ -2,9 +2,6 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// require './PHPMailer/src/Exception.php';
-// require './PHPMailer/src/PHPMailer.php';
-// require './PHPMailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 
@@ -18,26 +15,26 @@ function sendMailOrder($mail, $receiver, $content) {
         $mail->SMTPSecure = "tls"; //ssl
         $mail->Host = 'smtp.gmail.com';                     
         $mail->Port = 587; //465
-        $mail->Username = 'tungnd.goat@gmail.com';
-        $mail->Password = 'qzvu gbfs ovqg gtvc';                          
+        $mail->Username = 'ghetueyh@gmail.com';
+        $mail->Password = 'tcps wzhs ihui dytw';                          
         
         // Recipients
-        $mail->setFrom('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
+        $mail->setFrom('ghetueyh@gmail.com', 'Ananas_ADMIN');
         $mail->addAddress($receiver['email'], $receiver['name']);     
-        $mail->addReplyTo('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
+        $mail->addReplyTo('ghetueyh@gmail.com', 'Ananas_ADMIN');
 
         // Content
         $mail->isHTML(true);                                  
-        $mail->Subject = 'HongTraNgoGia_ADMIN xác nhận đơn hàng #'.$receiver['id'];
+        $mail->Subject = 'Ananas_ADMIN xác nhận đơn hàng #'.$receiver['id'];
         $mail->Body = ' <html>
                             <body>
                                 <h3>Xin chào '.$receiver['name'].'</h3>
-                                <p>Cảm ơn quý khách đã đặt hàng tại <a href="#">HongTraNgoGia_ADMIN</a>.</p>
+                                <p>Cảm ơn quý khách đã đặt hàng tại <a href="#">Ananas_ADMIN</a>.</p>
                                 <p>Đơn hàng quý khách sẽ sớm được gửi đi sau khi nhân viên của chúng tôi hoàn tất các thủ tục.</p>
                                 <div>'.$content.'</div>
-                                <p>Mọi thắc mắc xin vui lòng liên hệ qua gmail: tungnd.goat@gmail.com</p>
+                                <p>Mọi thắc mắc xin vui lòng liên hệ qua gmail: ghetueyh@gmail.com</p>
                                 <p>Xin kính chúc sức khỏe và may mắn!</p>
-                                <p><b style="color: blue">HongTraNgoGia_ADMIN</b></p>
+                                <p><b style="color: blue">Ananas_ADMIN</b></p>
                             </body>
                         </html>';
 
@@ -58,17 +55,17 @@ function verifyEmail($mail, $receiver, $verifyCode) {
         $mail->SMTPSecure = "tls"; //ssl
         $mail->Host = 'smtp.gmail.com';                     
         $mail->Port = 587; //465
-        $mail->Username = 'tungnd.goat@gmail.com';
-        $mail->Password = 'qzvu gbfs ovqg gtvc';                          
+        $mail->Username = 'ghetueyh@gmail.com';
+        $mail->Password = 'tcps wzhs ihui dytw';                          
         
         // Recipients
-        $mail->setFrom('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
+        $mail->setFrom('ghetueyh@gmail.com', 'Ananas_ADMIN');
         $mail->addAddress($receiver['email'], $receiver['name']);     
-        $mail->addReplyTo('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
+        $mail->addReplyTo('ghetueyh@gmail.com', 'Ananas_ADMIN');
 
         // Content
         $mail->isHTML(true);                                  
-        $mail->Subject = 'HongTraNgoGia_ADMIN xác thực tài khoản tạo mới';
+        $mail->Subject = 'Ananas_ADMIN xác thực tài khoản tạo mới';
         $mail->Body = ' <html>
                             <body>
                                 <h3>Xin chào '.$receiver['name'].'</h3>
@@ -78,9 +75,9 @@ function verifyEmail($mail, $receiver, $verifyCode) {
                                 <p>Quý khách vui lòng điền mã xác thực để sử dụng tài khoản này trên Website của chúng tôi.</p>
                                 <p>Mã xác thực kích hoạt tài khoản:</p>
                                 <div><b>'.$verifyCode.'</b></div>
-                                <p>Mọi thắc mắc xin vui lòng liên hệ qua gmail: tungnd.goat@gmail.com</p>
+                                <p>Mọi thắc mắc xin vui lòng liên hệ qua gmail: ghetueyh@gmail.com</p>
                                 <p>Xin kính chúc sức khỏe và may mắn!</p>
-                                <p><b style="color: blue">HongTraNgoGia_ADMIN</b></p>
+                                <p><b style="color: blue">Ananas_ADMIN</b></p>
                             </body>
                         </html>';
 
@@ -101,17 +98,17 @@ function resetPassword($mail, $receiver) {
         $mail->SMTPSecure = "tls"; //ssl
         $mail->Host = 'smtp.gmail.com';                     
         $mail->Port = 587; //465
-        $mail->Username = 'tungnd.goat@gmail.com';
-        $mail->Password = 'qzvu gbfs ovqg gtvc';                          
+        $mail->Username = 'ghetueyh@gmail.com';
+        $mail->Password = 'tcps wzhs ihui dytw';                          
         
         // Recipients
-        $mail->setFrom('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
+        $mail->setFrom('ghetueyh@gmail.com', 'Ananas_ADMIN');
         $mail->addAddress($receiver['email'], $receiver['name']);     
-        $mail->addReplyTo('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
+        $mail->addReplyTo('ghetueyh@gmail.com', 'Ananas_ADMIN');
 
         // Content
         $mail->isHTML(true);                                  
-        $mail->Subject = 'HongTraNgoGia_ADMIN xác thực thông tin tài khoản';
+        $mail->Subject = 'Ananas_ADMIN xác thực thông tin tài khoản';
         $mail->Body = ' <html>
                             <body>
                                 <h3>Xin chào '.$receiver['name'].'</h3>
@@ -119,9 +116,10 @@ function resetPassword($mail, $receiver) {
                                 <p>Tên đăng nhập: <b style="color:blue">'.$receiver['email'].'</b></p>
                                 <p>Mật khẩu: <b style="color:blue">'.$receiver['password'].'</b></p>
                                 <p>Từ giờ quý khách có thể đăng nhập lại trên Website của chúng tôi.</p>
-                                <p>Mọi thắc mắc xin vui lòng liên hệ qua gmail: tungnd.goat@gmail.com</p>
+                                <p>Lưu ý: Quý khách vui lòng thay đổi mật khẩu sau khi đăng nhập.</p>
+                                <p>Mọi thắc mắc xin vui lòng liên hệ qua gmail: ghetueyh@gmail.com</p>
                                 <p>Xin kính chúc sức khỏe và may mắn!</p>
-                                <p><b style="color: blue">HongTraNgoGia_ADMIN</b></p>
+                                <p><b style="color: blue">Ananas_ADMIN</b></p>
                             </body>
                         </html>';
 
@@ -142,26 +140,26 @@ function sendLink2ChangePWD($mail, $receiver, $content) {
         $mail->SMTPSecure = "tls"; //ssl
         $mail->Host = 'smtp.gmail.com';                     
         $mail->Port = 587; //465
-        $mail->Username = 'tungnd.goat@gmail.com';
-        $mail->Password = 'qzvu gbfs ovqg gtvc';                          
+        $mail->Username = 'ghetueyh@gmail.com';
+        $mail->Password = 'tcps wzhs ihui dytw';                          
         
         // Recipients
-        $mail->setFrom('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
+        $mail->setFrom('ghetueyh@gmail.com', 'Ananas_ADMIN');
         $mail->addAddress($receiver['email'], $receiver['name']);     
-        $mail->addReplyTo('tungnd.goat@gmail.com', 'HongTraNgoGia_ADMIN');
+        $mail->addReplyTo('ghetueyh@gmail.com', 'Ananas_ADMIN');
 
         // Content
         $mail->isHTML(true);                                  
-        $mail->Subject = 'HongTraNgoGia_ADMIN gửi link thay đổi mật khẩu';
+        $mail->Subject = 'Ananas_ADMIN gửi link thay đổi mật khẩu';
         $mail->Body = ' <html>
                             <body>
                                 <h3>Xin chào '.$receiver['name'].'</h3>
                                 <p>Chúng tôi vừa nhận được yêu cầu thay đổi mật khẩu cho tài khoản của bạn:</p>
                                 <p>Bạn hãy Click vào đường dẫn dưới đây để có thể thay đổi mật khẩu:</p>
                                 <div>'.$content.'</div>
-                                <p>Mọi thắc mắc xin vui lòng liên hệ qua gmail: tungnd.goat@gmail.com</p>
+                                <p>Mọi thắc mắc xin vui lòng liên hệ qua gmail: ghetueyh@gmail.com</p>
                                 <p>Xin kính chúc sức khỏe và may mắn!</p>
-                                <p><b style="color: blue">HongTraNgoGia_ADMIN</b></p>
+                                <p><b style="color: blue">Ananas_ADMIN</b></p>
                             </body>
                         </html>';
 

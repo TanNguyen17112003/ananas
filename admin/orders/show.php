@@ -1,7 +1,7 @@
 <?php
 session_start();
 ob_start();
-$rootPath = '/Lap_trinh_web/admin';
+$rootPath = '/ananas/admin';
 if (!isset($_SESSION["email_ad"])) {
     header('location: ../login.php');
 }

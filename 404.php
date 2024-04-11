@@ -1,5 +1,5 @@
 <?php
-$rootPath = '/Lap_trinh_web';
+$rootPath = '/ananas';
 ?>
 <!DOCTYPE html>
 <html lang="en">

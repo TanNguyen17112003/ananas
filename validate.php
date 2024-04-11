@@ -7,13 +7,6 @@ function validateEmail($email) {
     return $error;
 }
 
-function validatePhone($phone) {
-    $error = "";
-    if (!preg_match("/^[0-9]{10}/", $phone)) {
-        $error = "Số điện thoại phải bao gồm 10 chữ số.";
-    }
-    return $error;
-}
 
 function validatePassword($password) {
     $error = "";
@@ -27,13 +20,6 @@ function validatePassword($password) {
     return $error;
 }
 
-function validateURL($url) {
-    $error = "";
-    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)) {
-        $error = "URL không hợp lệ.";
-    }
-    return $error;
-}
 
 function checkPassword($password1, $password2) {
     $error = "";
