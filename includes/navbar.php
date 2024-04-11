@@ -28,6 +28,9 @@
         <li class="nav-item">
           <a class="nav-link <?= ($current_page == $rootPath . '/contact.php') ? 'active text-danger' : '' ?>" href="<?php echo $rootPath; ?>/contact.php">LIÊN HỆ</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link <?= ($current_page == $rootPath . '/posts.php') ? 'active text-danger' : '' ?>" href="<?php echo $rootPath; ?>/posts.php">BÀI VIẾT</a>
+        </li>
         <?php
         if (isset($_SESSION['email_user'])) {
         ?>

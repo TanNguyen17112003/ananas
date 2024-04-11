@@ -1,13 +1,37 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
 <style>
     code {
-        color:white;
+        color: white;
+    }
+
+    .no-bullets {
+        color: white;
+    }
+
+    .arrow-icon {
+        font-size: 1rem;
+        color: black;
+    }
+
+    .icon {
+        font-size: 2rem;
+        color: white;
+    }
+
+    .no-bullets li a {
+        color: white;
+        opacity: 0.6;
+        text-decoration: none;
     }
 
     .footer_share {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Adjust this value based on your layout */
+        height: 100vh;
+        /* Adjust this value based on your layout */
     }
 
     .list-inline {
@@ -15,23 +39,49 @@
         padding: 0;
         margin: 0;
         display: flex;
-        gap: 10px; /* Adjust the gap between icons as needed */
+        gap: 10px;
+        /* Adjust the gap between icons as needed */
     }
-    .brand-name>div{
+
+    .brand-name>div {
         display: grid;
         grid-template-columns: auto;
         justify-content: center;
     }
-    .brand-name>div>ul{
+
+    .search-button {
+        width: 100%;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .brand-name>div>a {
+        display: grid;
+        grid-template-columns: auto;
+        justify-items: center;
+    }
+
+    .brand-name>div>ul {
         margin: auto;
     }
-    .footer-row aside{
-            display: grid;
-            grid-template-columns: auto;
-            justify-content: center;
+
+    .footer-row aside {
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
     }
-    @media (min-width: 768px) and (max-width: 1280px){
-        .footer-row{
+
+    .submit-form {
+        display: flex;
+        align-items: center;
+        gap: 3;
+    }
+
+    .border-bottom-dash {
+        border-bottom: 1px dashed white;
+    }
+    @media (min-width: 768px) and (max-width: 1280px) {
+        .footer-row {
             display: grid;
             grid-template-columns: auto;
             justify-items: center;
@@ -39,87 +89,99 @@
     }
 </style>
 
-<footer class="bg-dark" id="tempaltemo_footer" style="background-image: url(https://wujiateavn.com/images/bg_footer.png);">
-    <div class="container" >
-        <div class="row footer-row">
-            <div class="col-md-3 pt-5 brand-name">
-                <div>
-                <img style="width: 70%;" class="mb-3 mx-auto" src="https://wujiateavn.com/files/systems/logo-l6m1s0u2.png" alt="logo.png">
-                </div>
-                <div class="col-auto me-auto">
-                    <ul class="list-inline text-left footer-icons">
-                        <!-- Facebook -->
-                        <li class="list-inline-item text-center">
-                            <a class="text-color-primary text-light text-decoration-none rounded-circle text-center" target="_blank" href="https://www.facebook.com/HongTraNgoGia.vn">
-                                <i class="fab fa-facebook-f fa-lg fa-fw"></i>
-                            </a>
-                        </li>
-                        <!-- GitHub -->
-                        <li class="list-inline-item text-center">
-                            <a class="text-color-primary text-light text-decoration-none" target="_blank" href="https://github.com/Conganhluan/Lap_trinh_web">
-                                <i class="fab fa-github fa-lg fa-fw"></i>
-                            </a>
-                        </li>
-                        <!-- Google Maps -->
-                        <li class="list-inline-item text-center">
-                            <a class="text-color-primary text-light text-decoration-none" target="_blank" href="https://maps.app.goo.gl/ch5M15RfMk7D5mfF7">
-                                <i class="fas fa-shopping-cart fa-lg fa-fw"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="col-md-6 pt-5">
-                <h4 class="border-bottom pb-3 border-light" style="color:black">Thông tin liên hệ</h4>
-                <ul class="list-unstyled text-light footer-link-list">
-                    <li>
-                        <i class="fas fa-map-marker-alt fa-fw"></i>
-                        <code>Địa chỉ: Đại học Bách Khoa, Bình Dương, Việt Nam</code>
-                    </li>
-                    <li>
-                        <i class="fa fa-info-circle fa-fw"></i>
-                        <code>Nhượng quyền: <a class="text-decoration-none" href="tel:0965210839"><span style="color: #ffff00"> 0965-210-839</a> (Thứ 2 - Thứ 7 / 8:00 AM - 17:00 PM)  </span></code>
-                    </li>
-                    <li>
-                        <i class="fa fa-phone fa-fw"></i>
-                        <code>Điện thoại: </code><a class="text-decoration-none text-light" href="tel:02822538043"><code><span style="color: #ffff00">02-822-538-043</span></code></a>
-                    </li>
-                    <li>
-                        <i class="fa fa-envelope fa-fw"></i>
-                        <code>Email: </code><a class="text-decoration-none text-light" href="mailto:marketingngogia@gmail.com"><code>marketingngogia@gmail.com</code></a>
-                    </li>
-                </ul>
+<footer class="footer container-fluid hidden-xs hidden-sm bg-secondary py-3">
+    <div class="row">
+        <div class="col-lg-3 sec-search">
+            <div class="row center d-xs-none d-none d-lg-block">
+                <img src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/Store.svg">
             </div>
-
-            <div class="col-md-3 pt-5">
-                <aside>
-                    <!-- Include the Facebook SDK -->
-                    <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0" nonce="YOUR_NONCE_VALUE"></script>
-
-                    <!-- Embed the Facebook Like Box -->
-                    <div class="fb-like-box"
-                        data-href="https://www.facebook.com/HongTraNgoGia.vn"
-                        data-width="320"
-                        data-height="450"
-                        data-colorscheme="light"
-                        data-show-faces="true"
-                        data-header="false"
-                        data-stream="false"
-                        data-show-border="false">
-                    </div>
-                </aside>
-            </div>
+            <button class="btn btn-warning search-button text-white mb-3">TÌM CỬA HÀNG</button>
         </div>
-    </div>
 
-    <div class="w-100 py-1" style="background-color: #058dbf">
-        <div class="container">
-            <div class="row pt-2">
-                <div class="col-12">
-                    <p class="text-center text-light user-select-none">
-                        <code>Copyright &copy; 2023 Bài tập lớn Lập trình Web (CO3049)</code>
-                    </p>
+        <div class="col-lg-9 sec-cont">
+            <div class="row sec-cont-menu">
+                <div class="col-lg-3 py-4 border-bottom-dash">
+                    <h5 class="user-select-none text-white d-lg-block font-bold d-inline">SẢN PHẨM</h5>
+                    <a class="dropdown-toggle list text-decoration-none text-white d-lg-none" data-toggle="collapse" href="#collapseProduct" role="button" aria-expanded="false" aria-controls="collapseProduct">
+                    </a>
+                    <ul class="no-bullets d-lg-block collapse list-unstyled" id="collapseProduct">
+                        <li><a href="/product-list?gender=men&amp;category=shoes&amp;attribute=">Giày Nam</a></li>
+                        <li><a href="/product-list?gender=women&amp;category=shoes&amp;attribute=">Giày Nữ</a></li>
+                        <li><a href="/product-list?gender=men,women&amp;category=top,bottom,accessories&amp;attribute=">Thời trang &amp; Phụ kiện</a></li>
+                        <li><a href="/promotion/clearance-sale/">Sale-off</a></li>
+                    </ul>
+                    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapseProduct" aria-controls="collapseProduct" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="col-lg-3 py-4 border-bottom-dash ">
+                    <h5 class="user-select-none text-white d-lg-block font-bold d-inline">VỀ CÔNG TY</h5>
+                    <a class="dropdown-toggle list text-decoration-none text-white d-lg-none" data-toggle="collapse" href="#collapseCompany" role="button" aria-expanded="false" aria-controls="collapseCompany">
+                    </a>
+                    <ul class="no-bullets d-lg-block collapse list-unstyled" id="collapseCompany">
+                        <li><a href="/career">Dứa tuyển dụng</a></li>
+                        <li><a href="/franchise-policy">Liên hệ nhượng quyền</a></li>
+                        <li><a href="/comming-soon">Về Ananas</a></li>
+                    </ul>
+                    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapseCompany" aria-controls="collapseCompany" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="col-lg-3 py-4 border-bottom-dash">
+                    <h5 class="user-select-none text-white d-lg-block font-bold d-inline">HỖ TRỢ</h5>
+                    <a class="dropdown-toggle list text-decoration-none text-white d-lg-none" data-toggle="collapse" href="#collapseSupport" role="button" aria-expanded="false" aria-controls="collapseSupport">
+                    </a>
+                    <ul class="no-bullets d-lg-block collapse list-unstyled" id="collapseSupport">
+                        <li><a href="/faqs">FAQs</a></li>
+                        <li><a href="/privacy">Bảo mật thông tin</a></li>
+                        <li><a href="/policy">Chính sách chung</a></li>
+                        <li><a href="/search-order/">Tra cứu đơn hàng</a></li>
+                    </ul>
+                    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapseSupport" aria-controls="collapseSupport" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="col-lg-3 py-4 border-bottom-dash ">
+                    <h5 class="user-select-none text-white d-lg-block font-bold d-inline">LIÊN HỆ</h5>
+                    <a class="dropdown-toggle list text-decoration-none text-white d-lg-none" data-toggle="collapse" href="#collapseContact" role="button" aria-expanded="false" aria-controls="collapseContact">
+                    </a>
+                    <ul class="no-bullets d-lg-block collapse list-unstyled" id="collapseContact">
+                         <li><a href="/comming-soon">Email góp ý</a></li>
+                        <li><a href="">Hotline</a></li>
+                        <li><a href="">0963 429 749</a></li>
+                    </ul>
+                    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapseContact" aria-controls="collapseContact" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6 col-lg-3">
+                    <h4 class="text-white mb-3">ANANAS SOCIAL</h4>
+                    <a href="https://www.facebook.com/Ananas.vietnam/"><i class="fa-brands fa-facebook icon"></i></a>&nbsp;
+                    <a href="https://www.instagram.com/ananasvn/"><i class="fa-brands fa-instagram icon"></i></a>&nbsp;
+                    <a href="https://www.youtube.com/discoveryou"><i class="fa-brands fa-youtube icon mb-3"></i></a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h4 class="text-white mb-3">ĐĂNG KÝ NHẬN MAIL</h4>
+                    <div class="form-group subscribe-group submit-form">
+                        <input type="email" class="form-control inputReceiveMail" id="inputRecieveMail">
+                        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-6 logo-footer d-none d-lg-block">
+                    <a href="https://ananas.vn"><img src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/Logo_Ananas_Footer.svg"></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 icon-bct">
+                    <a href="http://online.gov.vn/Home/WebDetails/61921"><img src=""></a>
+                </div>
+                <div class="col-md-9 copyright text-primary mt-5">
+                    Copyright © 2022 Ananas. All rights reserved.
                 </div>
             </div>
         </div>

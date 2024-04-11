@@ -27,6 +27,8 @@ include_once './helper/sendMail.php';
         $errorName = $errorEmail = $errorPhone = $errorPassword = $errorRePassword = "";
         $name = mysqli_real_escape_string($conn, $_POST['name']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+        $address = mysqli_real_escape_string($conn, $_POST['address']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
         $re_password = mysqli_real_escape_string($conn, $_POST['repeatPassword']);
         if($name == "") {
@@ -56,16 +58,12 @@ include_once './helper/sendMail.php';
           $sql = "INSERT INTO user (name, email, phone, address, password, verify_code) 
                   VALUES ('$name', '$email', '$phone', '$address', '$hashPassword', '$verifyCode')";
           if ($conn->query($sql) === TRUE) {
-          //     // send mail 
+            // send mail 
               $receiver = [
                 'name' => $name,
                 'email' => $email,
                 'password' => $password,
               ];
-          //     // print_r($receiver);
-          //     // exit;
-          //     // verifyEmail($mail, $receiver, $verifyCode);
-          //     // header("Location: ./customer/verifyOTP.php");
               verifyEmail($mail, $receiver, $verifyCode);
               header("Location: ./auth/register.php?email=$email");
 
@@ -166,8 +164,20 @@ include_once './helper/sendMail.php';
                                             </div>
                                         </div>
 
-
-
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-location-dot fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="addressInput" class="form-control" name="address" value="<?php echo $address?>"
+                                                    placeholder="Your address" />
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-phone fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="number" id="phoneInput" class="form-control" name="phone" value="<?php echo $phone?>"
+                                                    placeholder="Your phone number" />
+                                            </div>
+                                        </div>
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <button name="register" type="submit"
                                                 class="btn btn-primary btn-lg">Register</button>

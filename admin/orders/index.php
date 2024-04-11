@@ -21,6 +21,7 @@ require_once '../../database/DB.php';
     <link rel="stylesheet" href="../../public/css/base.css">
     <link rel="stylesheet" href="../../public/css/home.css">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png">
 </head>
 <body>
 

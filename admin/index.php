@@ -39,7 +39,7 @@ require_once '../database/DB.php';
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="<?php echo $rootPath?>/report.php" class="sidebar-link">
+                    <a href="<?php echo $rootPath?>/report" class="sidebar-link">
                         <i class="lni lni-grid-alt"></i>
                         <span>Thống kê</span>
                     </a>
