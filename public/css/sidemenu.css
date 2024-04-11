@@ -1,5 +1,6 @@
 .wrapper {
     display: flex;
+    align-items: flex-start;
 }
 
 .main {
@@ -18,6 +19,10 @@
     background-color: #0e2238;
     display: flex;
     flex-direction: column;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
 }
 
 #sidebar.expand {
