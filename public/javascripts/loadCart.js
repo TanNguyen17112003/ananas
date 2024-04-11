@@ -1,10 +1,9 @@
 function loadCartAjax() {
     $.ajax({
         url: "ajax/loadCart.php",
-        type: 'POST',
-        dataType: 'json',
-        data: {
-        },
+        type: "POST",
+        dataType: "json",
+        data: {},
         success: function (data) {
             var cart = document.getElementById("cart");
             var headerCart = document.getElementById("headerCart");
@@ -14,6 +13,6 @@ function loadCartAjax() {
         error: function (e) {
             console.log(e.message);
             throw e;
-        }
+        },
     });
 }

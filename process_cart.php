@@ -7,27 +7,30 @@
         $action = $_GET['action'];
         settype($_GET['id'], 'int');
         settype($_GET['quantity'], 'int');
+        $size = $_GET['size'];
         $id = $_GET['id'];
         $quantity = $_GET['quantity'];
+        $productKey = $id . "_" . $size;
         switch ($action) {
             case 'add':
                 if ($id==0 || $quantity==0) 
                     header('location: product.php');
-                if (isset($_SESSION['cart'][$id])) {
+                if (isset($_SESSION['cart'][$productKey])) {
                     // nếu sản phẩm đã có trong giỏ thì tăng số lượng sản phẩm
                     $_SESSION['cart'][$id]['quantity'] += $quantity;
                     $conn->close();
                     header('location: product.php');
                 } else {
-                    // nếu sản phẩm chưa có trong giỏ thì set số lượng là 1
+                    //nếu sản phẩm chưa có trong giỏ thì set số lượng là 1
                     $sql = "SELECT name, images, price, price_sale FROM product WHERE product_id='$id'";
                     $product = $conn->query($sql);
                     if ($product->num_rows > 0) {
                         $row = $product->fetch_array();
                         $price = $row['price_sale'] != 0 ? $row['price_sale'] : $row['price'];
-                        $_SESSION['cart'][$id] = array(
+                        $_SESSION['cart'][$productKey] = array(
                         "id" => $id,
                         "quantity" => $quantity,
+                        "size" => $size,
                         "price" => $price,
                         "name" => $row['name'],
                         "img" => $row['images']

@@ -2,10 +2,12 @@
     session_start();
     ob_start();
     $rootPath = '/ananas';
-    // require_once '../PHPMailer/src/Exception.php';
-    // require_once '../PHPMailer/src/PHPMailer.php';
-    // require_once '../PHPMailer/src/SMTP.php';
-    // include_once '../helper/sendMail.php';
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+    require_once '../PHPMailer/src/Exception.php';
+    require_once '../PHPMailer/src/PHPMailer.php';
+    require_once '../PHPMailer/src/SMTP.php';
+    include_once '../helper/sendMail.php';
 
     // Nếu khách hàng chưa đăng nhập thì chuyển đến trang đăng nhập
     if (!isset($_SESSION['email_user']) && empty($_SESSION['email_user']) ) header('location: login.php');
@@ -37,8 +39,9 @@
                     $productId = $value['id'];
                     $quantityItem = $value['quantity'];
                     $price = $value['price'];
-                    $sqlOrderItem = "INSERT INTO order_item (order_id, product_id, quantity_item, price) 
-                                                VALUES ('$orderId', '$productId', '$quantityItem', '$price')";
+                    $size = $value['size'];
+                    $sqlOrderItem = "INSERT INTO order_item (order_id, product_id, quantity_item, size_item, price)
+                                                VALUES ('$orderId', '$productId', '$quantityItem', '$size', '$price')";
                     $conn->query($sqlOrderItem);
                 }
             }
@@ -56,6 +59,7 @@
                                 <th style="border: 1px solid #000; padding: 4px">STT</th>
                                 <th style="border: 1px solid #000; padding: 4px">Tên sản phẩm</th>
                                 <th style="border: 1px solid #000; padding: 4px">Số lượng</th>
+                                <th style="border: 1px solid #000; padding: 4px">Size</th>
                                 <th style="border: 1px solid #000; padding: 4px">Đơn giá</th>
                                 <th style="border: 1px solid #000; padding: 4px">Thành tiền</th>
                             </tr>
@@ -67,6 +71,7 @@
                                     <td style="border: 1px solid #000; padding: 4px">'.$i.'</td>
                                     <td style="border: 1px solid #000; padding: 4px">'.$value['name'].'</td>
                                     <td style="border: 1px solid #000; padding: 4px">'.$value['quantity'].'</td>
+                                    <td style="border: 1px solid #000; padding: 4px">'.$value['size'].'</td>
                                     <td style="border: 1px solid #000; padding: 4px">'.number_format($value['price']).' VND</td>
                                     <td style="border: 1px solid #000; padding: 4px">'.number_format($value['price'] * $value['quantity']).' VND</td>
                                 </tr>';
@@ -177,7 +182,8 @@ if (empty($_SESSION['cart'])) {
                         ?>
                             <li class="list-group-item">
                                 <p class="d-flex justify-content-between">
-                                    <span><?=$value['quantity']?>x <?=$value['name']?></span>
+                                    <span><?=$value['quantity']?>x <?=$value['name']?> (Size:
+                                        <?=$value['size']?>)</span>
                                     <span><?=number_format($value['price']*$value['quantity'])?> <sup>đ</sup> </span>
                                 </p>
                             </li>

@@ -18,9 +18,9 @@ if (isset($_SESSION["cart"]) && !empty($_SESSION["cart"])) {
                         <thead class="thead-dark">
                             <tr class="table-primary" style="text-align: center">
                                 <th scope="col">Sản phẩm</th>
-                              
                                 <th scope="col">Đơn giá</th>
                                 <th scope="col">Số lượng</th>
+                                <th scope="col">Size</th>
                                 <th scope="col">Thành tiền</th>
                                 <th scope="col">Chức năng</th>
                             </tr>
@@ -51,6 +51,7 @@ if (isset($_SESSION["cart"]) && !empty($_SESSION["cart"])) {
                                             <button class="btn btn-secondary btn-sm me-1" onclick="addCartQty(' . $value['id'] . ')">+</button>
                                         </div>
                                     </td>
+                                    <td class="text-center align-middle">' . $value['size'] . '</td>
                                     <td class="text-center text-danger align-middle"><strong>' . number_format($value['price'] * $value['quantity']) . ' <sup>đ</sup></strong></td>
                                     <td class="text-center align-middle">
                                         <button class="btn btn-danger" onclick="deleteCartItem(' . $value['id'] . ')"><i class="fa-solid fa-trash-can"></i></button>
