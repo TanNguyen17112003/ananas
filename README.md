@@ -38,7 +38,7 @@ Here's why:
 
 Of course, we have faced many difficulties during cloning the website, the flexibility really screwed us up and sometimes made us cry every single night. We, however, have managed to work harder and together and then, the problems were solved and this website was born. It is a great pleasant for us to present this project to you, hope you enjoy it and find it useful for your project too LOL.
 
-<p align="right">[<a href="#readme-top">Back to Top 🔝</a>]</p>
+
 
 
 
@@ -60,7 +60,7 @@ The following are the Programming Languages and Frameworks that my team uses dur
 
     ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Conganhluan&exclude_repo=The-Ocean-s-Mystery,Dormitory_Management,Investigation-Game,Message-To-Mail,TOEIC-Notifier&layout=pie)
 
-<p align="right">[<a href="#readme-top">Back to Top 🔝</a>]</p>
+
 
 
 
@@ -73,7 +73,7 @@ _Quickly look through the website_
 
 ![Product page](/Demo_image/product.png)
 
-![News page](/Demo_image/news.png)
+![News page](/Demo_image/post.png)
 
 ![Contact page](/Demo_image/contact.png)
 
@@ -107,7 +107,7 @@ _To run the demo version of this application, you need to follow these steps:_
     ```
     <h2>Enjoy it 🥳</h2>
 
-<p align="right">[<a href="#readme-top">Back to Top 🔝</a>]</p>
+
 
 
 
@@ -115,14 +115,14 @@ _To run the demo version of this application, you need to follow these steps:_
 ## Contact 📧
 <h3>Team members:</h3>
 
-* Nguyễn Đức Bình - [@your_github](https://github.com/binhnguyen3816) - email@example.com
-* Lê Quang Hiển - [@your_github](https://github.com/hienlq16103) - email@example.com
-* Nguyễn Công Anh Luân - [@Conganhluan](https://github.com/Conganhluan) - conganhluan@gmail.com
-* Nguyễn Duy Tùng - [@tndgoat](https://github.com/tndgoat) - tungnd.goat@gmail.com
+* Nguyễn Hoàng Duy Tân - [TanNguyen17112003](https://github.com/TanNguyen17112003) - duytan17112003@gmail.com
+* Trần Nguyễn Minh Tuệ - [Minhtuei](https://github.com/Minhtuei) -tue.tran20032003@gmail.com
+* Nguyễn Minh Lộc - [MLAkainu](https://github.com/MLAkainu) - locnguyenminh1605@hcmut.edu.vn
+* Trần Đan Huy - [GedusX](https://github.com/GedusX) - tdhuy1964@gmail.com
 
-Project Link: [https://github.com/Conganhluan/Lap_trinh_web](https://github.com/Conganhluan/Lap_trinh_web)
+Project Link: [https://github.com/TanNguyen17112003/ananas](https://github.com/TanNguyen17112003/ananas)
 
-<p align="right">[<a href="#readme-top">Back to Top 🔝</a>]</p>
+
 
 
 <!-- ACKNOWLEDGMENTS -->
@@ -136,13 +136,13 @@ After completing this Assignment, the team has achieved significant advantages f
 
 Finally, all team members express gratitude to Mr. Nguyen Huu Hieu for imparting foundational knowledge and providing opportunities for the team to test their abilities with this project.
 
-<p align="right">[<a href="#readme-top">Back to Top 🔝</a>]</p>
+
 
 ## Show your support 👨‍🚀
 
 Give a ⭐️ if this project helped you!
 
-<p align="right">[<a href="#readme-top">Back to Top 🔝</a>]</p>
+
 
 
 
