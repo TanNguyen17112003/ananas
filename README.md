@@ -2,7 +2,7 @@
 
 <!-- HCMUT LOGO -->
 <div align="center">
-  <a href="https://github.com/Conganhluan/Lap_trinh_web">
+  <a href="https://github.com/TanNguyen17112003">
     <img src="images/logo_hcmut.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -11,14 +11,14 @@
   <p align="center">
     Designing the interface and implementing basic features for the Hong tra Ngo Gia website!
     <br />
-    <a href="https://www.overleaf.com/read/bdqnrpqtnddn#f58392"><strong>Explore the docs »</strong></a>
+    <a href="https://www.overleaf.com/3422915543bdcqywrczvsr#baa171"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="#getting-started-🚀">View Demo</a>
     ·
-    <a href="https://github.com/Conganhluan/Lap_trinh_web/issues">Report Bug</a>
+    <a href="https://github.com/TanNguyen17112003/ananas/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Conganhluan/Lap_trinh_web/issues">Request Feature</a>
+    <a href="https://github.com/TanNguyen17112003/ananas/issues">Request Feature</a>
   </p>
 </div>
 
@@ -29,10 +29,10 @@
 
 ![Main page](/Demo_image/index.png)
 
-In this semester (HK231), my team has been assigned an Assignment requiring the designing of the interface and implementation of basic features for a company or business website. All members in the group reached a consensus and decided to choose the Hong Tra Ngo Gia website as a template.
+In this semester (HK232), my team has been assigned an Assignment requiring the designing of the interface and implementation of basic features for a company or business website. All members in the group reached a consensus and decided to choose Ananas website as a template. [refer here](https://ananas.vn/)
 
 Here's why:
-* We are asians and we love bubble tea, of course LOL.
+* We are young Vietnamese and we love shoes.
 * We also find their news often updated, which have given us lots of data and save us time from creating ones,
 * And the simplicity of their website LOL.
 
@@ -73,13 +73,11 @@ _Quickly look through the website_
 
 ![Product page](/Demo_image/product.png)
 
-![Search page](/Demo_image/search.png)
-
 ![News page](/Demo_image/news.png)
 
 ![Contact page](/Demo_image/contact.png)
 
-![Policy page](/Demo_image/policy.png)
+![SaleOff page](/Demo_image/saleoff.png)
 
 <!-- USAGE EXAMPLES -->
 ## Installation and Usage 📈
@@ -90,22 +88,22 @@ _To run the demo version of this application, you need to follow these steps:_
 2. Clone the Repository and put it in C:\xampp\htdocs:
    ```sh
    cd C:\xampp\htdocs
-   git clone https://github.com/Conganhluan/Lap_trinh_web.git
+   git clone https://github.com/TanNguyen17112003/ananas.git
    ```
 3. Click 'Start' for Apache and MySQL in the XAMPP interface.
 4. Go to the URL http://localhost/phpmyadmin/ to add a database.
-5. Click 'Import' -> Select the SQL file (ltwdb.sql - C:\xampp\htdocs\Lap_trinh_web\database\ltwdb.sql) in the database folder -> Click 'Go'.
+5. Click 'Import' -> Select the SQL file (ltweb.sql - C:\xampp\htdocs\ananas\database\ltweb.sql) in the database folder -> Click 'Go'.
 6. Visit the URL:
     ```sh
-    Admin: http://localhost/Lap_trinh_web/admin
-    Customer: http://localhost/Lap_trinh_web 
+    Admin: http://localhost/ananas/admin
+    Customer: http://localhost/ananas
     ```
 7. Note that:
     ```sh
     Admin account:
         Username: admin@hcmut.edu.vn
-        Password: @adminHCMUT
-    For customer accounts, you can create them without limitations.
+        Password: 123456789
+    For customer accounts, you can create them without limitations through mail validation.
     ```
     <h2>Enjoy it 🥳</h2>
 
