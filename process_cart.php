@@ -17,7 +17,7 @@
                     header('location: product.php');
                 if (isset($_SESSION['cart'][$productKey])) {
                     // nếu sản phẩm đã có trong giỏ thì tăng số lượng sản phẩm
-                    $_SESSION['cart'][$id]['quantity'] += $quantity;
+                    $_SESSION['cart'][$productKey]['quantity'] += $quantity;
                     $conn->close();
                     header('location: product.php');
                 } else {
@@ -33,7 +33,7 @@
                         "size" => $size,
                         "price" => $price,
                         "name" => $row['name'],
-                        "img" => $row['images']
+                        "img" => $row['images'],
                         );
                         $conn->close();
                         header('location: product.php');
@@ -45,13 +45,13 @@
                 }
                 break;
             case 'delete':
-                if (isset($_SESSION['cart'][$id])==0) {
+                if (isset($_SESSION['cart'][$productKey])==0) {
                     // unset($_SESSION['cart']); 
                     $conn->close();
                     header('location: cart.php');
                 }
                 else {
-                    unset($_SESSION['cart'][$id]);
+                    unset($_SESSION['cart'][$productKey]);
                     $conn->close();
                     header('location: cart.php');
                 }

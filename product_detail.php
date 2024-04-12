@@ -182,7 +182,8 @@ if ($product->num_rows > 0) {
                                 </div>
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="<?php echo $row['product_id']?>">
-                                <button id="addCartButton" onclick="addCartItem(<?= $row['product_id'] ?>)"
+                                <button id="addCartButton"
+                                    onclick="addCartItem(<?= $row['product_id'] ?>, document.getElementById('pickSize').value)"
                                     class="text-uppercase w-100 py-3 bg-black text-white <?php if ($row["quantity"] <= 0) echo 'disabled' ?>">
                                     <h4>thêm vào giỏ hàng</h4>
                                 </button>
@@ -369,8 +370,8 @@ if ($product->num_rows > 0) {
         }
     });
 
-    function addCartItem(pId) {
-        var id = pId;
+    function addCartItem(pId, size) {
+        var id = pId + "_" + size;
         console.log(id);
         $.ajax({
             url: "<?= $rootPath ?>/ajax/loadCart.php",
