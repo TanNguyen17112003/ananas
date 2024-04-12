@@ -138,8 +138,8 @@ require_once './database/DB.php';
     $start = ($page - 1) * $limit;
 
 
-$getProductsQuery = "SELECT product_id, name, images, price, price_sale, subimg_1, category_id, range_id FROM product, cost_range WHERE ((price_sale IS NOT NULL AND ((low_cost IS NULL AND price_sale < high_cost) OR (high_cost IS NULL AND price_sale > low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price_sale BETWEEN low_cost AND high_cost))) OR (price_sale IS NULL AND price IS NOT NULL AND ((low_cost IS NULL AND price < high_cost) OR (high_cost IS NULL AND price > low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price BETWEEN low_cost AND high_cost))))";
-$getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_range WHERE ((price_sale IS NOT NULL AND ((low_cost IS NULL AND price_sale < high_cost) OR (high_cost IS NULL AND price_sale > low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price_sale BETWEEN low_cost AND high_cost))) OR (price_sale IS NULL AND price IS NOT NULL AND ((low_cost IS NULL AND price < high_cost) OR (high_cost IS NULL AND price > low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price BETWEEN low_cost AND high_cost))))");
+$getProductsQuery = "SELECT product_id, name, images, price, price_sale, subimg_1, category_id, range_id FROM product, cost_range WHERE ((price_sale IS NOT NULL AND ((low_cost IS NULL AND price_sale <= high_cost) OR (high_cost IS NULL AND price_sale >= low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price_sale BETWEEN low_cost AND high_cost))) OR (price_sale IS NULL AND price IS NOT NULL AND ((low_cost IS NULL AND price <= high_cost) OR (high_cost IS NULL AND price >= low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price BETWEEN low_cost AND high_cost))))";
+$getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_range WHERE ((price_sale IS NOT NULL AND ((low_cost IS NULL AND price_sale <= high_cost) OR (high_cost IS NULL AND price_sale >= low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price_sale BETWEEN low_cost AND high_cost))) OR (price_sale IS NULL AND price IS NOT NULL AND ((low_cost IS NULL AND price <= high_cost) OR (high_cost IS NULL AND price >= low_cost) OR (low_cost IS NOT NULL AND high_cost IS NOT NULL AND price BETWEEN low_cost AND high_cost))))");
     if (isset($_GET['line'])) {
         $line = $_GET['line'];
     }
@@ -184,7 +184,6 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
     $result = $conn->query($getProductsQuery);
     $products = $result->fetch_all(MYSQLI_ASSOC);
     $total = $conn->query($getCountProductsQuery)->fetch_assoc()['id'];
-    
     $pages = ceil($total / $limit);
     $Previous = $page - 1;
     $Next = $page + 1;
