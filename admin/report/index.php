@@ -60,7 +60,7 @@ $revenue = $dataRevenue['count'];
         <div class="text-center h2 text-primary mb-4">
             Thống kê tổng quan
         </div>
-        <a class="col-xl-3 col-md-6 col-sm-12" href="<?php echo $rootPath?>/orders">
+        <a class="col-xl-3 col-md-6 col-sm-12 text-decoration-none" href="<?php echo $rootPath?>/orders">
             <div class="card bg-info">
                 <div class="card-body">
                     <h5 class="card-title text-light" style="font-size: 40px;"><b><?=$countOrder?></b></h5>
@@ -68,7 +68,7 @@ $revenue = $dataRevenue['count'];
                 </div>
             </div>
         </a>
-        <a class="col-xl-3 col-md-6 col-sm-12" href="<?php echo $rootPath?>/products">
+        <a class="col-xl-3 col-md-6 col-sm-12 text-decoration-none" href="<?php echo $rootPath?>/products">
             <div class="card bg-success">
                 <div class="card-body">
                 <h5 class="card-title text-light" style="font-size: 40px;"><b><?=$countProduct?></b></h5>
@@ -76,7 +76,7 @@ $revenue = $dataRevenue['count'];
                 </div>
             </div>
         </a>
-        <a class="col-xl-3 col-md-6 col-sm-12">
+        <a class="col-xl-3 col-md-6 col-sm-12 text-decoration-none">
             <div class="card bg-warning">
                 <div class="card-body">
                 <h5 class="card-title text-light" style="font-size: 40px;"><b><?=$revenue?></b></h5>
@@ -84,7 +84,7 @@ $revenue = $dataRevenue['count'];
                 </div>
             </div>
         </a>
-        <a class="col-xl-3 col-md-6 col-sm-12" href="<?php echo $rootPath?>/users">
+        <a class="col-xl-3 col-md-6 col-sm-12 text-decoration-none" href="<?php echo $rootPath?>/users">
             <div class="card bg-danger">
                 <div class="card-body">
                 <h5 class="card-title text-light" style="font-size: 40px;"><b><?=$countCustomer?></b></h5>

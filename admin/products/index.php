@@ -10,7 +10,7 @@ require_once '../../database/DB.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quản lý sản phẩm</title>
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -24,7 +24,7 @@ require_once '../../database/DB.php';
 
 
 <?php
-    $sqlShowProducts = "SELECT product_id, name, price, price_sale FROM product";
+    $sqlShowProducts = "SELECT product.product_id, name, price, price_sale, size, quantity FROM product, product_instock WHERE product.product_id = product_instock.product_id GROUP BY product.product_id";
     $products = $conn->query($sqlShowProducts);
 ?>
 <div class="wrapper">
@@ -40,15 +40,13 @@ require_once '../../database/DB.php';
             echo '<div class="row mb-2 text-center"><div class="alert alert-success">'.$_COOKIE['thongBao'].'</div></div>';
         }
     ?>
-	<div class="row mb-2">
-		<div class="col-xl-3 col-md-4 col-sm-12">
-			<a href="./add.php" class="ms-5 btn btn-primary">Thêm sản phẩm</a>
-		</div>
-	</div>
+	<a href="./add.php" class="btn btn-success mb-3"> 
+        <i class="fas fa-plus fa-lg me-3 fa-fw"></i>
+		<span>Thêm sản phẩm</span>
+	</a>
     <div class="row">
         <div class="col-12">
-            <div class="container mb-5">  
-   
+            <div class="mb-5">  
                 <div class="row">
                     <?php
                     if ($products->num_rows>0) {
@@ -73,37 +71,47 @@ require_once '../../database/DB.php';
                         $products = $conn->query($sqlShowProducts); 
                     ?>
                     <div class="col-12 mb-3">
-						<table class="table">
-							<thead class="table-primary">
-								<tr>
-									<th scope="col">#id</th>
-									<th scope="col">Tên sản phẩm</th>
-									<th scope="col">Giá</th>
-									<th scope="col">Giá giảm</th>
-									<th scope="col">Hàng tồn</th>
-									<th scope="col">Thao tác</th>
-								</tr>
-							</thead>
-							<tbody>
-							<?php
-								while ($row = $products->fetch_assoc()) {
-							?>
-								<tr>
-									<th scope="row"><?=$row['product_id']?></th>
-									<td><?=$row['name']?></td>
-									<td><?=$row['price']?></td>
-									<td><?=$row['price_sale']?></td>
-									<td><?=$row['quantity']?></td>
-									<td>
-										<a href="./update.php?id=<?=$row['product_id']?>" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-										<a href="./delete.php?id=<?=$row['product_id']?>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-									</td>
-								</tr>
-								<?php
-								}
-								?>
-							</tbody>
-						</table>
+                    <table class="table">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Giá giảm</th>
+            <th scope="col">Kích thước</th>
+            <th scope="col">Hàng tồn</th>
+            <th scope="col">Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+        while ($row = $products->fetch_assoc()) {
+            echo '<tr><th scope="row">' . $row['product_id'] . '</th>';
+            echo '<td>' . $row['name'] . '</td>';
+            echo '<td>' . $row['price'] . '</td>';
+            echo '<td>' . $row['price_sale'] . '</td>';
+            echo '<td><select class="w-100 p-2" id="size-' . $row['product_id'] . '" onchange="updateQuantity(' . $row['product_id'] . ', this.value)">';
+            $sizes = [];
+            $quantities = [];
+            $sqlShowSizes = "SELECT size, quantity FROM product_instock WHERE product_id = " . $row['product_id'];
+            $sizesResult = $conn->query($sqlShowSizes);
+            while ($sizeRow = $sizesResult->fetch_assoc()) {
+                echo '<option value="' . $sizeRow['size'] . '">' . $sizeRow['size'] . '</option>';
+                $sizes[] = $sizeRow['size'];
+                $quantities[] = $sizeRow['quantity'];
+            }
+            echo '</select></td>';
+            echo '<td id="quantity-' . $row['product_id'] . '">' . $quantities[0] . '</td>';
+            echo '<td>
+                <a href="./update.php?id=' . $row['product_id'] . '" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                <a href="./delete.php?id=' . $row['product_id'] . '" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+            </td></tr>';
+        }
+    ?>
+    </tbody>
+</table>
+
+
                     </div>
                     <?php         
                     } else {
@@ -172,5 +180,14 @@ require_once '../../database/DB.php';
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script src="../../public/javascripts/sidemenu.js"></script>
+<script>
+    var sizes = <?php echo json_encode($sizes); ?>;
+    var quantities = <?php echo json_encode($quantities); ?>;
+
+    function updateQuantity(productId, size) {
+        var index = sizes.indexOf(size);
+        document.getElementById('quantity-' + productId).innerText = quantities[index];
+    }
+</script>
 </body>
 </html>

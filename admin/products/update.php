@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
     $conn->close();
     header('location: ../../404.php');
 }
-$sqlFindProduct = "SELECT * FROM product WHERE product_id = '$productId'";
+$sqlFindProduct = "SELECT * FROM product, product_instock WHERE product.product_id = product_instock.product_id AND product.product_id = '$productId'";
 $product = $conn->query($sqlFindProduct);
 if ($product->num_rows <= 0) {
     $conn->close();
@@ -29,6 +29,7 @@ if (isset($_POST['update'])) {
         $tb = 'Lỗi: lỗi file hình - mã lỗi:'.$_FILES['images']['error'].'<br>';
     } else {
         $name = mysqli_real_escape_string($conn,$_POST['name']);
+        $size = mysqli_real_escape_string($conn, $_POST['size']);
         $quantity = mysqli_real_escape_string($conn,$_POST['quantity']);
         $price = mysqli_real_escape_string($conn,$_POST['price']);
         $priceSale = mysqli_real_escape_string($conn,$_POST['priceSale']);
@@ -39,12 +40,14 @@ if (isset($_POST['update'])) {
         if ($name == '' || $quantity == '' || $description == '' || $price == '' || $priceSale == '' || $categoryId =='' || $images == '' ) {
             $tb .= 'Bạn chưa nhập đủ các trường'.'<br/>';
         } else {
-        $sqlUpdate = "UPDATE product SET name = '$name', category_id = $categoryId, description = '$description', images = '$images', quantity = $quantity, price = '$price', price_sale = '$priceSale'
-                        WHERE product_id = '$productId'"; 
-        $conn->query($sqlUpdate);
-        if (! file_exists("../../public/img/products/".$images))
-            move_uploaded_file($_FILES["images"]["tmp_name"],"../../public/img/products/".$images);
-            unlink("../../public/img/products/".$imagesOld);
+        $sqlProductUpdate = "UPDATE product SET name = '$name', category_id = $categoryId, description = '$description', images = '$images',  price = '$price', price_sale = '$priceSale'
+                        WHERE product_id = '$productId'";
+        $sqlProductInstockUpdate = "UPDATE product_instock SET quantity = '$quantity' WHERE product_id = '$productId' AND size = '$size'"; 
+        $conn->query($sqlProductUpdate);
+        $conn->query($sqlProductInstockUpdate);
+        if (! file_exists("../../public/img/".$images))
+            move_uploaded_file($_FILES["images"]["tmp_name"],"../../public/img/".$images);
+            unlink("../../public/img/".$imagesOld);
         $conn->close();
         setcookie('thongBao', 'Cập nhật sản phẩm thành công', time()+5);
         header("location: index.php");
@@ -58,8 +61,9 @@ if (isset($_POST['update'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cập nhật sản phẩm</title>
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
+    <link rel="icon" type="image/x-icon" href="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="../../public/css/sidemenu.css">
@@ -96,10 +100,27 @@ if (isset($_POST['update'])) {
                             <label for="name" class="form-label">Tên sản phẩm</label>
                             <input type="text" class="form-control" name="name" value="<?=$product['name']?>" id="name" placeholder="Nhập tên sản phẩm">
                         </div>
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Hàng tồn</label>
-                            <input type="number" class="form-control" name="quantity" value="<?=$product['quantity']?>" id="quantity" placeholder="Nhập số lượng hàng còn lại">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label for="size" class="form-label d-block">Kích thước</label>
+                                <select id="size" class="selectpicker bs-select-hidden p-2 w-100" data-style="btn" name="size">
+                                    <?php
+                                         $sizes = [];
+                                         $sqlShowSizes = "SELECT size FROM product_instock WHERE product_id = '$productId'";
+                                         $sizesResult = $conn->query($sqlShowSizes);
+                                         while ($sizeRow = $sizesResult->fetch_assoc()) {
+                                             echo '<option value="' . $sizeRow['size'] . '">' . $sizeRow['size'] . '</option>';
+                                             $sizes[] = $sizeRow['size'];
+                                         }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="quantity" class="form-label">Số lượng tồn kho</label>
+                                <input type="number" class="form-control" name="quantity" value="<?=$product['quantity']?>" id="quantity" placeholder="Nhập số lượng hàng còn lại">
+                            </div>
                         </div>
+                       
                         <div class="mb-3">
                             <label for="price" class="form-label">Giá</label>
                             <input type="number" class="form-control" name="price" value="<?=$product['price']?>" id="price" placeholder="Nhập giá bán của sản phẩm">
@@ -127,7 +148,7 @@ if (isset($_POST['update'])) {
                             </select>
                         </div>
                         <div>
-                            <img src="../../public/img/products/<?=$product['images']?>" width="200px" alt="">
+                            <img src="../../public/img/<?=$product['images']?>" width="200px" alt="">
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Hình</label>
                                 <input class="form-control" name="images" type="file" id="formFile">
