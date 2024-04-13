@@ -12,20 +12,28 @@ if (isset($_POST['add'])) {
         $tb = 'Lỗi: lỗi file hình - mã lỗi:'.$_FILES['images']['error'].'<br>';
     } else {
         $name = mysqli_real_escape_string($conn,$_POST['name']);
-        $quantity = mysqli_real_escape_string($conn,$_POST['quantity']);
         $price = mysqli_real_escape_string($conn,$_POST['price']);
         $priceSale = mysqli_real_escape_string($conn,$_POST['priceSale']);
         $description = mysqli_real_escape_string($conn,$_POST['description']);
         $categoryId = mysqli_real_escape_string($conn,$_POST['categoryId']);
         $images = mysqli_real_escape_string($conn,$_FILES['images']['name']);
-        if ($name == '' || $quantity == '' || $description == '' || $price == '' || $priceSale == '' || $categoryId =='' || $images == '' ) {
+        $sizeArray = json_decode($_POST['sizeArray']);
+        $quantityArray = json_decode($_POST['quantityArray']);
+        if ($name == '' ||  $description == '' || $price == '' || $priceSale == '' || $categoryId =='' || $images == '' ) {
             $tb .= 'Bạn chưa nhập đủ các trường'.'<br/>';
         } else {
-        $sqlInsert = "INSERT INTO product (name, category_id, description, images, quantity, price, price_sale) 
-                    VALUES ('$name', '$categoryId', '$description', '$images', '$quantity', '$price', '$priceSale')"; 
-        $conn->query($sqlInsert);
-        if (! file_exists("../../public/img/products/".$images))
-            move_uploaded_file($_FILES["images"]["tmp_name"],"../../public/img/products/".$images);
+        $sqlProductInsert = "INSERT INTO product (name, category_id, description, images,  price, price_sale) 
+                    VALUES ('$name', '$categoryId', '$description', '$images', '$price', '$priceSale')"; 
+        
+        $conn->query($sqlProductInsert);
+        $productId = $conn->insert_id;
+        for ($i = 0; $i < count($sizeArray); $i++) {
+            $sqlProductInstockInsert = "INSERT INTO product_instock (product_id, size, quantity) 
+                    VALUES ('$productId', '$sizeArray[$i]', '$quantityArray[$i]')";
+            $conn->query($sqlProductInstockInsert);
+        }
+        if (! file_exists("../../public/img/".$images))
+            move_uploaded_file($_FILES["images"]["tmp_name"],"../../public/img/".$images);
         $conn->close();
         setcookie('thongBao', 'Đã thêm sản phẩm thành công', time()+5);
         header("location: index.php");
@@ -47,6 +55,11 @@ if (isset($_POST['add'])) {
     <link rel="stylesheet" href="../../public/css/base.css">
     <link rel="stylesheet" href="../../public/css/home.css">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -68,16 +81,30 @@ if (isset($_POST['add'])) {
         }
     ?>
     <div class="row">
-        <div class="col-xl-2"></div>
-        <div class="col-xl-8 col-md-6 col-sm-12 shadow p-3 mb-5 bg-body rounded">
+        <div class="shadow p-3 mb-5 bg-body rounded">
             <form action="<?=$_SERVER['PHP_SELF']?>" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="name" class="form-label">Tên sản phẩm</label>
                     <input type="text" class="form-control" name="name" value="" id="name" placeholder="Nhập tên sản phẩm">
                 </div>
-                <div class="mb-3">
-                    <label for="quantity" class="form-label">Hàng tồn</label>
-                    <input type="number" class="form-control" name="quantity" value="" id="quantity" placeholder="Nhập số lượng hàng còn lại">
+                <div class="mb-3 row">
+                    <input type="hidden" name="sizeArray" id="sizeArray">
+                    <input type="hidden" name="quantityArray" id="quantityArray">
+                    <div class="col-6">
+                        <label for="size" class="form-label">Kích thước</label>
+                        <input type="number" class="form-control" name="size" value="" id="size" placeholder="Nhập kích thước sản phẩm">
+                    </div>
+                    <div class="col-6">
+                        <label for="quantity" class="form-label">Hàng tồn</label>
+                        <input type="number" class="form-control" name="quantity" value="" id="quantity" placeholder="Nhập số lượng hàng còn lại">
+                    </div>
+                    <table class="mt-3 col-6 container" id="tableForPair">
+                        <tr>
+                            <td>Kích thước</td>
+                            <td>Số lượng</td>
+                        </tr>
+                    </table>
+                    <button type="button" onClick="addNewPair()" name="plus" class="mt-3 col-12 py-3 bg-primary border border-none text-white">Plus</button>
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Giá</label>
@@ -123,5 +150,24 @@ if (isset($_POST['add'])) {
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script src="../public/javascripts/sidemenu.js"></script>
+<script>
+    var sizeArray = [];
+    var quantityArray = [];
+    function addNewPair() {
+        let size = document.getElementById('size').value;
+        let quantity = document.getElementById('quantity').value;
+        let table = document.getElementById('tableForPair');
+        let row = table.insertRow(-1);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        cell1.innerHTML = size;
+        cell2.innerHTML = quantity;
+        sizeArray.push(size);
+        quantityArray.push(quantity);
+        document.getElementById('sizeArray').value = JSON.stringify(sizeArray);
+        document.getElementById('quantityArray').value = JSON.stringify(quantityArray);
+        console.log(sizeArray, quantityArray);
+    }
+</script>
 </body>
 </html>

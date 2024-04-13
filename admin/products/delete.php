@@ -16,7 +16,7 @@
             $images = $ketQua['images'];
             $sqlDelete = "DELETE FROM product WHERE product_id = '$productId'";
             $conn->query($sqlDelete);
-            unlink("../../public/img/products/".$images);
+            unlink("../../public/img/".$images);
             $conn->close();
             setcookie('thongBao', 'Đã xóa sản phẩm thành công', time()+5);
             header("location: index.php");

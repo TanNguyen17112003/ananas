@@ -66,7 +66,7 @@ $ketqua = $conn->query($sql);
     while ($row = $ketqua->fetch_assoc()) {
       if ($row["email"] == $email && password_verify($password, $row["password"])) {
         $_SESSION["email_ad"] = $email;
-        header('location: index.php');
+        header('location: report/index.php');
         break;
       } else $tb = 'Sai email hoặc mật khẩu';
     }
