@@ -6,6 +6,7 @@ if (!isset($_SESSION["email_ad"])) {
     header('location: login.php');
 }
 
+
 require_once '../../database/DB.php';
 if (isset($_POST['add'])) {
     if ($_FILES['images']['error']>0) {
@@ -156,17 +157,29 @@ if (isset($_POST['add'])) {
     function addNewPair() {
         let size = document.getElementById('size').value;
         let quantity = document.getElementById('quantity').value;
-        let table = document.getElementById('tableForPair');
-        let row = table.insertRow(-1);
-        let cell1 = row.insertCell(0);
-        let cell2 = row.insertCell(1);
-        cell1.innerHTML = size;
-        cell2.innerHTML = quantity;
-        sizeArray.push(size);
-        quantityArray.push(quantity);
+        if (sizeArray.includes(size))  {
+            var index = sizeArray.indexOf(size);
+            quantityArray[index] = quantity;
+        }
+        else {
+            sizeArray.push(size);
+            quantityArray.push(quantity);
+        }
         document.getElementById('sizeArray').value = JSON.stringify(sizeArray);
         document.getElementById('quantityArray').value = JSON.stringify(quantityArray);
-        console.log(sizeArray, quantityArray);
+         var table = document.getElementById('tableForPair');
+    // Clear the table
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+    // Add the new data
+    for (var i = 0; i < sizeArray.length; i++) {
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = sizeArray[i];
+        cell2.innerHTML = quantityArray[i];
+    }
     }
 </script>
 </body>
