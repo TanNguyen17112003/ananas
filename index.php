@@ -86,7 +86,7 @@ require_once './database/DB.php';
                 <div class="col-xl-3 col-md-6 col-sm-12 shadow-sm">
                     <div class="text-center card border border-2  card-info">
                         <a href="https://www.facebook.com/minhloc1605"><img alt="AVT" width="200" height="200"
-                                src="./assets/loc_avt.jpg" class=" rounded-circle mb-3 mt-3" /></a>
+                                src="./assets/loc.jpg" class=" rounded-circle mb-3 mt-3" /></a>
                         <p class="text-dark" style="text-align: center; font-weight: bold;">Nguyễn Minh Lộc</p>
                     </div>
                 </div>
