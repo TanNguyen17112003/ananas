@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 30, 2024 at 01:51 PM
+-- Host: 127.0.0.1:3307
+-- Generation Time: Apr 29, 2024 at 04:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `assignment`
+-- Database: `ltweb`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(60) DEFAULT NULL,
   `name` varchar(50) NOT NULL,
   `role` int(11) NOT NULL DEFAULT 0,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `email`, `password`, `name`, `role`, `updated_at`) VALUES
-(1, 'admin@hcmut.edu.vn', '$2y$10$Cx8CRBlWMFs1PoGypCV7GOMtdhXSrxE5nHwwzBPs3sz', 'Admin', 1, '2024-03-29 15:05:19');
+(1, 'admin@hcmut.edu.vn', '$2y$10$XUJXtm3PcDgMXs2ebBUpe.ogB.4Vgv6RoR6rAo8H4XbOGo2/0QMne', 'Admin', 1, '2024-04-11 15:07:17');
 
 -- --------------------------------------------------------
 
@@ -80,6 +80,42 @@ CREATE TABLE `contact` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `username`, `email`, `message`, `status`, `created_at`) VALUES
+(1, 'deft', 'duytan17112003@gmail.com', 'deft', 0, '2024-04-11 14:47:43'),
+(2, 'Tan Nguyen', 'duytan17112003@gmail.com', 'defttt', 0, '2024-04-11 14:48:01'),
+(3, 'Tan Nguyen', 'duytan17112003@gmail.com', 'deft', 0, '2024-04-11 14:52:18'),
+(4, 'deft', 'duytan17112003@gmail.com', 'tan17112003', 0, '2024-04-11 14:57:17'),
+(5, 'deft', 'duytan17112003@gmail.com', 'tan17112003', 0, '2024-04-11 14:57:47'),
+(6, 'deft', 'duytan17112003@gmail.com', 'tan17112003', 0, '2024-04-11 14:58:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cost_range`
+--
+
+CREATE TABLE `cost_range` (
+  `range_id` int(11) NOT NULL,
+  `low_cost` int(11) DEFAULT NULL,
+  `high_cost` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cost_range`
+--
+
+INSERT INTO `cost_range` (`range_id`, `low_cost`, `high_cost`) VALUES
+(1, 600000, NULL),
+(2, 500000, 599000),
+(3, 400000, 499000),
+(4, 300000, 399000),
+(5, 200000, 299000),
+(6, NULL, 200000);
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +134,34 @@ CREATE TABLE `order` (
   `status` enum('Đang xử lý','Đang giao','Đã giao') NOT NULL DEFAULT 'Đang xử lý'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`order_id`, `user_id`, `name_receiver`, `address_receiver`, `phone_receiver`, `payment`, `payment_method`, `updated_at`, `status`) VALUES
+(1, 1, 'aa', 'aaa', 'aa', 13130000, 'Tiền mặt khi nhận hàng', '2024-04-11 14:15:55', 'Đã giao'),
+(2, 1, 'ss', 'dđ', 'ss', 10040000, 'Tiền mặt khi nhận hàng', '2024-04-08 22:21:56', 'Đang xử lý'),
+(3, 1, 'aa', 'vv', 'aa', 10040000, 'Tiền mặt khi nhận hàng', '2024-04-08 22:22:13', 'Đang xử lý'),
+(4, 1, 'aaa', 'ssss', 'ass', 13190000, 'Tiền mặt khi nhận hàng', '2024-04-08 23:18:24', 'Đang xử lý'),
+(5, 5, 'Nguyễn Hoàng Duy Tân', 'Kỹ túc xá khu A, thành phố Hồ Chí Minh', '0862898859', 2940000, 'Tiền mặt khi nhận hàng', '2024-04-12 02:00:03', 'Đang xử lý'),
+(6, 5, 'Nguyễn Hoàng Duy Tân', 'Kỹ túc xá khu A, thành phố Hồ Chí Minh', '0862898859', 2940000, 'Tiền mặt khi nhận hàng', '2024-04-12 02:01:01', 'Đang xử lý'),
+(7, 5, 'Nguyễn Hoàng Duy Tân', 'nhà A20, Ký túc xá khu A, thành phố Hồ Chí Minh', '0862898859', 3120000, 'Tiền mặt khi nhận hàng', '2024-04-12 02:03:02', 'Đang xử lý'),
+(8, 5, 'Tân Nguyễn', 'tòa A20, Thủ Đức, Thành phố Hồ Chí Minh', '0862898859', 12740000, 'Tiền mặt khi nhận hàng', '2024-04-12 02:05:18', 'Đang xử lý'),
+(9, 5, 'dđ', 'ssss', 'aaa', 800000, 'Tiền mặt khi nhận hàng', '2024-04-12 14:42:58', 'Đang xử lý');
+
+--
+-- Triggers `order`
+--
+DELIMITER $$
+CREATE TRIGGER `update_product_instock` AFTER UPDATE ON `order` FOR EACH ROW IF NEW.status = 'Đã giao' THEN
+        UPDATE product_instock
+        JOIN order_item ON order_item.product_id = product_instock.product_id AND order_item.size_item = product_instock.size
+        SET product_instock.quantity = product_instock.quantity - order_item.quantity_item
+        WHERE order_item.order_id = NEW.order_id;
+ END IF
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -111,6 +175,30 @@ CREATE TABLE `order_item` (
   `size_item` int(100) NOT NULL,
   `price` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_item`
+--
+
+INSERT INTO `order_item` (`order_id`, `product_id`, `quantity_item`, `size_item`, `price`) VALUES
+(1, 5, 5, 0, 490000),
+(1, 65, 4, 0, 520000),
+(1, 105, 5, 0, 450000),
+(1, 171, 2, 0, 460000),
+(1, 60001, 4, 0, 990000),
+(2, 4, 8, 0, 520000),
+(2, 5, 5, 0, 490000),
+(3, 4, 8, 0, 520000),
+(3, 5, 5, 0, 490000),
+(4, 4, 8, 0, 520000),
+(4, 5, 5, 0, 490000),
+(4, 105, 7, 0, 450000),
+(7, 4, 2, 35, 520000),
+(7, 4, 4, 36, 520000),
+(8, 5, 10, 37, 490000),
+(8, 5, 13, 38, 490000),
+(8, 5, 3, 41, 490000),
+(9, 4, 4, 40, 200000);
 
 -- --------------------------------------------------------
 
@@ -165,9 +253,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `category_id`, `description`, `images`, `subimg_1`, `subimg_2`, `subimg_3`, `status`, `gender`, `upper_material`, `outsole_material`, `price`, `price_sale`, `timestamp`) VALUES
-(3, 'BASAS SIMPLE LIFE NE - MULE - BLACK', 5, 'Phù hợp hoàn hảo với nhịp sống mới của giới trẻ, Basas Simple Life NE - Mule tinh giản vấn đề thắt dây với chi tiết hở gót độc đáo, mang đến khả năng lên chân nhanh gọn nhưng vẫn đảm bảo trọn vẹn nét thanh lịch trong diện mạo, qua đó nhấn mạnh chất “Simple Life” đặc trưng của thiết kế. Với khả năng ứng dụng cao từ công năng đến phối màu, sản phẩm dễ dàng đáp ứng mọi tiêu chí của giới mộ điệu cho một item thiết yếu trong tủ giày/dép.', 'black_giay1.jpg', 'black_giay2.jpg', 'black_giay3.jpg', 'black_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 490000, NULL, '2024-03-30 08:38:19'),
-(4, 'BASAS BUMPER GUM NE - MULE - BLACK/GUM', 5, 'Thiết kế hở gót \"lạ lẫm\" mang lại trải nghiệm lên chân nhanh chóng chỉ trong chớp mắt (như dép) nhưng lại có thần thái \"gần sát\" với một đôi Sneakers. Basas Bumper Gum NE - Mule được ra đời với các chi tiết màu sắc đặc trưng của bộ sản phẩm Basas Bumper Gum quen thuộc, phù hợp nhiều kiểu phong cách nhẹ nhàng từ nhà ra phố, xứng đáng là một lựa chọn must have để làm đa dạng thêm tủ giày/dép của bạn.', 'bmule_giay1.jpg', 'bmule_giay2.jpg', 'bmule_giay3.jpg', 'bmule_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 520000, NULL, '2024-03-30 08:31:46'),
-(5, 'BASAS SIMPLE LIFE NE - MULE - WHITE', 5, 'Phù hợp hoàn hảo với nhịp sống mới của giới trẻ, Basas Simple Life NE - Mule tinh giản vấn đề thắt dây với chi tiết hở gót độc đáo, mang đến khả năng lên chân nhanh gọn nhưng vẫn đảm bảo trọn vẹn nét thanh lịch trong diện mạo, qua đó nhấn mạnh chất “Simple Life” đặc trưng của thiết kế. Với khả năng ứng dụng cao từ công năng đến phối màu, sản phẩm dễ dàng đáp ứng mọi tiêu chí của giới mộ điệu cho một item thiết yếu trong tủ giày/dép.', 'white_giay1.jpg', 'white_giay2.jpg', 'white_giay3.jpg', 'white_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 490000, NULL, '2024-03-30 08:40:08'),
+(4, 'BASAS BUMPER GUM NE - MULE - BLACK/GUM', 5, 'Thiết kế hở gót \"lạ lẫm\" mang lại trải nghiệm lên chân nhanh chóng chỉ trong chớp mắt (như dép) nhưng lại có thần thái \"gần sát\" với một đôi Sneakers. Basas Bumper Gum NE - Mule được ra đời với các chi tiết màu sắc đặc trưng của bộ sản phẩm Basas Bumper Gum quen thuộc, phù hợp nhiều kiểu phong cách nhẹ nhàng từ nhà ra phố, xứng đáng là một lựa chọn must have để làm đa dạng thêm tủ giày/dép của mày.', 'black_giay1.jpg', 'bmule_giay2.jpg', 'bmule_giay3.jpg', 'bmule_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 510001, 200000, '2024-04-12 14:45:31'),
+(5, 'BASAS SIMPLE LIFE NE - MULE - WHITE', 2, 'Phù hợp hoàn hảo với nhịp sống mới của giới trẻ, Basas Simple Life NE - Mule tinh giản vấn đề thắt dây với chi tiết hở gót độc đáo, mang đến khả năng lên chân nhanh gọn nhưng vẫn đảm bảo trọn vẹn nét thanh lịch trong diện mạo, qua đó nhấn mạnh chất “Simple Life” đặc trưng của thiết kế. Với khả năng ứng dụng cao từ công năng đến phối màu, sản phẩm dễ dàng đáp ứng mọi tiêu chí của giới mộ điệu cho một item thiết yếu trong tủ giày/giép.', 'white_giay1.jpg', 'white_giay2.jpg', 'white_giay3.jpg', 'white_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 480000, 200000, '2024-04-12 03:41:08'),
 (6, 'BASAS BUMPER GUM NE - MULE - OFFWHITE/GUM', 5, 'Thiết kế hở gót \"lạ lẫm\" mang lại trải nghiệm lên chân nhanh chóng chỉ trong chớp mắt (như dép) nhưng lại có thần thái \"gần sát\" với một đôi Sneakers. Basas Bumper Gum NE - Mule được ra đời với các chi tiết màu sắc đặc trưng của bộ sản phẩm Basas Bumper Gum quen thuộc, phù hợp nhiều kiểu phong cách nhẹ nhàng từ nhà ra phố, xứng đáng là một lựa chọn must have để làm đa dạng thêm tủ giày/dép của bạn.', 'wmule_giay1.jpg', 'wmule_giay2.jpg', 'wmule_giay3.jpg', 'wmule_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 520000, NULL, '2024-03-30 08:34:01'),
 (9, 'TRACK 6 CLASS E - LOW TOP - CRAFTSMAN BLUE', 1, 'Track 6 Class E (Essential, Enthusiasm) là bộ sản phẩm mang trên mình những yếu tố cơ bản trong cuộc sống thường ngày. Được sử dụng những chất liệu thường có trên những đôi giày cao cấp với da Nappa nhẵn bóng, lưới mesh nhỏ mịn kết hợp Suede (da lộn) phủ màu tạo nên tổng thể vừa tinh tế, với màu sắc nhã nhặn. Điểm nhấn thú vị trên chi tiết màu “Craftsman Blue” thể hiện một phần yếu tố cần thiết, đại diện cho niềm đam mê chế tác của con người với những thú vui gắn cùng thiên nhiên. Track 6 Class E - Craftsman Blue xứng đáng là một must-have item đối với những ai yêu thích sáng tạo và mong muốn thể hiện cá tính độc lập.', 'craft_giay1.jpg', 'craft_giay2.jpg', 'craft_giay3.jpg', 'craft_giay4.jpg', 'New Arrival', 'Unisex', 'CSuede', 'Rubber', 1190000, NULL, '2024-03-30 09:17:32'),
 (12, 'TRACK 6 I.S.E.E - PURE WHITE/ICY BLUE', 1, NULL, 'icy_giay1.jpg', 'icy_giay2.jpg', 'icy_giay3.jpg', 'icy_giay4.jpg', 'Limited Edition', 'Unisex', 'Suede', 'Rubber', 1490000, NULL, '2024-03-30 09:53:25'),
@@ -182,9 +269,9 @@ INSERT INTO `product` (`product_id`, `name`, `category_id`, `description`, `imag
 (117, '\r\nVINTAS FLANNEL - LOW TOP - CEMENT', 1, 'Khoác lên thân giày một lớp áo mới theo đúng nghĩa đen với thiết kế đánh dấu sự xuất hiện lần đầu tiên của chất vải Flannel trên các dáng sản phẩm quen thuộc từ Ananas. Phát huy những ưu điểm thoải mái và bền bỉ từ chất vải Flannel “vạn người mê”, song hành cùng phối màu trầm ấm đặc trưng, Vintas Flannel Pack là lựa chọn thú vị dành cho những bạn trẻ ái mộ phong cách điềm đạm chững chạc nhưng vẫn đầy sức hút.', 'cem_giay1.jpg', 'cem_giay2.jpg', 'cem_giay3.jpg', 'cem_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 690000, NULL, '2024-03-30 09:15:14'),
 (121, 'VINTAS AUNTER - LOW TOP - BOTANICAL GARDEN', 1, 'Kết hợp cùng diện mạo quai dán (hook loop) mới mẻ, Aunter chính là một bản phối lạ lẫm nhưng đầy thú vị lần đầu tiên xuất hiện của dòng Vintas. Vẫn là chất vải Canvas thường gặp, đi cặp cùng các lựa chọn màu sắc phong phú nhưng vẫn ẩn sâu bên trong nét điềm đạm. Tất cả làm nên điểm nhấn chững chạc tổng thể, dễ dàng tôn lên nét thu hút cần thiết mọi lần lên chân.', 'bo_giay1.jpg', 'bo_giay2.jpg', 'bo_giay3.jpg', 'bo_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 690000, NULL, '2024-03-30 09:27:55'),
 (130, 'URBAS RETROSPECTIVE - MID TOP - POPULAR BLUE', 4, 'Với việc đưa những chiếc đế cao su \"xuyên thấu\" rực rỡ trở lại, kết hợp cùng phần upper bằng vải canvas với những màu sắc tươi rói, Urbas Retrospective đã khắc họa nên bức tranh đầy sinh động về một thời kỳ phát triển rực rỡ của thời trang và nghệ thuật của những thập kỉ trước. Đây chắc chắn sẽ là lựa chọn không thể thiếu trong tủ đồ đối với những bạn trẻ đang tìm kiếm nguồn cảm hứng cổ điển trong phong cách thời trang hiện đại và độc đáo của bản thân. Sự độc đáo này còn mạnh mẽ hơn trên một form dáng Mid Top hoàn toàn mới.', 'pblue_giay1.jpg', 'pblue_giay2.jpg', 'pblue_giay3.jpg', 'pblue_giay4.jpg', 'Sale Off', 'Unisex', 'Canvas', 'Rubber', 720000, 470000, '2024-03-30 08:20:00'),
-(131, 'URBAS RETROSPECTIVE - MID TOP - YELLOW SUBMARINE', 4, 'Với việc đưa những chiếc đế cao su \"xuyên thấu\" rực rỡ trở lại, kết hợp cùng phần upper bằng vải canvas với những màu sắc tươi rói, Urbas Retrospective đã khắc họa nên bức tranh đầy sinh động về một thời kỳ phát triển rực rỡ của thời trang và nghệ thuật của những thập kỉ trước. Đây chắc chắn sẽ là lựa chọn không thể thiếu trong tủ đồ đối với những bạn trẻ đang tìm kiếm nguồn cảm hứng cổ điển trong phong cách thời trang hiện đại và độc đáo của bản thân. Sự độc đáo này còn mạnh mẽ hơn trên một form dáng Mid Top hoàn toàn mới.', 'pyel_giay1.jpg', 'pyel_giay1.jpg', 'pyel_giay1.jpg', 'pyel_giay1.jpg', 'Sale Off', 'Unisex', 'Canvas', 'Rubber', 720000, 470000, '2024-03-30 08:22:11'),
+(131, 'URBAS RETROSPECTIVE - MID TOP - YELLOW SUBMARINE', 4, 'Với việc đưa những chiếc đế cao su \"xuyên thấu\" rực rỡ trở lại, kết hợp cùng phần upper bằng vải canvas với những màu sắc tươi rói, Urbas Retrospective đã khắc họa nên bức tranh đầy sinh động về một thời kỳ phát triển rực rỡ của thời trang và nghệ thuật của những thập kỉ trước. Đây chắc chắn sẽ là lựa chọn không thể thiếu trong tủ đồ đối với những bạn trẻ đang tìm kiếm nguồn cảm hứng cổ điển trong phong cách thời trang hiện đại và độc đáo của bản thân. Sự độc đáo này còn mạnh mẽ hơn trên một form dáng Mid Top hoàn toàn mới.', 'pyel_giay1.jpg', 'pyel_giay2.jpg', 'pyel_giay3.jpg', 'pyel_giay4.jpg', 'Sale Off', 'Unisex', 'Canvas', 'Rubber', 720000, 470000, '2024-04-04 17:45:57'),
 (132, 'PATTAS LIVING JOURNEY - LOW TOP - VAPOROUS GRAY', 1, NULL, 'li_giay1.jpg', 'li_giay2.jpg', 'li_giay3.jpg', 'li_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 720000, NULL, '2024-03-30 09:50:13'),
-(133, 'PATTAS LIVING JOURNEY - HIGH TOP - VAPOROUS GRAY', 2, NULL, 'pattas_giay1.jpg', 'pattas_giay2.jpgg', 'pattas_giay3.jpg', 'pattas_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 750000, NULL, '2024-03-30 07:48:34'),
+(133, 'PATTAS LIVING JOURNEY - HIGH TOP - VAPOROUS GRAY', 2, NULL, 'pattas_giay1.jpg', 'pattas_giay2.jpg', 'pattas_giay3.jpg', 'pattas_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 750000, NULL, '2024-04-04 17:44:40'),
 (135, '\r\nBASAS RAW - LOW TOP - RUSTIC', 1, 'Phiên bản tối giản mới sử dụng chất liệu Canvas RAW với phần bề mặt được tiết chế tối đa các bước xử lý sau dệt, đem đến một cảm nhận thô ráp, dễ dàng cảm nhận nét bền bỉ, dày dặn đặc trưng nguyên bản chỉ từ ánh nhìn diện mạo. Với những điểm nhấn thay đổi trong thiết kế cùng với vài chọn lựa chi tiết khác hơn từ trong ra ngoài, Basas RAW mang trên mình sứ mệnh chào sân phiên bản /rập mới/ và cũng là nơi bắt đầu cho những nâng cấp này xuất hiện rộng rãi hơn trong tương lai. Như một tấm ảnh RAW với đầy đủ cảm xúc tự nhiên, hãy tự do ngẫu hứng nó theo cách của bạn.', 'rus_giay1.jpg', 'rus_giay2.jpg', 'rus_giay3.jpg', 'rus_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 610000, NULL, '2024-03-30 09:34:15'),
 (142, 'BASAS EVERGREEN - LOW TOP - EVERGREEN', 1, 'Phiên bản tối giản mới sử dụng chất liệu Canvas RAW với phần bề mặt được tiết chế tối đa các bước xử lý sau dệt, đem đến một cảm nhận thô ráp, dễ dàng cảm nhận nét bền bỉ, dày dặn đặc trưng nguyên bản chỉ từ ánh nhìn diện mạo. Với những điểm nhấn thay đổi trong thiết kế cùng với vài chọn lựa chi tiết khác hơn từ trong ra ngoài, Basas RAW mang trên mình sứ mệnh chào sân phiên bản /rập mới/ và cũng là nơi bắt đầu cho những nâng cấp này xuất hiện rộng rãi hơn trong tương lai. Như một tấm ảnh RAW với đầy đủ cảm xúc tự nhiên, hãy tự do ngẫu hứng nó theo cách của bạn.', 'gr_giay1.jpg', 'gr_giay2.jpg', 'gr_giay3.jpg', 'gr_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 580000, NULL, '2024-03-30 09:35:40'),
 (144, '\r\nBASAS EVERGREEN - MULE - EVERGREEN', 5, NULL, 'gmule_giay1.jpg', 'gmule_giay2.jpg', 'gmule_giay3.jpg', 'gmule_giay4.jpg', 'New Arrival', 'Unisex', 'Canvas', 'Rubber', 580000, NULL, '2024-03-30 08:35:55'),
@@ -243,19 +330,7 @@ CREATE TABLE `product_instock` (
 --
 
 INSERT INTO `product_instock` (`product_id`, `size`, `quantity`) VALUES
-(3, 35, 10),
-(3, 36, 15),
-(3, 37, 16),
-(3, 38, 17),
-(3, 39, 18),
-(3, 40, 10),
-(3, 41, 30),
-(3, 42, 10),
-(3, 43, 20),
-(3, 44, 10),
-(3, 45, 12),
-(3, 46, 10),
-(4, 35, 10),
+(4, 35, 13),
 (4, 36, 15),
 (4, 37, 16),
 (4, 38, 17),
@@ -269,7 +344,7 @@ INSERT INTO `product_instock` (`product_id`, `size`, `quantity`) VALUES
 (4, 46, 10),
 (5, 35, 10),
 (5, 36, 15),
-(5, 37, 16),
+(5, 37, 12),
 (5, 38, 17),
 (5, 39, 18),
 (5, 40, 10),
@@ -1003,7 +1078,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `email`, `password`, `name`, `avatar`, `phone`, `address`, `updated_at`, `verify_code`, `active`) VALUES
-(1, 'loc.nguyenminh1605@hcmut.edu.vn', '$2y$10$siuK.ty2iGOGYRsVCfl.t.gh2qCENdUZHyW8OJuoC/kGfMJmsTkdq', 'Nguyễn Minh Lộc', NULL, '0379626794', 'Ký túc xá khu A, ĐHQG. HCM', '2024-03-29 15:17:21', 160503, b'1');
+(1, 'loc.nguyenminh1605@hcmut.edu.vn', '$2y$10$siuK.ty2iGOGYRsVCfl.t.gh2qCENdUZHyW8OJuoC/kGfMJmsTkdq', 'Nguyễn Minh Lộc', NULL, '0379626794', 'Ký túc xá khu A, ĐHQG. Bình Dương, Hồ Chí Minh', '2024-04-06 21:03:16', 160503, b'1'),
+(5, 'duytan17112003@gmail.com', '$2y$10$QaS71.RefQ0UKnmICzylReeTvp3bhIuBGScVS4G2YxSX5Dh4JjIBm', 'Defttt', NULL, '0944877824', 'thị trấn ialy, gia lai', '2024-04-11 08:09:51', 225935, b'1');
 
 --
 -- Indexes for dumped tables
@@ -1028,6 +1104,12 @@ ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cost_range`
+--
+ALTER TABLE `cost_range`
+  ADD PRIMARY KEY (`range_id`);
+
+--
 -- Indexes for table `order`
 --
 ALTER TABLE `order`
@@ -1038,7 +1120,7 @@ ALTER TABLE `order`
 -- Indexes for table `order_item`
 --
 ALTER TABLE `order_item`
-  ADD PRIMARY KEY (`order_id`,`product_id`),
+  ADD PRIMARY KEY (`order_id`,`product_id`,`size_item`),
   ADD KEY `FK_order_item_product` (`product_id`);
 
 --
@@ -1083,7 +1165,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -1095,13 +1177,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `cost_range`
+--
+ALTER TABLE `cost_range`
+  MODIFY `range_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `post`
@@ -1125,7 +1213,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
