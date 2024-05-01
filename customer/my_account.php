@@ -8,6 +8,14 @@
 
 <?php
     require("../validate.php");
+    function validatePhone($phone) {
+        $pattern = "/^(\+84|0)[0-9]{9,10}$/";
+        if (preg_match($pattern, $phone)) {
+            return "";
+        } else {
+            return "Invalid phone number.";
+        }
+    }
     $status = "";
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $is_validated = true;
