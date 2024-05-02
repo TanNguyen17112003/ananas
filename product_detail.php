@@ -254,8 +254,6 @@ if ($product->num_rows > 0) {
                             $checkBuy = $conn->query($sqlUserOrder);
                             if ($checkBuy->num_rows > 0) {
                                 echo '<span class="text-success"><i class="fa-duotone fa-badge-check"></i> Đã mua sản phẩm này</span>';
-                            } else {
-                                echo '<span class="text-warning"><i class="fa-duotone fa-badge-check"></i> Chưa mua sản phẩm này</span>';
                             }
                             ?>
                     <p class="mt-3 ms-2">
