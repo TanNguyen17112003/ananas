@@ -256,7 +256,7 @@ if (isset($_POST['login_user'])) {
 
                 </div>
                 <div class="col-6 ">
-                    <img src="../assets/login-sideimage.jpg" class="img-fluid side-img" alt="Login image" />
+                    <img src="../assets/signup-image.png" class="img-fluid side-img" alt="Login image" />
                 </div>
             </div>
         </div>
