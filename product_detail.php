@@ -173,10 +173,27 @@ if ($product->num_rows > 0) {
                                         <li class="list-inline-item col-5">
                                             <label class="form-label text-uppercase test-label" for="pickQuantity">Số
                                                 lượng</label>
-                                            <select id="pickQuantity" class="selectpicker p-2" data-style="btn"
+                                            <!--<select id="pickQuantity" class="selectpicker p-2" data-style="btn"
                                                 name="quantity">
 
                                             </select>
+
+                                            Quantity increment buttons --> 
+                                            <div class="input-group">
+                                              <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default btn-number rounded-0" id = "decButt" data-type="minus" data-field="quantity" onClick = "subQuantity()">
+                                                  -
+                                                </button>
+                                              </span> 
+                                              <input type="number" id="pickQuantity" class="form-control input-number ml-3 mr-3 text-center" name = "quantity" value="1" min="1" max="10">
+
+                                              <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default btn-number rounded-0" id = "incButt" data-type="plus" data-field="quantity" onClick = "addQuantity()">
+                                                  +
+                                                </button>
+                                              </span>
+                                            </div>
+
                                         </li>
                                     </ul>
                                 </div>
@@ -237,8 +254,6 @@ if ($product->num_rows > 0) {
                             $checkBuy = $conn->query($sqlUserOrder);
                             if ($checkBuy->num_rows > 0) {
                                 echo '<span class="text-success"><i class="fa-duotone fa-badge-check"></i> Đã mua sản phẩm này</span>';
-                            } else {
-                                echo '<span class="text-warning"><i class="fa-duotone fa-badge-check"></i> Chưa mua sản phẩm này</span>';
                             }
                             ?>
                     <p class="mt-3 ms-2">
@@ -354,6 +369,8 @@ if ($product->num_rows > 0) {
         var quantityStock = document.getElementById('product-quantity');
         quantityStock.innerHTML = 'Còn ' + quantity + ' sản phẩm';
         var quantitySelect = document.getElementById('pickQuantity');
+        quantitySelect.max = quantity;
+        console.log(quantitySelect.max)
         quantitySelect.innerHTML = '<option selected="">&nbsp;</option>';
         for (var i = 1; i <= quantity; i++) {
             quantitySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
@@ -361,14 +378,41 @@ if ($product->num_rows > 0) {
     });
     document.getElementById('pickQuantity').addEventListener('change', function() {
         var selectedOption = this.value;
+        console.log(this.value + " " + this.max + (this.value >= this.max))
+        if (Number(this.value) <= Number(this.min)) {
+            this.value = this.min
+            return
+        }
+        if (Number(this.value) >= Number(this.max)) {
+            this.value = this.max
+            return
+        }
         var addCartButton = document.getElementById('addCartButton');
 
-        if (selectedOption === "") {
+        if (Number(this.value) >= Number(this.max)) {
             addCartButton.disabled = true;
         } else {
             addCartButton.disabled = false;
         }
     });
+    function addQuantity(){
+        var quantitySelect = document.getElementById('pickQuantity');
+        quantitySelect.value = Number(quantitySelect.value) + 1;
+        if (Number( quantitySelect.value) >= Number(quantitySelect.max)) {
+            quantitySelect.value =  quantitySelect.max
+            return
+        }
+    }
+
+    function subQuantity(){
+        var quantitySelect = document.getElementById('pickQuantity');
+        quantitySelect.value = Number(quantitySelect.value) - 1;
+        if (Number( quantitySelect.value) <= Number(quantitySelect.min)) {
+            quantitySelect.value =  quantitySelect.min
+            return
+        }
+    }
+
 
     function addCartItem(pId, size) {
         var id = pId + "_" + size;

@@ -99,13 +99,13 @@ if (isset($_POST['add'])) {
                         <label for="quantity" class="form-label">Hàng tồn</label>
                         <input type="number" class="form-control" name="quantity" value="" id="quantity" placeholder="Nhập số lượng hàng còn lại">
                     </div>
-                    <table class="mt-3 col-6 container" id="tableForPair">
+                    <table class="table-striped mt-3 col-11 container rounded-2" id="tableForPair">
                         <tr>
-                            <td>Kích thước</td>
-                            <td>Số lượng</td>
+                            <th scope="col" class="col-1 p-2">Kích thước</th>
+                            <th scope="col" class="col-1 p-2">Số lượng</th>
                         </tr>
                     </table>
-                    <button type="button" onClick="addNewPair()" name="plus" class="mt-3 col-12 py-3 bg-primary border border-none text-white">Plus</button>
+                    <button type="button" onClick="addNewPair()" name="plus" class="mt-3 col-10 py-3 bg-primary border border-none rounded-2 text-white container">Thêm vào</button>
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Giá</label>
@@ -157,6 +157,9 @@ if (isset($_POST['add'])) {
     function addNewPair() {
         let size = document.getElementById('size').value;
         let quantity = document.getElementById('quantity').value;
+        if (size == ""){
+            return;
+        }
         if (sizeArray.includes(size))  {
             var index = sizeArray.indexOf(size);
             quantityArray[index] = quantity;
@@ -177,6 +180,7 @@ if (isset($_POST['add'])) {
         var row = table.insertRow(-1);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
+
         cell1.innerHTML = sizeArray[i];
         cell2.innerHTML = quantityArray[i];
     }
