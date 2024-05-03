@@ -430,7 +430,7 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
                                         class="img-fluid" alt="..."
                                         onmouseover="this.src='<?php echo $rootPath ?>/public/img/<?php echo $row['subimg_1']; ?>'"
                                         onmouseout="this.src='<?php echo $rootPath ?>/public/img/<?php echo $row['images']; ?>'">
-                                    <div class="btn btn-outline-danger position-absolute end-0 bottom-25"><i
+                                    <div class="btn btn-outline-danger position-absolute end-0 top-0"><i
                                             class=" fa-light fa-heart"></i> </div>
                                     <div
                                         class="card-body d-flex flex-column justify-content-between align-items-center">
