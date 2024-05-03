@@ -325,11 +325,11 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
                                             for="costRangeCheck<?php echo $i ?>">
                                             <?php
                                                 if (isset($row['low_cost']) && isset($row['high_cost'])) {
-                                                    echo ' ' . $row['low_cost'] . ' VND - ' . $row['high_cost'] . ' VND';
+                                                    echo ' ' . number_format($row['low_cost']) . ' VND - ' . number_format($row['high_cost']) . ' VND';
                                                 } elseif (isset($row['high_cost'])) {
-                                                    echo ' < ' . $row['high_cost'] . ' VND';
+                                                    echo ' < ' . number_format($row['high_cost']) . ' VND';
                                                 } else {
-                                                    echo ' > ' . $row['low_cost'] . ' VND';
+                                                    echo ' > ' . number_format($row['low_cost']) . ' VND';
                                                 }
                                                 ?>
                                         </label>
