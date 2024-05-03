@@ -50,7 +50,7 @@ $ketqua = $conn->query($sql);
 
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 768px) {
     .side-img {
         display: none;
     }
@@ -194,7 +194,7 @@ if (isset($_POST['login_user'])) {
     <div class="vh-100 row d-flex justify-content-center align-items-center bg-align">
         <div class="container">
             <div class="row">
-                <div class="col-6 text-black py-3">
+                <div class="col-md-6 text-black py-3">
 
                     <div class="px-5 ms-xl-4 d-flex items-center">
                         <img src="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png" alt="Logo"
@@ -255,7 +255,7 @@ if (isset($_POST['login_user'])) {
                     </div>
 
                 </div>
-                <div class="col-6 ">
+                <div class="col-md-6 ">
                     <img src="../assets/signup-image.png" class="img-fluid side-img" alt="Login image" />
                 </div>
             </div>

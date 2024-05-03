@@ -191,15 +191,15 @@ $getCountProductsQuery =("SELECT count(product_id) AS id FROM product, cost_rang
     ?>
     <div class="mt-lg-5 mb-lg-5">
         <div class="row w-100">
-            <div class="col-lg-3 row p-lg-3 p-sm-0">
-                <div class="col-6 dropdown-toggle list text-decoration-none text-white p-4 bg-black d-lg-none"
+            <div class="col-lg-3 row p-lg-3 p-sm-0 container">
+                <div class="col-6 dropdown-toggle list text-decoration-none text-black p-4 bg-white d-lg-none"
                     data-toggle="collapse" href="#collapseOptions" role="button" aria-expanded="false"
                     aria-controls="collapseOptions">
-                    <span class="user-select-none" style="font-size: 2rem; font-weight: bold">Tùy chọn</span>
+                    <span class="user-select-none align-middle" style="font-size: 1.5rem; font-weight: bold">Tùy chọn</span>
                 </div>
-                <div class="col-6 text-white p-4 bg-black d-lg-none"
-                    style="text-align: right; border-left: 1px solid #ddd">
-                    <span style="font-size: 2rem; font-weight: bold;"><?= $total ?> sản phẩm</span>
+                <div class="col-6 text-black p-4 bg-white d-lg-none"
+                    style="text-align: right; border-left: 1px solid #ddd ">
+                    <span class = "align-middle" style="font-size: 1rem;"><?= $total ?> sản phẩm</span>
                 </div>
                 <div class="px-4 collapse-option" id="collapseOptions">
                     <div class="mb-5">
