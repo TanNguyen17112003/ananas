@@ -23,7 +23,9 @@ if (isset($_GET['id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đơn hàng</title>
+    <link rel="icon" type="image/x-icon" href="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png">
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
+    
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="../assets/css/base.css">
@@ -36,7 +38,14 @@ if (isset($_GET['id'])) {
 ?>
     <div class="container mt-5 mb-5 shadow-sm p-3 mb-5 bg-body rounded">
         <div class="row">
-            <div class="h3 text-primary text-center">Chi tiết hóa đơn <a href="./index.php" class="btn btn-secondary">Back</a></div>
+        <div class="button-container">
+            <a href="./index.php" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+        <div class="row">
+            <div class="h3 text-primary text-center">Chi tiết hóa đơn</div>
+        </div>
         </div>
         <div class="row">
             <div class="col-xl-6 col-md-6 col-sm-12">

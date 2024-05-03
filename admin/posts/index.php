@@ -18,8 +18,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post</title>
+    <title>Quản lý bài viết</title>
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
+    
+    <link rel="icon" type="image/x-icon" href="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png">
     <!-- CSS only -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -40,7 +42,8 @@
 <div style = "overflow-x: auto;"
 class="main p-3" >
 <div class="container-fluid">
-  <button class="btn btn-primary mb-2   " data-bs-toggle="modal" data-bs-target="#add">Add post</button>
+<div class="h2 text-primary text-center">Danh sách bài viết</div>
+  <button class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#add">Thêm bài viết</button>
   <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">

@@ -35,12 +35,11 @@ if ($product->num_rows > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $row["name"]; ?></title>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
+    <link rel="icon" type="image/x-icon" href="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/css/base.css">
-    <link rel="icon" type="image/x-icon" href="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png">
-    <!-- <link rel="stylesheet" href="./public/css/home.css"> -->
     <style>
     .sub_image {
         cursor: pointer
@@ -49,6 +48,15 @@ if ($product->num_rows > 0) {
     .test-label {
         font-weight: bold;
         font-size: 1.5rem;
+    }
+
+    .hover-bg-black:hover {
+        background-color: black !important;
+    }
+
+    #addCartButton:hover {
+        background-color: orange !important;
+        border: none;
     }
     </style>
 </head>
@@ -181,14 +189,14 @@ if ($product->num_rows > 0) {
                                             Quantity increment buttons --> 
                                             <div class="input-group">
                                               <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default btn-number rounded-0" id = "decButt" data-type="minus" data-field="quantity" onClick = "subQuantity()">
+                                                <button type="button" class="hover-bg-black text-white bg-primary btn btn-default btn-number rounded-0" id = "decButt" data-type="minus" data-field="quantity" onClick = "subQuantity()">
                                                   -
                                                 </button>
                                               </span> 
                                               <input type="number" id="pickQuantity" class="form-control input-number ml-3 mr-3 text-center" name = "quantity" value="1" min="1" max="10">
 
                                               <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default btn-number rounded-0" id = "incButt" data-type="plus" data-field="quantity" onClick = "addQuantity()">
+                                                <button type="button" class="hover-bg-black text-white bg-primary btn btn-default btn-number rounded-0" id = "incButt" data-type="plus" data-field="quantity" onClick = "addQuantity()">
                                                   +
                                                 </button>
                                               </span>
@@ -201,8 +209,9 @@ if ($product->num_rows > 0) {
                                 <input type="hidden" name="id" value="<?php echo $row['product_id']?>">
                                 <button id="addCartButton"
                                     onclick="addCartItem(<?= $row['product_id'] ?>, document.getElementById('pickSize').value)"
-                                    class="text-uppercase w-100 py-3 bg-black text-white <?php if ($row["quantity"] <= 0) echo 'disabled' ?>">
+                                    class="d-flex align-items-center justify-content-center gap-2 text-uppercase w-100 py-3 bg-black text-white <?php if ($row["quantity"] <= 0) echo 'disabled' ?>">
                                     <h4>thêm vào giỏ hàng</h4>
+                                    <i class="fa-solid fa-cart-shopping"></i>
                                 </button>
                             </form>
 

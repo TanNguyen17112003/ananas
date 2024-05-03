@@ -19,6 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý liên hệ</title>
+    <link rel="icon" type="image/x-icon" href="https://brademar.com/wp-content/uploads/2022/09/Ananas-Logo-PNG-1.png">
     <link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -36,9 +37,12 @@
     require '../includes/sidemenu.php';
 ?>
 <div class="main container-fluid py-5">
+<div class="row mb-2 text-center">
+        <div class="h3 text-primary">Danh sách sản phẩm</div>
+	</div>
     <table class="table table-striped">
       <thead>
-        <tr class="table-primary text-center">
+        <tr class="table-primary">
           <th scope="col">STT</th>
           <th scope="col">Người gửi</th>
           <th scope="col">Email</th>

@@ -89,8 +89,8 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo $rootPath ?>/customer/logout.php">Đăng xuất</a>
-          </li>
+      <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Đăng xuất</a>
+    </li>
         <?php
         }
         ?>
@@ -98,3 +98,20 @@
     </div>
   </div>
 </nav>
+<div class="modal" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to log out?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a href="<?php echo $rootPath?>/customer/logout.php" class="btn btn-danger">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
