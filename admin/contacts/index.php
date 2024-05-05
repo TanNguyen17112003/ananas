@@ -38,7 +38,7 @@
 ?>
 <div class="main container-fluid py-5">
 <div class="row mb-2 text-center">
-        <div class="h3 text-primary">Danh sách sản phẩm</div>
+        <div class="h3 text-primary">Danh sách liên hệ</div>
 	</div>
     <table class="table table-striped">
       <thead>

@@ -20,12 +20,18 @@ if (isset($_POST['add'])) {
         $images = mysqli_real_escape_string($conn,$_FILES['images']['name']);
         $sizeArray = json_decode($_POST['sizeArray']);
         $quantityArray = json_decode($_POST['quantityArray']);
-        if ($name == '' ||  $description == '' || $price == '' || $priceSale == '' || $categoryId =='' || $images == '' ) {
+        if ($name == '' ||  $description == '' || $price == '' || $categoryId =='' || $images == '' ) {
             $tb .= 'Bạn chưa nhập đủ các trường'.'<br/>';
         } else {
-        $sqlProductInsert = "INSERT INTO product (name, category_id, description, images,  price, price_sale) 
-                    VALUES ('$name', '$categoryId', '$description', '$images', '$price', '$priceSale')"; 
-        
+            $sqlProductInsert = '';
+            if ($priceSale == '') {
+                $sqlProductInsert = "INSERT INTO product (name, category_id, description, images,  price) 
+                    VALUES ('$name', '$categoryId', '$description', '$images', '$price')";
+            }
+            else {
+                $sqlProductInsert = "INSERT INTO product (name, category_id, description, images,  price, price_sale) 
+                    VALUES ('$name', '$categoryId', '$description', '$images', '$price', '$priceSale')";
+            }
         $conn->query($sqlProductInsert);
         $productId = $conn->insert_id;
         for ($i = 0; $i < count($sizeArray); $i++) {

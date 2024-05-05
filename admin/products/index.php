@@ -105,24 +105,7 @@ require_once '../../database/DB.php';
             echo '<td id="quantity-' . $row['product_id'] . '">' . $quantities[0] . '</td>';
             echo '<td>
                 <a href="./update.php?id=' . $row['product_id'] . '" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' . $row['product_id'] . '"><i class="fa-solid fa-trash-can"></i></a>
-                <div class="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete this product?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                            <a href="#" id="confirmDelete" class="btn btn-primary">Yes</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <a href="./delete.php?id=' . $row['product_id'] . '" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
             </td></tr>';
         }
     ?>
@@ -207,14 +190,6 @@ require_once '../../database/DB.php';
         document.getElementById('quantity-' + productId).innerText = quantities[index];
     }
 
-    const deleteButtons = document.querySelectorAll('.btn-danger');
-
-deleteButtons.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-        const productId = e.target.parentElement.getAttribute('data-id');
-        document.getElementById('confirmDelete').setAttribute('href', `./delete.php?id=${productId}`);
-    });
-});
 </script>
 </body>
 </html>

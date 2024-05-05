@@ -259,7 +259,7 @@ if ($product->num_rows > 0) {
                     <span class="h4"><?= $row['name'] ?></span>
                     <?php
                             $userIdSelf = $row['user_id'];
-                            $sqlUserOrder = "SELECT user_id FROM `ltwdb`.`order`, order_item WHERE user_id = '$userIdSelf' AND product_id = '$productId' AND order.order_id = order_item.order_id";
+                            $sqlUserOrder = "SELECT user_id FROM `ltweb`.`order`, order_item WHERE user_id = '$userIdSelf' AND product_id = '$productId' AND order.order_id = order_item.order_id";
                             $checkBuy = $conn->query($sqlUserOrder);
                             if ($checkBuy->num_rows > 0) {
                                 echo '<span class="text-success"><i class="fa-duotone fa-badge-check"></i> Đã mua sản phẩm này</span>';

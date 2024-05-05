@@ -93,6 +93,7 @@ require_once './database/DB.php';
                             <p class="lead fs-4 text-secondary mb-5">Khách hàng là thượng đế. Nếu bạn quan tâm hay gặp
                                 bất kỳ vấn đề gì trong quá trình trải nghiệm và sử dung sản phẩm. Hãy liên hệ với chúng
                                 tôi.</p>
+                           
                             <div class="d-flex mb-5">
                                 <div class="me-4 text-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"

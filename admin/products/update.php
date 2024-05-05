@@ -25,7 +25,8 @@ if ($product->num_rows <= 0) {
 }
 // khi nút update được nhấn
 if (isset($_POST['update'])) {
-    if ($_FILES['images']['error']>0) {
+    
+    if ($_FILES['images']['error']>0 && $_FILES['images']['error']!=4) {
         $tb = 'Lỗi: lỗi file hình - mã lỗi:'.$_FILES['images']['error'].'<br>';
     } else {
         $name = mysqli_real_escape_string($conn,$_POST['name']);
@@ -35,19 +36,37 @@ if (isset($_POST['update'])) {
         $priceSale = mysqli_real_escape_string($conn,$_POST['priceSale']);
         $description = mysqli_real_escape_string($conn,$_POST['description']);
         $categoryId = mysqli_real_escape_string($conn,$_POST['categoryId']);
-        $images = mysqli_real_escape_string($conn,$_FILES['images']['name']);
+        $images = '';
+        if ($_FILES['images']['error']==4) {
+            $images = 'NULL';
+        }
+        else{
+            $images = mysqli_real_escape_string($conn,$_FILES['images']['name']);
+
+        }
         $imagesOld = mysqli_real_escape_string($conn,$_POST['imagesOld']);
-        if ($name == '' || $quantity == '' || $description == '' || $price == '' || $priceSale == '' || $categoryId =='' || $images == '' ) {
+        if ($name == '' || $quantity == '' || $description == '' || $price == '' || $categoryId =='' ) {
             $tb .= 'Bạn chưa nhập đủ các trường'.'<br/>';
         } else {
-        $sqlProductUpdate = "UPDATE product SET name = '$name', category_id = $categoryId, description = '$description', images = '$images',  price = '$price', price_sale = '$priceSale'
-                        WHERE product_id = '$productId'";
+        if ($images == 'NULL'){
+            $images = $imagesOld;
+        }
+        $sqlProductUpdate = "UPDATE product SET name = '$name', category_id = $categoryId, description = '$description', images = '$images',  price = '$price', price_sale = NULL
+            WHERE product_id = '$productId'";
+        if ($priceSale != ''){
+            $sqlProductUpdate = "UPDATE product SET name = '$name', category_id = $categoryId, description = '$description', images = '$images',  price = '$price', price_sale = '$priceSale'
+                        WHERE product_id = '$productId'";;
+        }
+        
         $sqlProductInstockUpdate = "UPDATE product_instock SET quantity = '$quantity' WHERE product_id = '$productId' AND size = '$size'"; 
         $conn->query($sqlProductUpdate);
         $conn->query($sqlProductInstockUpdate);
-        if (! file_exists("../../public/img/".$images))
+        if ($images!=$imagesOld){
+            if (! file_exists("../../public/img/".$images))
             move_uploaded_file($_FILES["images"]["tmp_name"],"../../public/img/".$images);
             unlink("../../public/img/".$imagesOld);
+        }
+        
         $conn->close();
         setcookie('thongBao', 'Cập nhật sản phẩm thành công', time()+5);
         header("location: index.php");

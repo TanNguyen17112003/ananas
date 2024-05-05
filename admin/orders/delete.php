@@ -11,7 +11,7 @@
         $sqlDelete = "DELETE FROM `ltweb`.`order` WHERE order_id = '$orderId'";
         $conn->query($sqlDelete);
         $conn->close();
-        setcookie('thongBao', 'Đã xóa thành công', time()+5);
+        setcookie('thongBao', 'Đã xóa thành công', time());
         header("location: index.php");
     } else {
         $conn->close();

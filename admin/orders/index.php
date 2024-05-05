@@ -76,24 +76,7 @@ require_once '../../database/DB.php';
                                         <th scope="col">
                                             <a href="./show.php?id=<?= $row['order_id'] ?>" class="btn btn-secondary"><i class="fa-regular fa-eye"></i></a>
                                             <a href="./update.php?id=<?= $row['order_id'] ?>" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
-                                            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $row['order_id'] ?>"><i class="fa-solid fa-trash-can"></i></a>
-                                            <div class="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Are you sure you want to delete this order?
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                            <a href="#" id="confirmDelete" class="btn btn-primary">Yes</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a href="./delete.php?id=<?= $row['order_id'] ?>" class="btn btn-danger"> <i class="fa-solid fa-trash-can"></i></a>
                     </div>
                     </th>
                     </tr>
@@ -116,7 +99,7 @@ require_once '../../database/DB.php';
             </div>
             <div class="row">
                 <div class="col-xl-4 col-md-6 col-sm-12">
-                    <a href="<?php echo $rootPath ?>/" class="btn btn-primary">Trở về trang chủ</a>
+                    <a href="<?php echo $rootPath ?>/report" class="btn btn-primary">Trở về trang chủ</a>
                 </div>
             </div>
         </div>
@@ -128,17 +111,7 @@ require_once '../../database/DB.php';
 
 
 
-    <script>
-        // Get delete buttons
-        const deleteButtons = document.querySelectorAll('.btn-danger');
 
-deleteButtons.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-        const orderId = e.target.parentElement.getAttribute('data-id');
-        document.getElementById('confirmDelete').setAttribute('href', `./delete.php?id=${orderId}`);
-    });
-});
-    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
